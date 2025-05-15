@@ -392,7 +392,7 @@
             <li class="nav-heading">Pages</li>
 
             <li class="nav-item">
-              <a class="nav-link collapsed" href="users-profile.html">
+              <a class="nav-link collapsed" href="/admin">
                 <i class="bi bi-person"></i>
                 <span>Thông tin</span>
               </a>
@@ -401,7 +401,7 @@
 
 
             <li class="nav-item">
-              <a class="nav-link collapsed" href="pages-contact.html">
+              <a class="nav-link collapsed" href="/contact">
                 <i class="bi bi-envelope"></i>
                 <span>Liên hệ</span>
               </a>
