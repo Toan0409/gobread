@@ -53,12 +53,14 @@
                                 <li><a href="#menu">Danh sách </a></li>
                                 <li><a href="#chefs">Đầu bếp</a></li>
                                 </li>
-                                <li><a href="#contact">Liên hệ</a></li>
+                                <a class="btn-getstarted" href="<c:url value='/user/cart' />">đơn hàng</a>
                             </ul>
                             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                         </nav>
 
-                        <a class="btn-getstarted" href="<c:url value='/order' />">Đặt hàng</a>    
+                        <a class="btn-getstarted" href="<c:url value='/order' />">Đặt hàng</a>
+                        <a class="btn-getstarted" href="<c:url value='/user/signup' />">Đặt kí</a>
+                        <a class="btn-getstarted" href="<c:url value='/user/login' />">Đặt nhập</a>
 
                     </div>
                 </header>
@@ -1147,13 +1149,13 @@
                     <section id="contact" class="contact section">
 
                         <!-- Section Title -->
-                        <div class="container section-title" data-aos="fade-up">
+                        <!-- <div class="container section-title" data-aos="fade-up">
                             <h2>Liên Hệ</h2>
                             <p><span>Bạn Cần Giúp Đỡ</span> <span class="description-title">Hãy Liên Lạc Chúng
                                     Tôi</span></p>
-                        </div><!-- End Section Title -->
+                        </div>End Section Title -->
 
-                        <div class="container" data-aos="fade-up" data-aos-delay="100">
+                        <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                             <div class="mb-5">
                                 <iframe
@@ -1245,7 +1247,7 @@
                                 </div>
                             </form><!-- End Contact Form -->
 
-                        </div>
+                        </div> -->
 
                     </section><!-- /Contact Section -->
 

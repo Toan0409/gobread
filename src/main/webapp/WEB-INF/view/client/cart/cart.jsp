@@ -71,13 +71,14 @@
                 <!-- Footer -->
                 <footer id="footer" class="footer dark-background">
                     <div class="container text-center py-3">
-                        <p>© GoBread 2025. Thiết kế bởi <a href="#">Dương</a></p>
+                        <p>© GoBread 2025. Thiết kế bởi <a href="#">gobread</a></p>
                     </div>
                 </footer>
 
                 <!-- JS -->
                 <script src="/assets_client/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
                 <script src="/assets_client/js/main.js"></script>
+                <script src="/assets_client/js/validateCart.js"></script>
                 <script src="/assets_client/js/validateCart.js"></script>
             </body>
 
