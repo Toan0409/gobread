@@ -1304,8 +1304,7 @@ th.address-column {
   white-space: nowrap;
 }
 
-td.address-column:hover,
-th.address-column:hover {
+td.address-column:hover {
   overflow: visible;
   white-space: normal;
   background-color: #f8f9fa;

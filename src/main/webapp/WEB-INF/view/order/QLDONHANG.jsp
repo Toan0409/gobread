@@ -472,7 +472,7 @@
                   <th>Sản Phẩm</th>
                   <th>Số Lượng</th>
                   <th>Tổng Tiền</th>
-                  <th>Trạng Thái</th>
+                  <th class="address-column">Trạng Thái</th>
                   <th>Hành Động</th>
                 </tr>
 
@@ -484,7 +484,7 @@
                     <td>${user.email}</td>
                     <td>${user.phoneNumber}</td>
                     <td>${user.phoneNumber}</td>
-                    <td>${user.address}</td>
+                    <td class="address-column">${user.address}</td>
                     <td>
                       <a href="/admin/user/${user.id}" class="btn btn-sm btn-primary" title="Xem chi tiết">
                         <i class="fa fa-eye">

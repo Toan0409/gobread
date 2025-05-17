@@ -55,12 +55,6 @@ public class UserController {
         return "client/auth/signup";
     }
 
-    @GetMapping("/order")
-    public String showOrderForm() {
-        return "client/order/order_form";
-    }
-    
-
     @RequestMapping("/login")
     public String getLoginPage(Model model) {
 
