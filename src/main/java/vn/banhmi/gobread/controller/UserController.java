@@ -50,6 +50,11 @@ public class UserController {
         return "client/review/review";
     }
 
+    @RequestMapping("/user/signup")
+    public String getUserSignUp(Model model) {
+        return "client/auth/signup";
+    }
+
     @RequestMapping("/login")
     public String getLoginPage(Model model) {
 
