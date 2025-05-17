@@ -471,7 +471,7 @@
                   <th>Tên Khách Hàng</th>
                   <th>Email</th>
                   <th>Số Điện Thoại</th>
-                  <th>Địa Chỉ</th>
+                  <th class="address-column">Địa Chỉ</th>
                   <th>Hành Động</th>
                 </tr>
                 <c:forEach var="user" items="${users1}">
@@ -481,7 +481,7 @@
                     <td>${user.fullName}</td>
                     <td>${user.email}</td>
                     <td>${user.phoneNumber}</td>
-                    <td>${user.address}</td>
+                    <td class="address-column">${user.address}</td>
                     <td>
                       <a href="/admin/user/${user.id}" class="btn btn-sm btn-primary" title="Xem chi tiết">
                         <i class="fa fa-eye">

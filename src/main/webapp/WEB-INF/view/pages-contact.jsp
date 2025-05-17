@@ -50,7 +50,7 @@
 
           <div class="d-flex align-items-center justify-content-between">
             <a href="/" class="logo d-flex align-items-center">
-              <img src="//assets/img/breadlogo.png" alt="">
+              <img src="/assets/img/breadlogo.png" alt="">
               <span class="d-none d-lg-block">GoBread</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -174,7 +174,7 @@
 
                   <li class="message-item">
                     <a href="#">
-                      <img src="//assets/img/user1.png" alt="" class="rounded-circle">
+                      <img src="/assets/img/user1.png" alt="" class="rounded-circle">
                       <div>
                         <h4>Vũ Tùng Dương</h4>
                         <p>Thêm đơn hàng #2024245676</p>
@@ -188,7 +188,7 @@
 
                   <li class="message-item">
                     <a href="#">
-                      <img src="//assets/img/user2.jpg" alt="" class="rounded-circle">
+                      <img src="/assets/img/user2.jpg" alt="" class="rounded-circle">
                       <div>
                         <h4>Trần Quốc Toàn</h4>
                         <p>Thêm đơn hàng #202423445</p>
@@ -202,7 +202,7 @@
 
                   <li class="message-item">
                     <a href="#">
-                      <img src="//assets/img/user3.jpg" alt="" class="rounded-circle">
+                      <img src="/assets/img/user3.jpg" alt="" class="rounded-circle">
                       <div>
                         <h4>Lê Võ Khôi Nguyên</h4>
                         <p>Thêm đơn hàng #202423346</p>
@@ -225,7 +225,7 @@
               <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                  <img src="//assets/img/user1.png" alt="Profile" class="rounded-circle">
+                  <img src="/assets/img/user1.png" alt="Profile" class="rounded-circle">
                   <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
                 </a><!-- End Profile Image Icon -->
 

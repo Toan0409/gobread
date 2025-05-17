@@ -1295,6 +1295,23 @@ th {
   color: white;
 }
 
+td.address-column,
+th.address-column {
+  max-width: 200px;
+  /* Hoặc giá trị nhỏ hơn nếu cần */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td.address-column:hover,
+th.address-column:hover {
+  overflow: visible;
+  white-space: normal;
+  background-color: #f8f9fa;
+}
+
+
 .btn {
   padding: 5px 10px;
   margin: 2px;
