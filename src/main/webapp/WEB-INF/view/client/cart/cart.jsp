@@ -29,7 +29,7 @@
                         </a>
                         <nav id="navmenu" class="navmenu">
                             <ul>
-                                <li><a href="index.html#hero">Trang chủ</a></li>
+                                <li><a href="/user">Trang chủ</a></li>
                                 <li><a href="index.html#menu">Menu</a></li>
                                 <li><a href="index.html#order-online">Đặt hàng</a></li>
                             </ul>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import vn.banhmi.gobread.domain.Order;
+import vn.banhmi.gobread.domain.Product;
 import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.service.UserService;
 
@@ -60,10 +61,10 @@ public class UserController {
         return "client/auth/login";
     }
 
-    @GetMapping("/order")
-    public String showOrderForm() {
-        return "client/order/order_form";
-    }
+    // @GetMapping("/order")
+    // public String showOrderForm() {
+    // return "client/order/order_form";
+    // }
 
     @RequestMapping("/login")
     public String getLoginPage(Model model) {
@@ -161,12 +162,18 @@ public class UserController {
     @RequestMapping("/order/add")
     public String getAddOrderPage(Model model) {
         model.addAttribute("order", new Order());
-        return "admin/addOrder";
+        return "order/addOrder";
     }
 
     @RequestMapping("/product")
     public String getProductPage(Model model) {
         return "product/QLSANPHAMTK";
+    }
+
+    @RequestMapping("/product/add")
+    public String getAddProductPage(Model model) {
+        model.addAttribute("order", new Product());
+        return "product/addProduct";
     }
 
 }

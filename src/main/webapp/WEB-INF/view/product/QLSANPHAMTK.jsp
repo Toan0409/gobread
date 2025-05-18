@@ -17,6 +17,7 @@
         <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
         <!-- Google Fonts -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
         <link href="https://fonts.gstatic.com" rel="preconnect">
         <link
           href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -481,7 +482,7 @@
           <body>
             <div class="container">
               <h2>Quản Lý Sản Phẩm & Tồn Kho</h2>
-              <button class="btn btn-add">Thêm Sản Phẩm</button>
+              <a href="/product/add" class="btn btn-add">Thêm Sản Phẩm</a>
               <table>
                 <tr>
                   <th>ID</th>
@@ -498,8 +499,18 @@
                   <td>25.000</td>
                   <td>100</td>
                   <td>
-                    <button class="btn btn-edit">Sửa</button>
-                    <button class="btn btn-delete">Xóa</button>
+                    <a href="/admin/user/${user.id}" class="btn btn-sm btn-primary" title="Xem chi tiết">
+                      <i class="fa fa-eye">
+                      </i>
+                    </a>
+                    <a href="/admin/user/update/${user.id}" class="btn btn-sm btn-secondary" title="Chỉnh sửa">
+                      <i class="fa fa-pen">
+                      </i>
+                    </a>
+                    <a href="/admin/user/delete/${user.id}" class="btn btn-sm btn-danger" title="Xoá">
+                      <i class="fa fa-trash">
+                      </i>
+                    </a>
                   </td>
                 </tr>
                 <tr>
@@ -509,8 +520,18 @@
                   <td>20.000</td>
                   <td>80</td>
                   <td>
-                    <button class="btn btn-edit">Sửa</button>
-                    <button class="btn btn-delete">Xóa</button>
+                    <a href="/admin/user/${user.id}" class="btn btn-sm btn-primary" title="Xem chi tiết">
+                      <i class="fa fa-eye">
+                      </i>
+                    </a>
+                    <a href="/admin/user/update/${user.id}" class="btn btn-sm btn-secondary" title="Chỉnh sửa">
+                      <i class="fa fa-pen">
+                      </i>
+                    </a>
+                    <a href="/admin/user/delete/${user.id}" class="btn btn-sm btn-danger" title="Xoá">
+                      <i class="fa fa-trash">
+                      </i>
+                    </a>
                   </td>
                 </tr>
                 <tr>
@@ -520,8 +541,18 @@
                   <td>22.000</td>
                   <td>120</td>
                   <td>
-                    <button class="btn btn-edit">Sửa</button>
-                    <button class="btn btn-delete">Xóa</button>
+                    <a href="/admin/user/${user.id}" class="btn btn-sm btn-primary" title="Xem chi tiết">
+                      <i class="fa fa-eye">
+                      </i>
+                    </a>
+                    <a href="/admin/user/update/${user.id}" class="btn btn-sm btn-secondary" title="Chỉnh sửa">
+                      <i class="fa fa-pen">
+                      </i>
+                    </a>
+                    <a href="/admin/user/delete/${user.id}" class="btn btn-sm btn-danger" title="Xoá">
+                      <i class="fa fa-trash">
+                      </i>
+                    </a>
                   </td>
                 </tr>
               </table>

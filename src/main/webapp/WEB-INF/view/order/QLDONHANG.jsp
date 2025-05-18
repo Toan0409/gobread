@@ -464,7 +464,7 @@
           <body>
             <div class="container">
               <h2>Quản Lý Đơn Hàng</h2>
-              <button class="btn btn-add">Thêm Đơn Hàng</button>
+              <a href="/order/add" class="btn btn-add">Thêm Đơn Hàng</a>
               <table>
                 <tr>
                   <th>Mã Đơn</th>
@@ -482,8 +482,8 @@
                     <td>${user.id}</td>
                     <td>${user.fullName}</td>
                     <td>${user.email}</td>
-                    <td>${user.phoneNumber}</td>
-                    <td>${user.phoneNumber}</td>
+                    <td>${user.id}</td>
+                    <td>${user.id}</td>
                     <td class="address-column">${user.address}</td>
                     <td>
                       <a href="/admin/user/${user.id}" class="btn btn-sm btn-primary" title="Xem chi tiết">
@@ -512,16 +512,8 @@
 
         <!-- ======= Footer ======= -->
         <footer id="footer" class="footer">
-          <div class="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-          </div>
-          <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
+
+
         </footer><!-- End Footer -->
 
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

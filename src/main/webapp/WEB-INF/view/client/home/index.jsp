@@ -7,13 +7,13 @@
             <head>
                 <meta charset="utf-8">
                 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-                <title>GoBreab</title>
+                <title>GoBread</title>
                 <meta name="description" content="">
                 <meta name="keywords" content="">
 
                 <!-- Favicons -->
-                <link href="assets_client/img/favicon.jpg" rel="icon">
-                <link href="assets_client/img/apple-touch-icon.jpg" rel="apple-touch-icon">
+                <link href="/assets/img/breadlogo.png" rel="icon">
+                <link href="/assets/img/apple-touch-icon.jpg" rel="apple-touch-icon">
 
                 <!-- Fonts -->
                 <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -39,11 +39,12 @@
                 <header id="header" class="header d-flex align-items-center sticky-top">
                     <div class="container position-relative d-flex align-items-center justify-content-between">
 
-                        <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                        <a href="/user" class="logo d-flex align-items-center me-auto me-xl-0">
+                            <img src="/assets/img/breadlogo.png" alt="">
                             <!-- Uncomment the line below if you also wish to use an image logo -->
                             <!-- <img src="assets/img/logo.png" alt=""> -->
                             <h1 class="sitename">GoBread</h1>
-                            <span>.</span>
+
                         </a>
 
                         <nav id="navmenu" class="navmenu">
@@ -53,14 +54,16 @@
                                 <li><a href="#menu">Danh sách </a></li>
                                 <li><a href="#chefs">Đầu bếp</a></li>
                                 </li>
-                                <a class="btn-getstarted" href="<c:url value='/user/cart' />">đơn hàng</a>
+                                <a href="<c:url value='/user/cart' />">Giỏ hàng</a>
+                                </li>
+                                <li><a href="<c:url value='/user/signup' />">Đăng kí</a></li>
+                                <li> <a href="<c:url value='/user/login' />">Đăng nhập</a></li>
                             </ul>
                             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                         </nav>
 
                         <a class="btn-getstarted" href="<c:url value='/order' />">Đặt hàng</a>
-                        <a class="btn-getstarted" href="<c:url value='/user/signup' />">Đặt kí</a>
-                        <a class="btn-getstarted" href="<c:url value='/user/login' />">Đặt nhập</a>
+
 
                     </div>
                 </header>
@@ -1164,88 +1167,88 @@
                                 </iframe>
                             </div><!-- End Google Maps -->
 
+                        <div class="row gy-4">
+
+                            <div class="col-md-6">
+                                <div class="info-item d-flex align-items-center" data-aos="fade-up"
+                                    data-aos-delay="200">
+                                    <i class="icon bi bi-geo-alt flex-shrink-0"></i>
+                                    <div>
+                                        <h3>Địa Chỉ</h3>
+                                        <p>100, Nguyên Xá, Bắc Từ Liêm, Hà Nội</p>
+                                    </div>
+                                </div>
+                            </div><!-- End Info Item -->
+
+                            <div class="col-md-6">
+                                <div class="info-item d-flex align-items-center" data-aos="fade-up"
+                                    data-aos-delay="300">
+                                    <i class="icon bi bi-telephone flex-shrink-0"></i>
+                                    <div>
+                                        <h3>Liên hệ với chúng tôi</h3>
+                                        <p>+0342437211</p>
+                                    </div>
+                                </div>
+                            </div><!-- End Info Item -->
+
+                            <div class="col-md-6">
+                                <div class="info-item d-flex align-items-center" data-aos="fade-up"
+                                    data-aos-delay="400">
+                                    <i class="icon bi bi-envelope flex-shrink-0"></i>
+                                    <div>
+                                        <h3>Email: </h3>
+                                        <p>Duongtungvu2004@gmail.com</p>
+                                    </div>
+                                </div>
+                            </div><!-- End Info Item -->
+
+                            <div class="col-md-6">
+                                <div class="info-item d-flex align-items-center" data-aos="fade-up"
+                                    data-aos-delay="500">
+                                    <i class="icon bi bi-clock flex-shrink-0"></i>
+                                    <div>
+                                        <h3>Giờ mở cửa:<br></h3>
+                                        <p><strong>Thứ Hai - Chủ nhật:</strong> 11AM - 23PM </p>
+                                    </div>
+                                </div>
+                            </div><!-- End Info Item -->
+
+                        </div>
+
+                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
+                            data-aos-delay="600">
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
-                                    <div class="info-item d-flex align-items-center" data-aos="fade-up"
-                                        data-aos-delay="200">
-                                        <i class="icon bi bi-geo-alt flex-shrink-0"></i>
-                                        <div>
-                                            <h3>Địa Chỉ</h3>
-                                            <p>100, Nguyên Xá, Bắc Từ Liêm, Hà Nội</p>
-                                        </div>
-                                    </div>
-                                </div><!-- End Info Item -->
+                                    <input type="text" name="name" class="form-control" placeholder="Tên của bạn"
+                                        required="">
+                                </div>
 
-                                <div class="col-md-6">
-                                    <div class="info-item d-flex align-items-center" data-aos="fade-up"
-                                        data-aos-delay="300">
-                                        <i class="icon bi bi-telephone flex-shrink-0"></i>
-                                        <div>
-                                            <h3>Liên hệ với chúng tôi</h3>
-                                            <p>+0342437211</p>
-                                        </div>
-                                    </div>
-                                </div><!-- End Info Item -->
+                                <div class="col-md-6 ">
+                                    <input type="email" class="form-control" name="email" placeholder="Email của bạn"
+                                        required="">
+                                </div>
 
-                                <div class="col-md-6">
-                                    <div class="info-item d-flex align-items-center" data-aos="fade-up"
-                                        data-aos-delay="400">
-                                        <i class="icon bi bi-envelope flex-shrink-0"></i>
-                                        <div>
-                                            <h3>Email: </h3>
-                                            <p>Duongtungvu2004@gmail.com</p>
-                                        </div>
-                                    </div>
-                                </div><!-- End Info Item -->
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" name="subject" placeholder="Subject"
+                                        required="">
+                                </div>
 
-                                <div class="col-md-6">
-                                    <div class="info-item d-flex align-items-center" data-aos="fade-up"
-                                        data-aos-delay="500">
-                                        <i class="icon bi bi-clock flex-shrink-0"></i>
-                                        <div>
-                                            <h3>Giờ mở cửa:<br></h3>
-                                            <p><strong>Thứ Hai - Chủ nhật:</strong> 11AM - 23PM </p>
-                                        </div>
-                                    </div>
-                                </div><!-- End Info Item -->
+                                <div class="col-md-12">
+                                    <textarea class="form-control" name="message" rows="6" placeholder="Tin nhắn"
+                                        required=""></textarea>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+                                    <div class="loading">Loading</div>
+                                    <div class="error-message"></div>
+                                    <div class="Gửi">Tin nhắn của bạn đã được gửi!</div>
+
+                                    <button type="submit">Gửi</button>
+                                </div>
 
                             </div>
-
-                            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-                                data-aos-delay="600">
-                                <div class="row gy-4">
-
-                                    <div class="col-md-6">
-                                        <input type="text" name="name" class="form-control" placeholder="Tên của bạn"
-                                            required="">
-                                    </div>
-
-                                    <div class="col-md-6 ">
-                                        <input type="email" class="form-control" name="email"
-                                            placeholder="Email của bạn" required="">
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <input type="text" class="form-control" name="subject" placeholder="Subject"
-                                            required="">
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <textarea class="form-control" name="message" rows="6" placeholder="Tin nhắn"
-                                            required=""></textarea>
-                                    </div>
-
-                                    <div class="col-md-12 text-center">
-                                        <div class="loading">Loading</div>
-                                        <div class="error-message"></div>
-                                        <div class="Gửi">Tin nhắn của bạn đã được gửi!</div>
-
-                                        <button type="submit">Gửi</button>
-                                    </div>
-
-                                </div>
-                            </form><!-- End Contact Form -->
+                        </form><!-- End Contact Form -->
 
                         </div> -->
 

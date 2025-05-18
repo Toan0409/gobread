@@ -1,61 +1,67 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <%@ page contentType="text/html" pageEncoding="UTF-8" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-        <!DOCTYPE html>
-        <html>
+            <html>
 
-        <head>
-            <title>Thêm đơn hàng</title>
-            <!-- Bootstrap 5 CDN -->
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        </head>
+            <head>
+                <title>Thêm Đơn Hàng</title>
+                <style>
+                    label {
+                        display: block;
+                        margin: 10px 0 5px;
+                    }
 
-        <body>
-            <div class="container mt-5">
-                <h2 class="mb-4">Thêm đơn hàng</h2>
+                    input,
+                    select {
+                        width: 100%;
+                        padding: 8px;
+                        margin-bottom: 10px;
+                    }
 
-                <form:form method="post" action="/orders/add" modelAttribute="order">
-                    <div class="mb-3">
-                        <label class="form-label">Họ tên khách hàng</label>
-                        <form:input path="customerName" cssClass="form-control" />
-                    </div>
+                    .form-container {
+                        max-width: 400px;
+                        margin: auto;
+                    }
 
-                    <div class="mb-3">
-                        <label class="form-label">Địa chỉ</label>
-                        <form:input path="customerAddress" cssClass="form-control" />
-                    </div>
+                    button {
+                        padding: 10px 20px;
+                        background-color: green;
+                        color: white;
+                        border: none;
+                    }
+                </style>
+            </head>
 
-                    <div class="mb-3">
-                        <label class="form-label">Số điện thoại</label>
-                        <form:input path="customerPhoneNumber" cssClass="form-control" />
-                    </div>
+            <body>
 
-                    <div class="mb-3">
-                        <label class="form-label">Sản phẩm</label>
-                        <form:input path="product" cssClass="form-control" />
-                    </div>
+                <h2 style="text-align:center;">Thêm Đơn Hàng</h2>
 
-                    <div class="mb-3">
-                        <label class="form-label">Số lượng</label>
-                        <form:input path="quantity" type="number" cssClass="form-control" />
-                    </div>
+                <div class="form-container">
+                    <form method="POST" action="/order/add" modelAttribute="order">
+                        <label for="customerName">Khách Hàng:</label>
+                        <input path="customerName" id="customerName" />
 
-                    <div class="mb-3">
-                        <label class="form-label">Trạng thái</label>
-                        <form:input path="status" cssClass="form-control" />
-                    </div>
+                        <label for="productName">Sản Phẩm:</label>
+                        <input path="productName" id="productName" />
 
-                    <div class="mb-3">
-                        <label class="form-label">Tổng tiền</label>
-                        <form:input path="totalPrice" type="number" step="0.01" cssClass="form-control" />
-                    </div>
+                        <label for="quantity">Số Lượng:</label>
+                        <input path="quantity" id="quantity" type="number" />
 
-                    <button type="submit" class="btn btn-primary">Thêm đơn hàng</button>
-                </form:form>
-            </div>
+                        <label for="totalPrice">Tổng Tiền:</label>
+                        <input path="totalPrice" id="totalPrice" type="number" step="0.01" />
 
-            <!-- Bootstrap JS (nếu cần) -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        </body>
+                        <label for="status">Trạng Thái:</label>
+                        <select path="status" id="status">
+                            <option value="Đang xử lý" label="Đang xử lý" />
+                            <option value="Hoàn thành" label="Hoàn thành" />
+                            <option value="Hủy" label="Hủy" />
+                        </select>
 
-        </html>
+                        <button type="submit">Lưu Đơn Hàng</button>
+                    </form>
+                </div>
+
+            </body>
+
+            </html>
