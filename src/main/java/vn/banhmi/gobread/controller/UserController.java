@@ -152,12 +152,12 @@ public class UserController {
     // return "redirect:/admin/order";
     // }
 
-    @RequestMapping("/order")
-    public String getOrderPage(Model model) {
-        List<User> users = this.userService.getAllUsers();
-        model.addAttribute("users1", users);
-        return "order/QLDONHANG";
-    }
+    // @RequestMapping("/order")
+    // public String getOrderPage(Model model) {
+    // List<User> users = this.userService.getAllUsers();
+    // model.addAttribute("users1", users);
+    // return "order/QLDONHANG";
+    // }
 
     @RequestMapping("/order/add")
     public String getAddOrderPage(Model model) {
@@ -165,10 +165,10 @@ public class UserController {
         return "order/addOrder";
     }
 
-    @RequestMapping("/product")
-    public String getProductPage(Model model) {
-        return "product/QLSANPHAMTK";
-    }
+    // @RequestMapping("/product")
+    // public String getProductPage(Model model) {
+    // return "product/QLSANPHAMTK";
+    // }
 
     @RequestMapping("/product/add")
     public String getAddProductPage(Model model) {
