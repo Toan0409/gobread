@@ -110,6 +110,18 @@
                             <div class="invalid-feedback">Không được để trống</div>
                           </div>
 
+                          <div class="col-12">
+                            <label for="role" class="form-label">Vai trò</label>
+                            <select name="roleId" class="form-select" id="roleId" required>
+                              <option value="">-- Chọn vai trò --</option>
+                              <c:forEach items="${roles}" var="r">
+                                <option value="${r.id}">${r.name}</option>
+                              </c:forEach>
+                            </select>
+                            <div class="invalid-feedback">Vui lòng chọn vai trò!</div>
+                          </div>
+
+
 
                           <div class="col-12">
                             <div class="form-check">

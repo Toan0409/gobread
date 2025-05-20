@@ -1,6 +1,9 @@
 package vn.banhmi.gobread.controller;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.management.relation.Role;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,18 +14,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import vn.banhmi.gobread.domain.User;
+import vn.banhmi.gobread.repository.RoleRepository;
 import vn.banhmi.gobread.service.UserService;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
+    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService, RoleRepository roleRepository,
+            PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -131,15 +139,28 @@ public class UserController {
 
     @RequestMapping("/admin/user/create")
     public String getRegisterPage(Model model) {
-
+        model.addAttribute("roles", roleRepository.findAll());
         return "admin/user/pages-register";
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User user) {
+    public String createUserPage(Model model,
+            @ModelAttribute("newUser") User user,
+            @RequestParam("roleId") Long roleId) {
+        Optional<vn.banhmi.gobread.domain.Role> role = roleRepository.findById(roleId); // ✅ truyền đúng Long id
+
+        if (role.isEmpty()) {
+            model.addAttribute("error", "Vai trò không hợp lệ!");
+            model.addAttribute("roles", roleRepository.findAll());
+            return "admin/user/pages-register";
+        }
+
+        // Gán role và mã hóa mật khẩu
+        user.setRole(role.get());
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
-        this.userService.handleSaveUser(user);
+
+        userService.handleSaveUser(user);
         return "redirect:/admin/user";
     }
 
