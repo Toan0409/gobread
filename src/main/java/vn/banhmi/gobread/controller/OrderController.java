@@ -24,4 +24,10 @@ public class OrderController {
         model.addAttribute("users1", orders);
         return "order/QLDONHANG";
     }
+
+    @RequestMapping("/order/add")
+    public String getAddOrderPage(Model model) {
+        model.addAttribute("order", new Order());
+        return "order/addOrder";
+    }
 }

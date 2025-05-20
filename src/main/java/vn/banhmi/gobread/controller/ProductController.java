@@ -23,4 +23,10 @@ public class ProductController {
         model.addAttribute("users1", products);
         return "product/QLSANPHAMTK";
     }
+
+    @RequestMapping("/product/add")
+    public String getAddProductPage(Model model) {
+        model.addAttribute("order", new Product());
+        return "product/addProduct";
+    }
 }

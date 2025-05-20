@@ -4,16 +4,25 @@ import com.github.javafaker.Faker;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import vn.banhmi.gobread.domain.Order;
 import vn.banhmi.gobread.domain.User;
+import vn.banhmi.gobread.repository.OrderRepository;
 import vn.banhmi.gobread.repository.UserRepository;
 
 @Service
 public class DataSeeder {
 
+    private final OrderRepository orderRepository;
+
     @Autowired
     private UserRepository userRepository;
 
     private final Faker faker = new Faker();
+
+    DataSeeder(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
 
     @PostConstruct
     public void seedData() {
@@ -38,5 +47,6 @@ public class DataSeeder {
             }
             System.out.println("✅ Đã sinh 100 user mẫu.");
         }
+
     }
 }

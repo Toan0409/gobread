@@ -2,6 +2,7 @@ package vn.banhmi.gobread.controller;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import vn.banhmi.gobread.domain.Order;
-import vn.banhmi.gobread.domain.Product;
 import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.service.UserService;
 
@@ -20,9 +19,11 @@ import vn.banhmi.gobread.service.UserService;
 public class UserController {
 
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("/")
@@ -60,11 +61,6 @@ public class UserController {
     public String getUserLogin(Model model) {
         return "client/auth/login";
     }
-
-    // @GetMapping("/order")
-    // public String showOrderForm() {
-    // return "client/order/order_form";
-    // }
 
     @RequestMapping("/login")
     public String getLoginPage(Model model) {
@@ -140,40 +136,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit) {
-        this.userService.handleSaveUser(hoidanit);
+    public String createUserPage(Model model, @ModelAttribute("newUser") User user) {
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
+        this.userService.handleSaveUser(user);
         return "redirect:/admin/user";
-    }
-
-    // @RequestMapping(value = "/admin/order/create", method = RequestMethod.POST)
-    // public String createOrderPage(Model model, @ModelAttribute("newOrder") Order
-    // order) {
-    // this.OrderService.handleSaveOrder(order);
-    // return "redirect:/admin/order";
-    // }
-
-    // @RequestMapping("/order")
-    // public String getOrderPage(Model model) {
-    // List<User> users = this.userService.getAllUsers();
-    // model.addAttribute("users1", users);
-    // return "order/QLDONHANG";
-    // }
-
-    @RequestMapping("/order/add")
-    public String getAddOrderPage(Model model) {
-        model.addAttribute("order", new Order());
-        return "order/addOrder";
-    }
-
-    // @RequestMapping("/product")
-    // public String getProductPage(Model model) {
-    // return "product/QLSANPHAMTK";
-    // }
-
-    @RequestMapping("/product/add")
-    public String getAddProductPage(Model model) {
-        model.addAttribute("order", new Product());
-        return "product/addProduct";
     }
 
 }

@@ -2,59 +2,38 @@
     <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-            <html>
+            <!DOCTYPE html>
+            <html lang="vi">
 
             <head>
+                <meta charset="UTF-8">
                 <title>Thêm Sản Phẩm</title>
-                <style>
-                    label {
-                        display: block;
-                        margin: 10px 0 5px;
-                    }
-
-                    input,
-                    select {
-                        width: 100%;
-                        padding: 8px;
-                        margin-bottom: 10px;
-                    }
-
-                    .form-container {
-                        max-width: 400px;
-                        margin: auto;
-                    }
-
-                    button {
-                        padding: 10px 20px;
-                        background-color: green;
-                        color: white;
-                        border: none;
-                    }
-                </style>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
             </head>
 
-            <body>
-
-                <h2 style="text-align:center;">Thêm Sản Phẩm</h2>
-
-                <div class="form-container">
-                    <form method="POST" action="/product/add" modelAttribute="product">
-                        <label for="name">Tên Sản Phẩm:</label>
-                        <input path="name" id="name" />
-
-                        <label for="category">Loại:</label>
-                        <input path="category" id="category" />
-
-                        <label for="price">Giá (VNĐ):</label>
-                        <input path="price" id="price" type="number" step="1000" />
-
-                        <label for="stock">Số Lượng Tồn:</label>
-                        <input path="stock" id="stock" type="number" />
-
-                        <button type="submit">Lưu Sản Phẩm</button>
+            <body class="bg-light">
+                <div class="container mt-5">
+                    <h2 class="text-center mb-4">Thêm Sản Phẩm</h2>
+                    <form action="/product/add" method="post" class="mx-auto" style="max-width: 500px;">
+                        <div class="mb-3">
+                            <label class="form-label">Tên Sản Phẩm</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Loại</label>
+                            <input type="text" name="category" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Giá (VND)</label>
+                            <input type="number" name="price" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Số Lượng Tồn</label>
+                            <input type="number" name="quantity" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Lưu Sản Phẩm</button>
                     </form>
                 </div>
-
             </body>
 
             </html>
