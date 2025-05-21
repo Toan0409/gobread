@@ -137,7 +137,7 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
-    @RequestMapping("/admin/user/create")
+    @GetMapping("/admin/user/create")
     public String getRegisterPage(Model model) {
         model.addAttribute("roles", roleRepository.findAll());
         return "admin/user/pages-register";

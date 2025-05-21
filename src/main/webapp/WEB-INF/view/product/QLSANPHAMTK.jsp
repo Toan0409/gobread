@@ -440,80 +440,44 @@
               <h2>Quản Lý Sản Phẩm & Tồn Kho</h2>
               <a href="/product/add" class="btn btn-add">Thêm Sản Phẩm</a>
               <table>
-                <tr>
-                  <th>ID</th>
-                  <th>Tên Sản Phẩm</th>
-                  <th>Loại</th>
-                  <th>Giá (VNĐ)</th>
-                  <th>Số Lượng Tồn</th>
-                  <th>Hành Động</th>
-                </tr>
-                <tr>
-                  <td>SP001</td>
-                  <td>Bánh Mì Thịt</td>
-                  <td>Bánh Mì</td>
-                  <td>25.000</td>
-                  <td>100</td>
-                  <td>
-                    <a href="/admin/user/${user.id}" class="btn btn-sm btn-primary" title="Xem chi tiết">
-                      <i class="fa fa-eye">
-                      </i>
-                    </a>
-                    <a href="/admin/user/update/${user.id}" class="btn btn-sm btn-secondary" title="Chỉnh sửa">
-                      <i class="fa fa-pen">
-                      </i>
-                    </a>
-                    <a href="/admin/user/delete/${user.id}" class="btn btn-sm btn-danger" title="Xoá">
-                      <i class="fa fa-trash">
-                      </i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>SP002</td>
-                  <td>Bánh Mì Chả</td>
-                  <td>Bánh Mì</td>
-                  <td>20.000</td>
-                  <td>80</td>
-                  <td>
-                    <a href="/admin/user/${user.id}" class="btn btn-sm btn-primary" title="Xem chi tiết">
-                      <i class="fa fa-eye">
-                      </i>
-                    </a>
-                    <a href="/admin/user/update/${user.id}" class="btn btn-sm btn-secondary" title="Chỉnh sửa">
-                      <i class="fa fa-pen">
-                      </i>
-                    </a>
-                    <a href="/admin/user/delete/${user.id}" class="btn btn-sm btn-danger" title="Xoá">
-                      <i class="fa fa-trash">
-                      </i>
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>SP003</td>
-                  <td>Bánh Mì Trứng</td>
-                  <td>Bánh Mì</td>
-                  <td>22.000</td>
-                  <td>120</td>
-                  <td>
-                    <a href="/admin/user/${user.id}" class="btn btn-sm btn-primary" title="Xem chi tiết">
-                      <i class="fa fa-eye">
-                      </i>
-                    </a>
-                    <a href="/admin/user/update/${user.id}" class="btn btn-sm btn-secondary" title="Chỉnh sửa">
-                      <i class="fa fa-pen">
-                      </i>
-                    </a>
-                    <a href="/admin/user/delete/${user.id}" class="btn btn-sm btn-danger" title="Xoá">
-                      <i class="fa fa-trash">
-                      </i>
-                    </a>
-                  </td>
-                </tr>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Giá (VNĐ)</th>
+                    <th>Số Lượng Tồn</th>
+                    <th>Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <c:forEach items="${products}" var="product">
+                    <tr>
+                      <td>${product.productID}</td>
+                      <td>${product.name}</td>
+                      <td>${product.price}</td>
+                      <td>${product.quantity}</td>
+                      <td>
+                        <a href="/product/${product.productID}" class="btn btn-sm btn-primary" title="Xem chi tiết">
+                          <i class="fa fa-eye">
+                          </i>
+                        </a>
+                        <a href="/product/update/${product.productID}" class="btn btn-sm btn-secondary"
+                          title="Chỉnh sửa">
+                          <i class="fa fa-pen">
+                          </i>
+                        </a>
+                        <a href="/product/delete/${product.productID}" class="btn btn-sm btn-danger" title="Xoá">
+                          <i class="fa fa-trash">
+                          </i>
+                        </a>
+                      </td>
+                    </tr>
+                  </c:forEach>
+                </tbody>
               </table>
             </div>
           </body>
+
 
 
 
