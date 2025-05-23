@@ -8,7 +8,6 @@ import java.nio.file.StandardCopyOption;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import java.util.UUID;
 
 @Service
 public class UploadService {
@@ -24,7 +23,7 @@ public class UploadService {
             }
 
             // Tạo tên file ngẫu nhiên tránh trùng
-            String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
+            String filename = "update_" + file.getOriginalFilename();
 
             // Lưu file
             Path path = Paths.get(uploadDir, filename);

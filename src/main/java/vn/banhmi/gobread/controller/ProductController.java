@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import jakarta.servlet.ServletContext;
 import jakarta.validation.Valid;
 import vn.banhmi.gobread.domain.Product;
-
+import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.repository.ProductRepository;
 import vn.banhmi.gobread.service.ProductService;
 import vn.banhmi.gobread.service.UploadService;
@@ -139,6 +139,21 @@ public class ProductController {
 
         // Nếu không tìm thấy sản phẩm
         throw new RuntimeException("Không tìm thấy sản phẩm với ID: " + product.getProductID());
+    }
+
+    @GetMapping("/product/delete/{productID}")
+    public String deleteProduct(@PathVariable long productID, Model model) {
+        model.addAttribute("productID", productID);
+        Product product = new Product();
+        product.setProductID(productID);
+        model.addAttribute("newProduct", product);
+        return "product/deleteProduct";
+    }
+
+    @PostMapping("/product/delete")
+    public String postDeleteProduct(@ModelAttribute("newProduct") Product product) {
+        this.productService.deleteProductById(product.getProductID());
+        return "redirect:/product"; // Chuyển hướng về trang danh sách sản phẩm
     }
 
 }
