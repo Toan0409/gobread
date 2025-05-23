@@ -5,20 +5,26 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.servlet.ServletContext;
+import jakarta.validation.Valid;
 import vn.banhmi.gobread.domain.Product;
+
 import vn.banhmi.gobread.repository.ProductRepository;
 import vn.banhmi.gobread.service.ProductService;
+import vn.banhmi.gobread.service.UploadService;
 
 @Controller
 public class ProductController {
@@ -26,18 +32,20 @@ public class ProductController {
     private final ProductRepository productRepository;
     private final ProductService productService;
     private final ServletContext servletContext;
+    private final UploadService uploadService;
 
     public ProductController(ProductService productService, ServletContext servletContext,
-            ProductRepository productRepository) {
+            ProductRepository productRepository, UploadService uploadService) {
+
         this.servletContext = servletContext;
         this.productService = productService;
         this.productRepository = productRepository;
+        this.uploadService = uploadService;
     }
 
     @RequestMapping("/product")
     public String getProductPage(Model model) {
         List<Product> products = this.productService.getAllProducts();
-        System.out.println(products);
         model.addAttribute("products", products);
         return "product/QLSANPHAMTK";
     }
@@ -69,7 +77,7 @@ public class ProductController {
             }
 
             // Gán đường dẫn ảnh vào product
-            product.setImageUrl("/resources/images/product/" + filename);
+            product.setImageUrl(filename);
 
             // Lưu product vào database
             productRepository.save(product);
@@ -80,6 +88,57 @@ public class ProductController {
         }
 
         return "redirect:/product"; // Chuyển hướng sau khi lưu thành công
+    }
+
+    @RequestMapping("/product/{productID}")
+    public String getProductDetailPage(@PathVariable long productID, Model model) {
+        Optional<Product> product = this.productService.getProductById(productID);
+        model.addAttribute("product", product.get());
+        return "product/detailProduct";
+    }
+
+    @GetMapping("/product/update/{productID}")
+    public String getUpdateProductPage(@PathVariable long productID, Model model) {
+        Optional<Product> product = this.productService.getProductById(productID);
+        model.addAttribute("product", product.get());
+        return "product/updateProduct";
+    }
+
+    @PostMapping("/product/update")
+    public String postUpdateProduct(@ModelAttribute("product") @Valid Product product,
+            BindingResult bindingResult,
+            @RequestParam("image") MultipartFile imageFile) {
+
+        if (bindingResult.hasErrors()) {
+            return "product/updateProduct"; // Quay lại form nếu có lỗi
+        }
+
+        // Lấy sản phẩm hiện tại từ DB
+        Optional<Product> currentProduct = productService.getProductById(product.getProductID());
+
+        if (currentProduct.isPresent()) {
+            Product p = currentProduct.get();
+
+            // Nếu người dùng chọn ảnh mới
+            if (!imageFile.isEmpty()) {
+                String savedImage = uploadService.handleSaveUploadFile(imageFile, "product", "image");
+                p.setImageUrl(savedImage); // Cập nhật đường dẫn ảnh
+            }
+
+            // Cập nhật các thuộc tính khác
+            p.setName(product.getName());
+            p.setPrice(product.getPrice());
+            p.setDescription(product.getDescription());
+            p.setQuantity(product.getQuantity());
+
+            // Lưu lại vào DB
+            productService.createProduct(p);
+
+            return "redirect:/product"; // Thành công, về trang danh sách
+        }
+
+        // Nếu không tìm thấy sản phẩm
+        throw new RuntimeException("Không tìm thấy sản phẩm với ID: " + product.getProductID());
     }
 
 }

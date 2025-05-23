@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.management.relation.Role;
+import javax.naming.Binding;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.validation.Valid;
 import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.repository.RoleRepository;
 import vn.banhmi.gobread.service.UserService;
@@ -145,8 +149,14 @@ public class UserController {
 
     @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
     public String createUserPage(Model model,
-            @ModelAttribute("newUser") User user,
+            @ModelAttribute("newUser") @Valid User user,
+            BindingResult bindingResult,
             @RequestParam("roleId") Long roleId) {
+        List<FieldError> errors = bindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println(error.getObjectName() + " - " + error.getDefaultMessage());
+        }
+
         Optional<vn.banhmi.gobread.domain.Role> role = roleRepository.findById(roleId); // ✅ truyền đúng Long id
 
         if (role.isEmpty()) {
