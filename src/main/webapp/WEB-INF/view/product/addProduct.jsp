@@ -32,28 +32,33 @@
                     <h2 class="text-center mb-4">Thêm Sản Phẩm</h2>
                     <form:form action="/product/add" method="post" modelAttribute="newProduct"
                         enctype="multipart/form-data" class="mx-auto" style="max-width: 500px;">
+
                         <div class="mb-3">
                             <label class="form-label">Tên Sản Phẩm</label>
-                            <form:input path="name" class="form-control" required="true" />
+                            <form:input path="name" class="form-control" />
+                            <form:errors path="name" cssClass="text-danger" />
                         </div>
 
-                        <div class="form-group">
-                            <label>Mô tả</label>
+                        <div class="mb-3">
+                            <label class="form-label">Mô tả</label>
                             <form:textarea path="description" class="form-control" rows="3" />
+                            <form:errors path="description" cssClass="text-danger" />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Giá (VND)</label>
-                            <form:input path="price" type="number" class="form-control" required="true" />
+                            <form:input path="price" type="number" class="form-control" />
+                            <form:errors path="price" cssClass="text-danger" />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label">Số Lượng Tồn</label>
-                            <form:input path="quantity" type="number" class="form-control" required="true" />
+                            <form:input path="quantity" type="number" class="form-control" />
+                            <form:errors path="quantity" cssClass="text-danger" />
                         </div>
 
                         <div class="mb-3">
-                            <label for="imageFile" class="form-label">Image:</label>
+                            <label for="imageFile" class="form-label">Ảnh sản phẩm</label>
                             <input class="form-control" type="file" id="imageFile" name="image"
                                 accept=".jpg, .jpeg, .png">
                         </div>
@@ -65,6 +70,7 @@
 
                         <button type="submit" class="btn btn-success w-100">Lưu Sản Phẩm</button>
                     </form:form>
+
                 </div>
 
             </body>

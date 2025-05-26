@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -55,8 +57,14 @@ public class ProductController {
 
     @PostMapping("/product/add")
     public String addProduct(
-            @ModelAttribute("newProduct") Product product,
-            @RequestParam("image") MultipartFile imageFile) {
+            @ModelAttribute("newProduct") @Valid Product product,
+            BindingResult result,
+            @RequestParam("image") MultipartFile imageFile, Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("errors", result.getFieldErrors());
+            return "product/addProduct";
+        }
         try {
             // Gọi service để lưu ảnh và nhận tên file trả về
             String filename = uploadService.handleSaveUploadFile(imageFile, "product");
