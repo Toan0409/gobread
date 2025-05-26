@@ -1,37 +1,44 @@
 package vn.banhmi.gobread.service;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.ServletContext;
+
 @Service
 public class UploadService {
+    private final ServletContext servletContext;
 
-    public String handleSaveUploadFile(MultipartFile file, String folder, String type) {
+    public UploadService(ServletContext servletContext) {
+        this.servletContext = servletContext;
+    }
+
+    public String handleSaveUploadFile(MultipartFile file, String targetFolder) {
         try {
-            // Tạo đường dẫn thư mục lưu
-            String uploadDir = "uploads/images/product";
-
-            Path uploadPath = Paths.get(uploadDir);
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
+            String rootPath = servletContext.getRealPath("/resources/images/");
+            File dir = new File(rootPath + File.separator + targetFolder);
+            if (!dir.exists()) {
+                dir.mkdirs();
             }
 
-            // Tạo tên file ngẫu nhiên tránh trùng
-            String filename = "update_" + file.getOriginalFilename();
+            String filename = System.currentTimeMillis() + "-" + file.getOriginalFilename();
+            File serverFile = new File(dir.getAbsolutePath() + File.separator + filename);
 
-            // Lưu file
-            Path path = Paths.get(uploadDir, filename);
-            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
+                stream.write(file.getBytes());
+            }
 
-            return filename; // Trả về tên file để lưu DB
+            // Trả về tên file nếu thành công
+            return filename;
+
         } catch (IOException e) {
-            throw new RuntimeException("Lỗi khi lưu ảnh: " + e.getMessage());
+            e.printStackTrace();
+            return null; // hoặc "error"
         }
     }
 }

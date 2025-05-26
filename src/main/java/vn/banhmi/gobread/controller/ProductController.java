@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import jakarta.servlet.ServletContext;
 import jakarta.validation.Valid;
 import vn.banhmi.gobread.domain.Product;
-import vn.banhmi.gobread.domain.User;
+
 import vn.banhmi.gobread.repository.ProductRepository;
 import vn.banhmi.gobread.service.ProductService;
 import vn.banhmi.gobread.service.UploadService;
@@ -29,17 +29,14 @@ import vn.banhmi.gobread.service.UploadService;
 @Controller
 public class ProductController {
 
-    private final ProductRepository productRepository;
     private final ProductService productService;
-    private final ServletContext servletContext;
     private final UploadService uploadService;
 
-    public ProductController(ProductService productService, ServletContext servletContext,
-            ProductRepository productRepository, UploadService uploadService) {
+    public ProductController(ProductService productService,
+            UploadService uploadService) {
 
-        this.servletContext = servletContext;
         this.productService = productService;
-        this.productRepository = productRepository;
+
         this.uploadService = uploadService;
     }
 
@@ -57,37 +54,27 @@ public class ProductController {
     }
 
     @PostMapping("/product/add")
-    public String addProduct(@ModelAttribute("newProduct") Product product,
+    public String addProduct(
+            @ModelAttribute("newProduct") Product product,
             @RequestParam("image") MultipartFile imageFile) {
         try {
-            byte[] bytes = imageFile.getBytes();
-
-            String rootPath = this.servletContext.getRealPath("/resources/images");
-            File dir = new File(rootPath + File.separator + "product");
-            if (!dir.exists())
-                dir.mkdirs();
-
-            // Tạo tên file duy nhất
-            String filename = System.currentTimeMillis() + "-" + imageFile.getOriginalFilename();
-            File serverFile = new File(dir.getAbsolutePath() + File.separator + filename);
-
-            // Lưu file ảnh
-            try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile))) {
-                stream.write(bytes);
+            // Gọi service để lưu ảnh và nhận tên file trả về
+            String filename = uploadService.handleSaveUploadFile(imageFile, "product");
+            if (filename == null) {
+                return "error"; // Trả về trang lỗi nếu lưu thất bại
             }
 
-            // Gán đường dẫn ảnh vào product
+            // Gán tên file ảnh cho product
             product.setImageUrl(filename);
 
             // Lưu product vào database
-            productRepository.save(product);
+            productService.createProduct(product);
 
-        } catch (IOException e) {
+            return "redirect:/product"; // Chuyển hướng nếu thành công
+        } catch (Exception e) {
             e.printStackTrace();
-            return "error"; // Trả về trang lỗi nếu có
+            return "product/addProduct"; // Quay lại trang thêm sản phẩm nếu có lỗi
         }
-
-        return "redirect:/product"; // Chuyển hướng sau khi lưu thành công
     }
 
     @RequestMapping("/product/{productID}")
@@ -121,7 +108,7 @@ public class ProductController {
 
             // Nếu người dùng chọn ảnh mới
             if (!imageFile.isEmpty()) {
-                String savedImage = uploadService.handleSaveUploadFile(imageFile, "product", "image");
+                String savedImage = uploadService.handleSaveUploadFile(imageFile, "product");
                 p.setImageUrl(savedImage); // Cập nhật đường dẫn ảnh
             }
 
