@@ -1,4 +1,4 @@
-package vn.banhmi.gobread.controller;
+package vn.banhmi.gobread.controller.admin;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,36 +40,6 @@ public class UserController {
     public String getHomePage(Model model) {
 
         return "admin/index";
-    }
-
-    @RequestMapping("/user")
-    public String getHomeUserPage(Model model) {
-        return "client/home/index";
-    }
-
-    @RequestMapping("/user/cart")
-    public String getCartPage(Model model) {
-        return "client/cart/cart";
-    }
-
-    @RequestMapping("/user/cancel_order")
-    public String getUserCancelOrder(Model model) {
-        return "client/order/cancel_order";
-    }
-
-    @RequestMapping("/user/review")
-    public String getUserReview(Model model) {
-        return "client/review/review";
-    }
-
-    @RequestMapping("/user/signup")
-    public String getUserSignUp(Model model) {
-        return "client/auth/signup";
-    }
-
-    @RequestMapping("/user/login")
-    public String getUserLogin(Model model) {
-        return "client/auth/login";
     }
 
     @RequestMapping("/login")

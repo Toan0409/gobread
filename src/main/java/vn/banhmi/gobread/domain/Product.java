@@ -16,6 +16,7 @@ public class Product {
 
     @NotBlank(message = "Mô tả không được để trống")
     @Size(max = 500, message = "Mô tả tối đa 500 ký tự")
+    @Column(columnDefinition = "MediumText")
     private String description;
 
     @Positive(message = "Giá sản phẩm phải lớn hơn 0")

@@ -1,13 +1,8 @@
-package vn.banhmi.gobread.controller;
+package vn.banhmi.gobread.controller.admin;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,16 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import jakarta.servlet.ServletContext;
 import jakarta.validation.Valid;
 import vn.banhmi.gobread.domain.Product;
 
-import vn.banhmi.gobread.repository.ProductRepository;
 import vn.banhmi.gobread.service.ProductService;
 import vn.banhmi.gobread.service.UploadService;
 

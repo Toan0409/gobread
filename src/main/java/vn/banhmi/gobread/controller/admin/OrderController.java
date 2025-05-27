@@ -1,4 +1,4 @@
-package vn.banhmi.gobread.controller;
+package vn.banhmi.gobread.controller.admin;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.banhmi.gobread.domain.Order;
-import vn.banhmi.gobread.domain.User;
+
 import vn.banhmi.gobread.service.OrderService;
 
 @Controller
