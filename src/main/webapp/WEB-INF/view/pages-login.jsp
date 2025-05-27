@@ -78,16 +78,17 @@
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" name="remember" value="true"
                                 id="rememberMe">
-                              <label class="form-check-label" for="rememberMe">Remember me</label>
+                              <label class="form-check-label" for="rememberMe">Lưu mật khẩu</label>
                             </div>
                           </div>
 
                           <div class="col-12">
-                            <button class="btn btn-primary w-100" type="submit">Login</button>
+                            <button class="btn btn-primary w-100" type="submit">Đăng nhập</button>
                           </div>
 
                           <div class="col-12">
-                            <p class="small mb-0">Don't have an account? <a href="register.jsp">Create one</a></p>
+                            <p class="small mb-0">Bạn chưa có tài khoản? <a href="/admin/user/create">Tạo tài khoản</a>
+                            </p>
                           </div>
 
                         </form>

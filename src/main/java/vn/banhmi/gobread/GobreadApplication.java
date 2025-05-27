@@ -8,6 +8,7 @@ public class GobreadApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GobreadApplication.class, args);
+
 	}
 
 }

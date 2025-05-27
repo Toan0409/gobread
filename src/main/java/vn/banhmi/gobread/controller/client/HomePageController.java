@@ -19,7 +19,7 @@ public class HomePageController {
         this.productService = productService;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/")
     public String getHomeUserPage(Model model) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);

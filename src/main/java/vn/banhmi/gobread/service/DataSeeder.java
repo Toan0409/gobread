@@ -2,23 +2,25 @@ package vn.banhmi.gobread.service;
 
 import com.github.javafaker.Faker;
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
+import vn.banhmi.gobread.domain.Role;
 import vn.banhmi.gobread.domain.User;
-
+import vn.banhmi.gobread.repository.RoleRepository;
 import vn.banhmi.gobread.repository.UserRepository;
 
 @Service
 public class DataSeeder {
 
-    @Autowired
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     private final Faker faker = new Faker();
 
-    DataSeeder(UserRepository userRepository) {
+    DataSeeder(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     @PostConstruct
@@ -39,6 +41,15 @@ public class DataSeeder {
                 }
                 user.setUsername(faker.name().username());
                 user.setPassword(faker.internet().password());
+                user.setAvatar(faker.internet().avatar());
+                Role defaultRole = roleRepository.findByName("USER");
+                if (defaultRole == null) {
+                    defaultRole = new Role();
+                    defaultRole.setName("USER");
+                    roleRepository.save(defaultRole);
+                }
+
+                user.setRole(defaultRole);
 
                 userRepository.save(user);
             }

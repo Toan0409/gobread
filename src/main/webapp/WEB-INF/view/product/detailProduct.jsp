@@ -28,7 +28,7 @@
                                 Thông tin sản phẩm
                             </div>
                             <ul class="list-group list-group-flush">
-                                <div class="card" style="width: 60%;">
+                                <div class="card" style="width: auto;">
                                     <img src="${pageContext.request.contextPath}/resources/images/product/${product.imageUrl}"
                                         alt="Ảnh sản phẩm" style="width: 300px;" />
                                 </div>

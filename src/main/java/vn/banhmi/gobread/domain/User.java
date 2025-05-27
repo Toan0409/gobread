@@ -40,6 +40,14 @@ public class User {
     private String avatar;
     private boolean terms;
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     // role id
     // User many --> to one Role
     @ManyToOne
@@ -134,6 +142,11 @@ public class User {
         return "User [id=" + id + ", fullName=" + fullName + ", email=" + email + ", username=" + username
                 + ", password=" + password + ", phoneNumber=" + phoneNumber + ", address=" + address + ", avatar="
                 + avatar + ", terms=" + terms + "]";
+    }
+
+    public void setRole(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setRole'");
     }
 
 }

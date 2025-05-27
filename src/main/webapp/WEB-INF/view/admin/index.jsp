@@ -49,7 +49,7 @@
         <header id="header" class="header fixed-top d-flex align-items-center">
 
           <div class="d-flex align-items-center justify-content-between">
-            <a href="/" class="logo d-flex align-items-center">
+            <a href="/admin" class="logo d-flex align-items-center">
               <img src="/assets/img/breadlogo.png" alt="">
               <span class="d-none d-lg-block">GoBread</span>
             </a>
@@ -289,7 +289,7 @@
           <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-              <a class="nav-link " href="/">
+              <a class="nav-link " href="/admin">
                 <i class="bi bi-grid"></i>
                 <span>Doanh thu & Lợi nhuận</span>
               </a>
@@ -447,7 +447,7 @@
             <h1>Doanh thu & Lợi nhuận</h1>
             <nav>
               <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
                 <li class="breadcrumb-item active">Doanh thu & Lợi nhuận</li>
               </ol>
             </nav>
