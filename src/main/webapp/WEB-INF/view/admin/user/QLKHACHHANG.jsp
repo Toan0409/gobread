@@ -55,6 +55,24 @@
           }
         </style>
 
+        <script>
+          let currentPage = 0;
+          const size = 5;
+
+          function loadUsers(page) {
+            fetch(`/admin/user/fragment?page=${page}&size=${size}`)
+              .then(res => res.text())
+              .then(html => {
+                document.getElementById("userContainer").innerHTML = html;
+                currentPage = page;
+              });
+          }
+
+          window.onload = function () {
+            loadUsers(0); // Tải trang đầu tiên khi trang load
+          };
+        </script>
+
         <!-- =======================================================
   * Template Name: NiceAdmin
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -501,6 +519,15 @@
 
 
               </table>
+              <nav>
+                <ul class="pagination justify-content-center">
+                  <c:forEach var="i" begin="0" end="${totalPages - 1}">
+                    <li class="page-item ${i == currentPage ? 'active' : ''}">
+                      <a class="page-link" href="?page=${i}&size=10">${i + 1}</a>
+                    </li>
+                  </c:forEach>
+                </ul>
+              </nav>
             </div>
           </body>
 

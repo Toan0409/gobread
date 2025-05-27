@@ -1,14 +1,18 @@
 package vn.banhmi.gobread.service;
 
 import java.util.List;
+
+import org.hibernate.query.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.repository.UserRepository;
 
 @Service
 public class UserService {
+    @Autowired
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
@@ -35,5 +39,9 @@ public class UserService {
 
     public void deleteUserById(long id) {
         this.userRepository.deleteById(id);
+    }
+
+    public org.springframework.data.domain.Page<User> getPaginatedUsers(int page, int size) {
+        return userRepository.findAll(PageRequest.of(page, size));
     }
 }

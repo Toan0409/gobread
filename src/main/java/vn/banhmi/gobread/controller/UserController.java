@@ -3,9 +3,7 @@ package vn.banhmi.gobread.controller;
 import java.util.List;
 import java.util.Optional;
 
-import javax.management.relation.Role;
-import javax.naming.Binding;
-
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -90,10 +88,14 @@ public class UserController {
         return "pages-contact";
     }
 
-    @RequestMapping("/admin/user")
-    public String getUserPage(Model model) {
-        List<User> users = this.userService.getAllUsers();
-        model.addAttribute("users1", users);
+    @GetMapping("/admin/user")
+    public String getUserPage(Model model,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Page<User> userPage = userService.getPaginatedUsers(page, size);
+        model.addAttribute("users1", userPage.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", userPage.getTotalPages());
         return "admin/user/QLKHACHHANG";
     }
 
@@ -157,7 +159,7 @@ public class UserController {
             System.out.println(error.getObjectName() + " - " + error.getDefaultMessage());
         }
 
-        Optional<vn.banhmi.gobread.domain.Role> role = roleRepository.findById(roleId); // ✅ truyền đúng Long id
+        Optional<vn.banhmi.gobread.domain.Role> role = roleRepository.findById(roleId);
 
         if (role.isEmpty()) {
             model.addAttribute("error", "Vai trò không hợp lệ!");
