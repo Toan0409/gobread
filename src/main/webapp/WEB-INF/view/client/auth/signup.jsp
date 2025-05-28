@@ -47,7 +47,6 @@
 
         <main>
           <div class="container">
-
             <section
               class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
               <div class="container">
@@ -59,95 +58,96 @@
                         <img src="/assets/img/breadlogo.png" alt="">
                         <span class="d-none d-lg-block">GoBread</span>
                       </a>
-                    </div><!-- End Logo -->
+                    </div>
 
                     <div class="card mb-3">
-
                       <div class="card-body">
-
                         <div class="pt-4 pb-2">
                           <h5 class="card-title text-center pb-0 fs-4">Tạo tài khoản</h5>
                           <p class="text-center small">Nhập thông tin của bạn để tạo tài khoản</p>
                         </div>
 
-                        <form method="post" class="row g-3 needs-validation" ModelAttribute="newUser" novalidate>
+                        <form:form action="/user/signup" method="post" modelAttribute="registerDTO"
+                          cssClass="row g-3 needs-validation">
+
                           <div class="col-12">
-                            <label for="yourName" class="form-label">Họ và tên</label>
-                            <input type="text" name="fullName" class="form-control" id="fullName" required>
-                            <div class="invalid-feedback">Please, enter your name!</div>
+                            <label class="form-label">Họ và tên</label>
+                            <form:input path="fullName" cssClass="form-control" id="fullName" />
+                            <form:errors path="fullName" cssClass="invalid-feedback" />
                           </div>
 
                           <div class="col-12">
-                            <label for="yourEmail" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" id="yourEmail" required>
-                            <div class="invalid-feedback">Vui lòng nhập địa chỉ email!</div>
+                            <label class="form-label">Email</label>
+                            <form:input path="email" cssClass="form-control" id="yourEmail" type="email" />
+                            <form:errors path="email" cssClass="invalid-feedback" />
                           </div>
 
                           <div class="col-12">
-                            <label for="yourUsername" class="form-label">Tên đăng nhập</label>
+                            <label class="form-label">Tên đăng nhập</label>
                             <div class="input-group has-validation">
                               <span class="input-group-text" id="inputGroupPrepend">@</span>
-                              <input type="text" name="username" class="form-control" id="yourUsername" required>
-                              <div class="invalid-feedback">Không được để trống</div>
+                              <form:input path="username" cssClass="form-control" id="yourUsername" />
+                              <form:errors path="username" cssClass="invalid-feedback" />
                             </div>
                           </div>
 
                           <div class="col-12">
-                            <label for="yourPassword" class="form-label">Mật khẩu</label>
-                            <input type="password" name="password" class="form-control" id="yourPassword" required>
-                            <div class="invalid-feedback">Không được để trống</div>
+                            <label class="form-label">Mật khẩu</label>
+                            <form:password path="password" cssClass="form-control" id="yourPassword" />
+                            <form:errors path="password" cssClass="invalid-feedback" />
                           </div>
 
                           <div class="col-12">
-                            <label for="yourEmail" class="form-label">Số điện thoại</label>
-                            <input type="phoneNumber" name="phoneNumber" class="form-control" id="phoneNumber" required>
-                            <div class="invalid-feedback">Không được để trống</div>
+                            <label class="form-label">Nhập lại mật khẩu</label>
+                            <form:password path="confirmPassword" cssClass="form-control" id="confirmPassword" />
+                            <form:errors path="confirmPassword" cssClass="invalid-feedback" />
                           </div>
 
                           <div class="col-12">
-                            <label for="yourEmail" class="form-label">Địa chỉ</label>
-                            <input type="address" name="address" class="form-control" id="address" required>
-                            <div class="invalid-feedback">Không được để trống</div>
+                            <label class="form-label">Số điện thoại</label>
+                            <form:input path="phoneNumber" cssClass="form-control" id="phoneNumber" />
+                            <form:errors path="phoneNumber" cssClass="invalid-feedback" />
                           </div>
 
+                          <div class="col-12">
+                            <label class="form-label">Địa chỉ</label>
+                            <form:input path="address" cssClass="form-control" id="address" />
+                            <form:errors path="address" cssClass="invalid-feedback" />
+                          </div>
 
                           <div class="col-12">
                             <div class="form-check">
-                              <input class="form-check-input" name="terms" type="checkbox" value="true" id="acceptTerms"
-                                required>
-                              <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms
-                                  and
-                                  conditions</a></label>
-                              <div class="invalid-feedback">You must agree before submitting.</div>
+                              <form:checkbox path="terms" cssClass="form-check-input" id="acceptTerms" />
+                              <label class="form-check-label" for="acceptTerms">
+                                Tôi đồng ý với <a href="#">Điều khoản và Điều kiện</a>
+                              </label>
+                              <form:errors path="terms" cssClass="invalid-feedback" />
                             </div>
                           </div>
+
                           <div class="col-12">
-                            <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                            <button class="btn btn-primary w-100" type="submit">Tạo tài khoản</button>
                           </div>
+
                           <div class="col-12">
-                            <p class="small mb-0">Already have an account? <a href="pages-login.html">Log in</a></p>
+                            <p class="small mb-0">Đã có tài khoản? <a href="pages-login.html">Đăng nhập</a></p>
                           </div>
-                        </form>
+
+                        </form:form>
 
                       </div>
                     </div>
 
                     <div class="credits">
-                      <!-- All the links in the footer should remain intact. -->
-                      <!-- You can delete the links only if you purchased the pro version. -->
-                      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
                       Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                     </div>
 
                   </div>
                 </div>
               </div>
-
             </section>
-
           </div>
-        </main><!-- End #main -->
+        </main>
 
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>

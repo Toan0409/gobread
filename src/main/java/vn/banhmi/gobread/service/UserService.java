@@ -6,16 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 
 import org.springframework.stereotype.Service;
+
+import vn.banhmi.gobread.domain.Role;
 import vn.banhmi.gobread.domain.User;
+import vn.banhmi.gobread.domain.dto.RegisterDTO;
+import vn.banhmi.gobread.repository.RoleRepository;
 import vn.banhmi.gobread.repository.UserRepository;
 
 @Service
 public class UserService {
+
+    private final RoleRepository roleRepository;
     @Autowired
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     public List<User> getAllUsers() {
@@ -23,7 +30,7 @@ public class UserService {
     }
 
     public List<User> getAllUserByEmail(String email) {
-        return this.userRepository.findByEmail(email);
+        return this.userRepository.findOneByEmail(email);
     }
 
     public User handleSaveUser(User user) {
@@ -46,5 +53,22 @@ public class UserService {
 
     public User getUserByEmail(String email) {
         return this.userRepository.findByEmail(email);
+    }
+
+    public Role getRoleByName(String roleName) {
+        return roleRepository.findByName(roleName);
+
+    }
+
+    public User registerDTOtoUser(RegisterDTO registerDTO) {
+        User user = new User();
+        user.setEmail(registerDTO.getEmail());
+        user.setPassword(registerDTO.getPassword());
+        user.setFullName(registerDTO.getFullName());
+        user.setPhoneNumber(registerDTO.getPhoneNumber());
+        user.setAddress(registerDTO.getAddress());
+        user.setUsername(registerDTO.getUsername());
+        user.setTerms(registerDTO.isTerms());
+        return user;
     }
 }

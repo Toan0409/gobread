@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 import vn.banhmi.gobread.service.CustomUserDetailsService;
 import vn.banhmi.gobread.service.UserService;
@@ -17,16 +18,15 @@ import vn.banhmi.gobread.service.UserService;
 @EnableMethodSecurity(securedEnabled = true)
 public class ConfigSecurity {
 
-    // @Bean
-    // public SecurityFilterChain securityFilterChain(HttpSecurity http) throws
-    // Exception {
-    // http
-    // .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
-    // .csrf(csrf -> csrf.disable())
-    // .formLogin(withDefaults())
-    // .httpBasic(basic -> basic.disable());
-    // return http.build();
-    // }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+                .csrf(csrf -> csrf.disable())
+                .formLogin(form -> form.disable())
+                .httpBasic(basic -> basic.disable());
+        return http.build();
+    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
