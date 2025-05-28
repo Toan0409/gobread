@@ -22,7 +22,7 @@ public class Product {
     @Positive(message = "Giá sản phẩm phải lớn hơn 0")
     private double price;
 
-    @NotBlank(message = "URL hình ảnh không được để trống")
+    // @NotBlank(message = "URL hình ảnh không được để trống")
     @Size(max = 255, message = "URL hình ảnh tối đa 255 ký tự")
     private String imageUrl;
 

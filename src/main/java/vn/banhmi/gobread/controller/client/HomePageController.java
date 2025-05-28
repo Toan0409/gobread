@@ -2,16 +2,19 @@ package vn.banhmi.gobread.controller.client;
 
 import java.util.List;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import jakarta.validation.Valid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.banhmi.gobread.domain.Product;
+import vn.banhmi.gobread.domain.User; // ✅ Sửa import User đúng chỗ
 import vn.banhmi.gobread.domain.dto.RegisterDTO;
 import vn.banhmi.gobread.service.ProductService;
 import vn.banhmi.gobread.service.UserService;
@@ -21,12 +24,12 @@ public class HomePageController {
 
     private final ProductService productService;
     private final UserService userService;
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     public HomePageController(ProductService productService, UserService userService, PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-        this.userService = userService;
         this.productService = productService;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/")
@@ -53,22 +56,34 @@ public class HomePageController {
 
     @GetMapping("/user/signup")
     public String getUserSignUp(Model model) {
-        // You can add a RegisterDTO object to the model if needed
         model.addAttribute("registerDTO", new RegisterDTO());
         return "client/auth/signup";
     }
 
     @PostMapping("/user/signup")
-    public String postUserSignUp(@ModelAttribute("registerDTO") RegisterDTO registerDTO, Model model) {
+    public String postUserSignUp(
+            @ModelAttribute("registerDTO") @Valid RegisterDTO registerDTO,
+            BindingResult bindingResult,
+            Model model) {
 
-        vn.banhmi.gobread.domain.User user = this.userService.registerDTOtoUser(registerDTO);
-        user.setRole(this.userService.getRoleByName("USER"));
-        String hashedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hashedPassword);
+        if (bindingResult.hasErrors()) {
+            List<FieldError> errors = bindingResult.getFieldErrors();
+            for (FieldError error : errors) {
+                System.out.println(">>> " + error.getField() + ": " + error.getDefaultMessage());
+            }
+
+            model.addAttribute("registerDTO", registerDTO);
+            return "client/auth/signup";
+        }
+
+        // Chuyển đổi DTO sang entity
+        User user = userService.registerDTOtoUser(registerDTO);
+        user.setRole(userService.getRoleByName("USER"));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userService.handleSaveUser(user);
-        return "redirect:/user/login";
 
+        return "redirect:/user/login";
     }
 
     @RequestMapping("/user/login")

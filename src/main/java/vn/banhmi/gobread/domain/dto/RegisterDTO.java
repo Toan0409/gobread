@@ -1,5 +1,8 @@
 package vn.banhmi.gobread.domain.dto;
 
+import vn.banhmi.gobread.service.validatior.RegisterChecked;
+
+@RegisterChecked
 public class RegisterDTO {
     private String username;
     private String password;
