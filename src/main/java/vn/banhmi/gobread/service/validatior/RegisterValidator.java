@@ -1,8 +1,18 @@
 package vn.banhmi.gobread.service.validatior;
 
-import vn.banhmi.gobread.domain.dto.RegisterDTO;
+import org.springframework.stereotype.Service;
 
+import vn.banhmi.gobread.domain.dto.RegisterDTO;
+import vn.banhmi.gobread.service.UserService;
+
+@Service
 public class RegisterValidator implements jakarta.validation.ConstraintValidator<RegisterChecked, RegisterDTO> {
+
+    private final UserService userService;
+
+    public RegisterValidator(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public boolean isValid(RegisterDTO user, jakarta.validation.ConstraintValidatorContext context) {
@@ -14,6 +24,15 @@ public class RegisterValidator implements jakarta.validation.ConstraintValidator
                     .addConstraintViolation();
             isValid = false;
 
+        }
+
+        // check email
+        if (this.userService.isEmailExists(user.getEmail())) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate("Email đã tồn tại")
+                    .addPropertyNode("email")
+                    .addConstraintViolation();
+            isValid = false;
         }
         return isValid; // Placeholder for actual validation logic
     }

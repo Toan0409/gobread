@@ -71,4 +71,8 @@ public class UserService {
         user.setTerms(registerDTO.isTerms());
         return user;
     }
+
+    public boolean isEmailExists(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }
