@@ -57,7 +57,10 @@
                           <p class="text-center small">Nhập thông tin tài khoản của bạn</p>
                         </div>
 
-                        <form class="row g-3 needs-validation" action="login" method="post" novalidate>
+                        <form class="row g-3 needs-validation" action="/login" method="post" novalidate>
+                          <c:if test="${param.error != null}">
+                            <div class="my-2" style="color: red;">Tài khoản hoặc mật khẩu không hợp lệ</div>
+                          </c:if>
 
                           <div class="col-12">
                             <label for="yourUsername" class="form-label">Tên tài khoản</label>
@@ -74,12 +77,8 @@
                             <div class="invalid-feedback">Vui lòng nhập mật khẩu!</div>
                           </div>
 
-                          <div class="col-12">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" name="remember" value="true"
-                                id="rememberMe">
-                              <label class="form-check-label" for="rememberMe">Remember me</label>
-                            </div>
+                          <div>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                           </div>
 
                           <div class="col-12">
