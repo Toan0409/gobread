@@ -38,7 +38,7 @@
                 <h2 style="text-align:center;">Thêm Đơn Hàng</h2>
 
                 <div class="form-container">
-                    <form method="POST" action="/order/add" modelAttribute="order">
+                    <form method="POST" action="/admin/order/add" modelAttribute="order">
                         <label for="customerName">Khách Hàng:</label>
                         <input path="customerName" id="customerName" />
 

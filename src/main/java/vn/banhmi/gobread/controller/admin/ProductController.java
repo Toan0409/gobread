@@ -35,20 +35,20 @@ public class ProductController {
         this.uploadService = uploadService;
     }
 
-    @RequestMapping("/product")
+    @RequestMapping("/admin/product")
     public String getProductPage(Model model) {
         List<Product> products = this.productService.getAllProducts();
         model.addAttribute("products", products);
         return "product/QLSANPHAMTK";
     }
 
-    @GetMapping("/product/add")
+    @GetMapping("/admin/product/add")
     public String getAddProductPage(Model model) {
         model.addAttribute("newProduct", new Product());
         return "product/addProduct";
     }
 
-    @PostMapping("/product/add")
+    @PostMapping("/admin/product/add")
     public String addProduct(
             @ModelAttribute("newProduct") @Valid Product product,
             BindingResult result,
@@ -78,21 +78,21 @@ public class ProductController {
         }
     }
 
-    @RequestMapping("/product/{productID}")
+    @RequestMapping("/admin/product/{productID}")
     public String getProductDetailPage(@PathVariable long productID, Model model) {
         Optional<Product> product = this.productService.getProductById(productID);
         model.addAttribute("product", product.get());
         return "product/detailProduct";
     }
 
-    @GetMapping("/product/update/{productID}")
+    @GetMapping("/admin/product/update/{productID}")
     public String getUpdateProductPage(@PathVariable long productID, Model model) {
         Optional<Product> product = this.productService.getProductById(productID);
         model.addAttribute("product", product.get());
         return "product/updateProduct";
     }
 
-    @PostMapping("/product/update")
+    @PostMapping("/admin/product/update")
     public String postUpdateProduct(@ModelAttribute("product") @Valid Product product,
             BindingResult bindingResult,
             @RequestParam("image") MultipartFile imageFile) {
@@ -129,7 +129,7 @@ public class ProductController {
         throw new RuntimeException("Không tìm thấy sản phẩm với ID: " + product.getProductID());
     }
 
-    @GetMapping("/product/delete/{productID}")
+    @GetMapping("/admin/product/delete/{productID}")
     public String deleteProduct(@PathVariable long productID, Model model) {
         model.addAttribute("productID", productID);
         Product product = new Product();
@@ -138,7 +138,7 @@ public class ProductController {
         return "product/deleteProduct";
     }
 
-    @PostMapping("/product/delete")
+    @PostMapping("/admin/product/delete")
     public String postDeleteProduct(@ModelAttribute("newProduct") Product product) {
         this.productService.deleteProductById(product.getProductID());
         return "redirect:/product"; // Chuyển hướng về trang danh sách sản phẩm

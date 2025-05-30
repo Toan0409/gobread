@@ -53,7 +53,7 @@ public class UserController {
         return "users-profile";
     }
 
-    @RequestMapping("/contact")
+    @RequestMapping("/admin/contact")
     public String getContactPage(Model model) {
         return "pages-contact";
     }
@@ -115,6 +115,7 @@ public class UserController {
 
     @GetMapping("/admin/user/create")
     public String getRegisterPage(Model model) {
+        model.addAttribute("newUser", new User());
         model.addAttribute("roles", roleRepository.findAll());
         return "admin/user/pages-register";
     }

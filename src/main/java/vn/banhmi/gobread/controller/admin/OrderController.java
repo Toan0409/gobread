@@ -18,14 +18,14 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @RequestMapping("/order")
+    @RequestMapping("/admin/order")
     public String getOrderPage(Model model) {
         List<Order> orders = this.orderService.getAllOrders();
         model.addAttribute("users1", orders);
         return "order/QLDONHANG";
     }
 
-    @RequestMapping("/order/add")
+    @RequestMapping("/admin/order/add")
     public String getAddOrderPage(Model model) {
         model.addAttribute("order", new Order());
         return "order/addOrder";

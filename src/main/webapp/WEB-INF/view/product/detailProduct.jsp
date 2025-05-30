@@ -19,7 +19,7 @@
                     <div class="col-12 mx-auto">
                         <hr />
                         <div class="d-flex justify-content-between">
-                            <h1>Chi tiết update = ${productID}</h1>
+                            <h1>Chi tiết sản phẩm = ${productID}</h1>
                         </div>
                         <hr />
 

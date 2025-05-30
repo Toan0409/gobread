@@ -320,7 +320,7 @@
               </a>
               <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                  <a href="/order">
+                  <a href="/admin/order">
                     <i class="bi bi-cart"></i><span>Quản lý đơn hàng</span>
                   </a>
                 </li>
@@ -330,7 +330,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/product">
+                  <a href="/admin/product">
                     <i class="bi bi-bag"></i><span>Quản lý sản phẩm & tồn kho</span>
                   </a>
                 </li>
@@ -438,7 +438,7 @@
           <body>
             <div class="container">
               <h2>Quản Lý Sản Phẩm & Tồn Kho</h2>
-              <a href="/product/add" class="btn btn-add">Thêm Sản Phẩm</a>
+              <a href="/admin/product/add" class="btn btn-add">Thêm Sản Phẩm</a>
               <table>
                 <thead>
                   <tr>
@@ -457,16 +457,17 @@
                       <td>${product.price}</td>
                       <td>${product.quantity}</td>
                       <td>
-                        <a href="/product/${product.productID}" class="btn btn-sm btn-primary" title="Xem chi tiết">
+                        <a href="/admin/product/${product.productID}" class="btn btn-sm btn-primary"
+                          title="Xem chi tiết">
                           <i class="fa fa-eye">
                           </i>
                         </a>
-                        <a href="/product/update/${product.productID}" class="btn btn-sm btn-secondary"
+                        <a href="/admin/product/update/${product.productID}" class="btn btn-sm btn-secondary"
                           title="Chỉnh sửa">
                           <i class="fa fa-pen">
                           </i>
                         </a>
-                        <a href="/product/delete/${product.productID}" class="btn btn-sm btn-danger" title="Xoá">
+                        <a href="/admin/product/delete/${product.productID}" class="btn btn-sm btn-danger" title="Xoá">
                           <i class="fa fa-trash">
                           </i>
                         </a>

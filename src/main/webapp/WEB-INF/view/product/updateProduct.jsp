@@ -30,7 +30,7 @@
             <body class="bg-light">
                 <div class="container mt-5">
                     <h2 class="text-center mb-4">Cập nhật sản Phẩm</h2>
-                    <form:form action="/product/update" method="post" modelAttribute="product"
+                    <form:form action="/admin/product/update" method="post" modelAttribute="product"
                         enctype="multipart/form-data" class="mx-auto" style="max-width: 500px;">
                         <form:hidden path="productID" />
                         <div class="mb-3">

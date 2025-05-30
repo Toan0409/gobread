@@ -321,7 +321,7 @@
               </a>
               <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                  <a href="/order">
+                  <a href="/admin/product">
                     <i class="bi bi-cart"></i><span>Quản lý đơn hàng</span>
                   </a>
                 </li>
@@ -331,7 +331,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/product">
+                  <a href="/admin/product">
                     <i class="bi bi-bag"></i><span>Quản lý sản phẩm & tồn kho</span>
                   </a>
                 </li>
@@ -464,7 +464,7 @@
           <body>
             <div class="container">
               <h2>Quản Lý Đơn Hàng</h2>
-              <a href="/order/add" class="btn btn-add">Thêm Đơn Hàng</a>
+              <a href="/admin/order/add" class="btn btn-add">Thêm Đơn Hàng</a>
               <table>
                 <tr>
                   <th>Mã Đơn</th>
