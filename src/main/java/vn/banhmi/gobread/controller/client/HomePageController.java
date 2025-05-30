@@ -90,4 +90,6 @@ public class HomePageController {
     public String getUserLogin(Model model) {
         return "client/auth/login";
     }
+
+    
 }

@@ -314,84 +314,19 @@
                                     </div>
 
                                     <div class="row gy-5">
+                                        <c:forEach var="product" items="${products}">
+                                            <div class="col-lg-4 menu-item">
+                                                <a href="${pageContext.request.contextPath}/resources/images/product/${product.imageUrl}"
+                                                    class="glightbox">
+                                                    <img src="${pageContext.request.contextPath}/resources/images/product/${product.imageUrl}"
+                                                        class="menu-img img-fluid" alt="${product.name}">
+                                                </a>
+                                                <h4>${product.name}</h4>
+                                                <p class="ingredients">${product.description}</p>
+                                                <p class="price">${product.price} VNĐ</p>
+                                            </div>
+                                        </c:forEach>
 
-                                        <div class="col-lg-4 menu-item">
-                                            <a href="assets/img/menu/menu-item-2.jpg" class="glightbox"><img
-                                                    src="assets/img/menu/menu-item-2.jpg" class="menu-img img-fluid"
-                                                    alt=""></a>
-                                            <h4>Bánh Mì Chảo Phô Mai Lava</h4>
-                                            <p class="ingredients">
-                                                👉 "Phô mai tan chảy – ngon khó cưỡng!"
-                                            </p>
-                                            <p class="price">
-                                                59.000 VNĐ
-                                            </p>
-                                        </div><!-- Menu Item -->
-
-                                        <div class="col-lg-4 menu-item">
-                                            <a href="assets/img/menu/menu-item-3.jpg" class="glightbox"><img
-                                                    src="assets/img/menu/menu-item-3.jpg" class="menu-img img-fluid"
-                                                    alt=""></a>
-                                            <h4>Bánh Mì Gà BBQ Sốt Mật Ong</h4>
-                                            <p class="ingredients">
-                                                👉 "Gà nướng thơm lừng – ngọt dịu vị mật ong!"
-                                            </p>
-                                            <p class="price">
-                                                55.000 VNĐ
-                                            </p>
-                                        </div><!-- Menu Item -->
-
-                                        <div class="col-lg-4 menu-item">
-                                            <a href="assets/img/menu/menu-item-4.jpg" class="glightbox"><img
-                                                    src="assets/img/menu/menu-item-4.jpg" class="menu-img img-fluid"
-                                                    alt=""></a>
-                                            <h4>Bánh Mì Heo Quay Giòn Rụm</h4>
-                                            <p class="ingredients">
-                                                👉 "Da giòn tan – cắn một miếng là yêu!"
-                                            </p>
-                                            <p class="price">
-                                                50.000 VNĐ
-                                            </p>
-                                        </div><!-- Menu Item -->
-
-                                        <div class="col-lg-4 menu-item">
-                                            <a href="assets/img/menu/menu-item-5.jpg" class="glightbox"><img
-                                                    src="assets/img/menu/menu-item-5.jpg" class="menu-img img-fluid"
-                                                    alt=""></a>
-                                            <h4>Bánh Mì Bò Sốt Trứng Lòng Đào</h4>
-                                            <p class="ingredients">
-                                                👉 "Trứng chảy béo ngậy – ăn là mê ly!"
-                                            </p>
-                                            <p class="price">
-                                                58.000 VNĐ
-                                            </p>
-                                        </div><!-- Menu Item -->
-
-                                        <div class="col-lg-4 menu-item">
-                                            <a href="assets/img/menu/menu-item-6.jpg" class="glightbox"><img
-                                                    src="assets/img/menu/menu-item-6.jpg" class="menu-img img-fluid"
-                                                    alt=""></a>
-                                            <h4>Bánh Mì Xíu Mại Sốt Cay</h4>
-                                            <p class="ingredients">
-                                                👉 "Viên xíu mại mềm thơm – sốt cay bùng vị!"
-                                            </p>
-                                            <p class="price">
-                                                52.000 VNĐ
-                                            </p>
-                                        </div><!-- Menu Item -->
-
-                                        <div class="col-lg-4 menu-item">
-                                            <a href="assets/img/menu/menu-item-7.jpg" class="glightbox"><img
-                                                    src="assets/img/menu/menu-item-7.jpg" class="menu-img img-fluid"
-                                                    alt=""></a>
-                                            <h4>Bánh Mì Cá Ngừ Mayo Béo Ngậy</h4>
-                                            <p class="ingredients">
-                                                👉 "Vị biển hòa quyện sốt béo – ngon khó cưỡng!"
-                                            </p>
-                                            <p class="price">
-                                                49.000 VNĐ
-                                            </p>
-                                        </div><!-- Menu Item -->
 
                                     </div>
                                 </div><!-- End Starter Menu Content -->
@@ -598,18 +533,7 @@
                                             </p>
                                         </div><!-- Menu Item -->
 
-                                        <div class="col-lg-4 menu-item">
-                                            <a href="assets/img/menu/menu-item-21.webp" class="glightbox"><img
-                                                    src="assets/img/menu/menu-item-21.webp" class="menu-img img-fluid"
-                                                    alt=""></a>
-                                            <h4>Combo Mlem: Bánh Mì Chảo Phô Mai + Trà Đào Cam Sả</h4>
-                                            <p class="ingredients">
-                                                👉 "Tan chảy từ vị phô mai đến trà đào mát lạnh!"
-                                            </p>
-                                            <p class="price">
-                                                88.000 VNĐ
-                                            </p>
-                                        </div><!-- Menu Item -->
+
 
                                         <div class="col-lg-4 menu-item">
                                             <a href="assets/img/menu/menu-item-22.webp" class="glightbox"><img
