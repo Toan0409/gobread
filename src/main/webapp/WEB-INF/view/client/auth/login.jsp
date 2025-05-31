@@ -62,6 +62,10 @@
                             <div class="my-2" style="color: red;">Tài khoản hoặc mật khẩu không hợp lệ</div>
                           </c:if>
 
+                          <c:if test="${param.logout != null}">
+                            <div class="my-2" style="color: green;">Đăng xuất thành công</div>
+                          </c:if>
+
                           <div class="col-12">
                             <label for="yourUsername" class="form-label">Tên tài khoản</label>
                             <div class="input-group has-validation">

@@ -64,8 +64,8 @@ public class ConfigSecurity {
                         .dispatcherTypeMatchers(DispatcherType.FORWARD,
                                 DispatcherType.INCLUDE)
                         .permitAll()
-                        .requestMatchers("/", "/login", "/client/**", "assets/**",
-                                "assets_client/**")
+                        .requestMatchers("/", "/login", "/signup", "/client/**", "assets/**",
+                                "assets_client/**", "/resources/**", "/static/**")
                         .permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
@@ -74,7 +74,8 @@ public class ConfigSecurity {
                         .loginPage("/login")
                         .permitAll()
                         .successHandler(customSuccessHandler())
-                        .failureUrl("/login?error"));
+                        .failureUrl("/login?error"))
+                .exceptionHandling(ex -> ex.accessDeniedPage("/access-denied"));
 
         return http.build();
     }

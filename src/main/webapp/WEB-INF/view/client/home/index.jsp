@@ -53,17 +53,78 @@
                                 <li><a href="#about">Thông tin về chúng tôi</a></li>
                                 <li><a href="#menu">Danh sách </a></li>
                                 <li><a href="#chefs">Đầu bếp</a></li>
-                                </li>
-                                <a href="<c:url value='/user/cart' />">Giỏ hàng</a>
-                                </li>
-                                <li><a href="<c:url value='/user/signup' />">Đăng kí</a></li>
-                                <li> <a href="<c:url value='/user/login' />">Đăng nhập</a></li>
+                                <c:if test="${ empty pageContext.request.userPrincipal}">
+                                    <li><a href="/signup">Đăng kí</a></li>
+                                    <li> <a href="/login">Đăng nhập</a></li>
+                                </c:if>
+                                <c:if test="${not empty pageContext.request.userPrincipal}">
+
+                                    </li>
+                                    <a href="<c:url value='/user/cart' />">Giỏ hàng</a>
+                                    </li>
+                                </c:if>
                             </ul>
                             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                         </nav>
 
                         <a class="btn-getstarted" href="<c:url value='/order' />">Đặt hàng</a>
+                        <c:if test="${not empty pageContext.request.userPrincipal}">
 
+                            <li class="nav-item dropdown pe-3">
+                                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
+                                    data-bs-toggle="dropdown">
+                                    <img src="/assets/img/user1.png" alt="Profile" class="rounded-circle">
+                                    <span class="d-none d-md-block dropdown-toggle ps-2">
+                                        <c:out value="${pageContext.request.userPrincipal.name}" />
+
+                                    </span>
+                                </a><!-- End Profile Image Icon -->
+
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="/admin">
+                                            <i class="bi bi-person"></i>
+                                            <span>Hồ sơ của tôi</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="/admin">
+                                            <i class="bi bi-gear"></i>
+                                            <span>Cài đặt</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                                            <i class="bi bi-question-circle"></i>
+                                            <span>Trợ giúp</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+
+                                    <li>
+                                        <form action="/logout" method="post">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                            <button class="dropdown-item d-flex align-items-center">
+                                                <i class="bi bi-box-arrow-right"></i>
+                                                <span>Đăng xuất</span>
+                                            </button>
+                                        </form>
+                                    </li>
+
+                                </ul><!-- End Profile Dropdown Items -->
+                            </li><!-- End Profile Nav -->
+                        </c:if>
 
                     </div>
                 </header>

@@ -222,61 +222,62 @@
 
               </li><!-- End Messages Nav -->
 
-              <li class="nav-item dropdown pe-3">
+              <c:if test="${not empty pageContext.request.userPrincipal}">
 
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                  <img src="/assets/img/user1.png" alt="Profile" class="rounded-circle">
-                  <span class="d-none d-md-block dropdown-toggle ps-2">Admin - Nhóm 17</span>
-                </a><!-- End Profile Image Icon -->
+                <li class="nav-item dropdown pe-3">
+                  <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                    <img src="/assets/img/user1.png" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">
+                      <c:out value="${pageContext.request.userPrincipal.name}" />
 
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                  <li class="dropdown-header">
-                    <h6>Admin</h6>
-                    <span>Web Designer</span>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
+                    </span>
+                  </a><!-- End Profile Image Icon -->
 
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" href="/admin">
-                      <i class="bi bi-person"></i>
-                      <span>Hồ sơ của tôi</span>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" href="/admin">
-                      <i class="bi bi-gear"></i>
-                      <span>Cài đặt</span>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="/admin">
+                        <i class="bi bi-person"></i>
+                        <span>Hồ sơ của tôi</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
 
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                      <i class="bi bi-question-circle"></i>
-                      <span>Trợ giúp</span>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="/admin">
+                        <i class="bi bi-gear"></i>
+                        <span>Cài đặt</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
 
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <i class="bi bi-box-arrow-right"></i>
-                      <span>Đăng xuất</span>
-                    </a>
-                  </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                        <i class="bi bi-question-circle"></i>
+                        <span>Trợ giúp</span>
+                      </a>
+                    </li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
 
-                </ul><!-- End Profile Dropdown Items -->
-              </li><!-- End Profile Nav -->
+                    <li>
+                      <form action="/logout" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <button class="dropdown-item d-flex align-items-center">
+                          <i class="bi bi-box-arrow-right"></i>
+                          <span>Đăng xuất</span>
+                        </button>
+                      </form>
+                    </li>
+
+                  </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+              </c:if>
 
             </ul>
           </nav><!-- End Icons Navigation -->

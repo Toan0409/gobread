@@ -54,13 +54,13 @@ public class HomePageController {
         return "client/review/review";
     }
 
-    @GetMapping("/user/signup")
+    @GetMapping("/signup")
     public String getUserSignUp(Model model) {
         model.addAttribute("registerDTO", new RegisterDTO());
         return "client/auth/signup";
     }
 
-    @PostMapping("/user/signup")
+    @PostMapping("/signup")
     public String postUserSignUp(
             @ModelAttribute("registerDTO") @Valid RegisterDTO registerDTO,
             BindingResult bindingResult,
@@ -91,5 +91,8 @@ public class HomePageController {
         return "client/auth/login";
     }
 
-    
+    @GetMapping("/access-denied")
+    public String getAccessDenied(Model model) {
+        return "client/auth/404page";
+    }
 }
