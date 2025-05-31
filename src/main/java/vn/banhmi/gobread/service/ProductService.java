@@ -3,6 +3,8 @@ package vn.banhmi.gobread.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.banhmi.gobread.domain.Product;
+import vn.banhmi.gobread.repository.CartDetailRepository;
+import vn.banhmi.gobread.repository.CartRepository;
 import vn.banhmi.gobread.repository.ProductRepository;
 
 import java.util.List;
@@ -13,10 +15,16 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    private final CartRepository cartRepository;
+    private final CartDetailRepository cartDetailRepository;
 
     // Constructor injection nếu cần
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository,
+    CartDetailRepository cartDetailRepository,
+    CartRepository cartRepository) {
         this.productRepository = productRepository;
+        this.cartDetailRepository = cartDetailRepository;
+        this.cartRepository = cartRepository;
     }
 
     public List<Product> getAllProducts() {
@@ -37,5 +45,7 @@ public class ProductService {
     public List<Product> fetchProducts(){
         return this.productRepository.findAll();
     }
+
+    
 
 }

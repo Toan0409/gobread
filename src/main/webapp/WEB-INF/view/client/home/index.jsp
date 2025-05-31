@@ -294,7 +294,7 @@
 
                                     <div class="row gy-5">
                                         <c:forEach var="product" items="${products}">
-                                            <div class="col-lg-4 menu-item">
+                                            <div class="col-lg-4 menu-item justify-content-center">
                                                 <a href="/webapp/resources/images/product/${product.imageUrl}"
                                                     class="glightbox">
                                                     <img src="/webapp/resources/images/product/${product.imageUrl}"
@@ -303,6 +303,15 @@
                                                 <h4>${product.name}</h4>
                                                 <p class="ingredients">${product.description}</p>
                                                 <p class="price">${product.price} VNĐ</p>
+
+                                                <form action="/add-product-to-cart/${product.productID}" method="post">
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                        value="${_csrf.token}" />
+                                                    <button class="mx-auto btn border border-secondary rounded">
+                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                                    </button>
+                                                </form>
+
                                             </div>
                                         </c:forEach>
                                     </div>

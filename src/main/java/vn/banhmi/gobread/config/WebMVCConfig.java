@@ -50,8 +50,6 @@ public class WebMVCConfig implements WebMvcConfigurer {
                                 .addResourceLocations("/resources/images/");
                 registry.addResourceHandler("/resources/**")
                                 .addResourceLocations("/resources/");
-                registry.addResourceHandler("/webapp/**")
-                                .addResourceLocations("/");
 
         }
 
