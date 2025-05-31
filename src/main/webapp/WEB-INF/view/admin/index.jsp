@@ -236,7 +236,7 @@
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 
                     <li>
-                      <a class="dropdown-item d-flex align-items-center" href="/admin">
+                      <a class="dropdown-item d-flex align-items-center" href="/admin/profile">
                         <i class="bi bi-person"></i>
                         <span>Hồ sơ của tôi</span>
                       </a>
@@ -255,15 +255,7 @@
                       <hr class="dropdown-divider">
                     </li>
 
-                    <li>
-                      <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                        <i class="bi bi-question-circle"></i>
-                        <span>Trợ giúp</span>
-                      </a>
-                    </li>
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
+
 
                     <li>
                       <form action="/logout" method="post">
@@ -407,7 +399,7 @@
             <li class="nav-heading">Pages</li>
 
             <li class="nav-item">
-              <a class="nav-link collapsed" href="/admin">
+              <a class="nav-link collapsed" href="/admin/profile">
                 <i class="bi bi-person"></i>
                 <span>Thông tin</span>
               </a>

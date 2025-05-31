@@ -245,17 +245,13 @@
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                   <img src="/assets/img/user1.png" alt="Profile" class="rounded-circle">
-                  <span class="d-none d-md-block dropdown-toggle ps-2">Admin</span>
+                  <span class="d-none d-md-block dropdown-toggle ps-2">
+                    <c:out value="${pageContext.request.userPrincipal.name}" />
+                  </span>
                 </a><!-- End Profile Image Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                  <li class="dropdown-header">
-                    <h6>Admin</h6>
-                    <span>Web Designer</span>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
+
 
                   <li>
                     <a class="dropdown-item d-flex align-items-center" href="/admin">
@@ -277,21 +273,16 @@
                     <hr class="dropdown-divider">
                   </li>
 
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                      <i class="bi bi-question-circle"></i>
-                      <span>Trợ giúp</span>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
+
 
                   <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <i class="bi bi-box-arrow-right"></i>
-                      <span>Đăng xuất</span>
-                    </a>
+                    <form action="/logout" method="post">
+                      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                      <button class="dropdown-item d-flex align-items-center">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Đăng xuất</span>
+                      </button>
+                    </form>
                   </li>
 
                 </ul><!-- End Profile Dropdown Items -->
