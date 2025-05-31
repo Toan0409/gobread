@@ -50,6 +50,7 @@ public class CustomSucessHandler implements AuthenticationSuccessHandler {
         }
 
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+
         // get email
         String email = authentication.getName();
         // query user
@@ -65,13 +66,14 @@ public class CustomSucessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
+        clearAuthenticationAttributes(request, authentication);
         String targetUrl = determineTargetUrl(authentication);
         if (response.isCommitted()) {
 
             return;
         }
         redirectStrategy.sendRedirect(request, response, targetUrl);
-        // clearAuthenticationAttributes(request);
+
     }
 
 }

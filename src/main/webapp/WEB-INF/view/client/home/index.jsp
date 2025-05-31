@@ -75,7 +75,7 @@
                                     data-bs-toggle="dropdown">
                                     <img src="/assets/img/user1.png" alt="Profile" class="rounded-circle">
                                     <span class="d-none d-md-block dropdown-toggle ps-2">
-                                        <c:out value="${pageContext.request.userPrincipal.name}" />
+                                        <c:out value="${sessionScope.fullName}" />
 
                                     </span>
                                 </a><!-- End Profile Image Icon -->
