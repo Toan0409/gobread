@@ -38,7 +38,7 @@
                                 <br> <strong>Sản phẩm này sẽ không thể khôi phục lại được!</strong>
                             </div>
 
-                            <form:form method="post" action="/product/delete" modelAttribute="newProduct">
+                            <form:form method="post" action="/admin/product/delete" modelAttribute="newProduct">
                                 <div class="col-12">
                                     <label for="id" class="form-label">ID</label>
                                     <form:input type="text" path="productID" class="form-control" readonly="true" />

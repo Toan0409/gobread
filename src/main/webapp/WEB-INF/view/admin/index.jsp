@@ -301,7 +301,7 @@
               </a>
               <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                  <a href="/order">
+                  <a href="/admin/order">
                     <i class="bi bi-cart"></i><span>Quản lý đơn hàng</span>
                   </a>
                 </li>
@@ -311,7 +311,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/product">
+                  <a href="/admin/product">
                     <i class="bi bi-bag"></i><span>Quản lý sản phẩm & tồn kho</span>
                   </a>
                 </li>

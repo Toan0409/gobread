@@ -30,7 +30,7 @@
             <body class="bg-light">
                 <div class="container mt-5">
                     <h2 class="text-center mb-4">Thêm Sản Phẩm</h2>
-                    <form:form action="/product/add" method="post" modelAttribute="newProduct"
+                    <form:form action="/admin/product/add" method="post" modelAttribute="newProduct"
                         enctype="multipart/form-data" class="mx-auto" style="max-width: 500px;">
 
                         <div class="mb-3">

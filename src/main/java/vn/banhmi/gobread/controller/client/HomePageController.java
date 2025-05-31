@@ -86,7 +86,7 @@ public class HomePageController {
         return "redirect:/user/login";
     }
 
-    @RequestMapping("/user/login")
+    @RequestMapping("/login")
     public String getUserLogin(Model model) {
         return "client/auth/login";
     }
