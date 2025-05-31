@@ -23,14 +23,14 @@
                     rel="stylesheet">
 
                 <!-- Vendor CSS Files -->
-                <link href="assets_client/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-                <link href="assets_client/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-                <link href="assets_client/vendor/aos/aos.css" rel="stylesheet">
-                <link href="assets_client/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-                <link href="assets_client/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+                <link href="/assets_client/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+                <link href="/assets_client/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+                <link href="/assets_client/vendor/aos/aos.css" rel="stylesheet">
+                <link href="/assets_client/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+                <link href="/assets_client/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
                 <!-- Main CSS File -->
-                <link href="assets_client/css/main.css" rel="stylesheet">
+                <link href="/assets_client/css/main.css" rel="stylesheet">
 
             </head>
 
@@ -142,7 +142,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-                                    <img src="assets_client/img/hero-img.jpg" class="img-fluid animated" alt="">
+                                    <img src="/assets_client/img/hero-img.jpg" class="img-fluid animated" alt="">
                                 </div>
                             </div>
                         </div>
@@ -162,7 +162,7 @@
 
                             <div class="row gy-4">
                                 <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
-                                    <img src="assets_client/img/about.jpg" class="img-fluid mb-4" alt="">
+                                    <img src="/assets_client/img/about.jpg" class="img-fluid mb-4" alt="">
                                     <div class="book-a-table">
                                         <p>+84 342437211</p>
                                     </div>
@@ -194,7 +194,7 @@
                                         </p>
 
                                         <div class="position-relative mt-4">
-                                            <img src="assets_client/img/about-2.jpg" class="img-fluid" alt="">
+                                            <img src="/assets_client/img/about-2.jpg" class="img-fluid" alt="">
                                             <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
                                                 class="glightbox pulsating-play-btn"></a>
                                         </div>
@@ -355,19 +355,26 @@
 
                                     <div class="row gy-5">
                                         <c:forEach var="product" items="${products}">
-                                            <div class="col-lg-4 menu-item">
-                                                <a href="${pageContext.request.contextPath}/resources/images/product/${product.imageUrl}"
+                                            <div class="col-lg-4 menu-item justify-content-center">
+                                                <a href="/resources/images/product/${product.imageUrl}"
                                                     class="glightbox">
-                                                    <img src="${pageContext.request.contextPath}/resources/images/product/${product.imageUrl}"
+                                                    <img src="/resources/images/product/${product.imageUrl}"
                                                         class="menu-img img-fluid" alt="${product.name}">
                                                 </a>
                                                 <h4>${product.name}</h4>
                                                 <p class="ingredients">${product.description}</p>
                                                 <p class="price">${product.price} VNĐ</p>
+
+                                                <form action="/add-product-to-cart/${product.productID}" method="post">
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                        value="${_csrf.token}" />
+                                                    <button class="mx-auto btn border border-secondary rounded">
+                                                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                                    </button>
+                                                </form>
+
                                             </div>
                                         </c:forEach>
-
-
                                     </div>
                                 </div><!-- End Starter Menu Content -->
 
@@ -1035,15 +1042,15 @@
                 <div id="preloader"></div>
 
                 <!-- Vendor JS Files -->
-                <script src="assets_client/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-                <script src="assets_client/vendor/php-email-form/validate.js"></script>
-                <script src="assets_client/vendor/aos/aos.js"></script>
-                <script src="assets_client/vendor/glightbox/js/glightbox.min.js"></script>
-                <script src="assets_client/vendor/purecounter/purecounter_vanilla.js"></script>
-                <script src="assets_client/vendor/swiper/swiper-bundle.min.js"></script>
+                <script src="/assets_client/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <script src="/assets_client/vendor/php-email-form/validate.js"></script>
+                <script src="/assets_client/vendor/aos/aos.js"></script>
+                <script src="/assets_client/vendor/glightbox/js/glightbox.min.js"></script>
+                <script src="/assets_client/vendor/purecounter/purecounter_vanilla.js"></script>
+                <script src="/assets_client/vendor/swiper/swiper-bundle.min.js"></script>
 
                 <!-- Main JS File -->
-                <script src="assets_client/js/main.js"></script>
+                <script src="/assets_client/js/main.js"></script>
 
             </body>
 

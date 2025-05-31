@@ -5,18 +5,27 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import vn.banhmi.gobread.domain.User;
+import vn.banhmi.gobread.service.UserService;
 
 public class CustomSucessHandler implements AuthenticationSuccessHandler {
+
+    @Autowired
+    private UserService userService;
 
     protected String determineTargetUrl(Authentication authentication) {
         Map<String, String> roleTargetUrlMap = new HashMap<>();
@@ -34,10 +43,20 @@ public class CustomSucessHandler implements AuthenticationSuccessHandler {
         throw new IllegalStateException();
     }
 
-    protected void clearAuthenticationAttributes(HttpServletRequest request) {
+    protected void clearAuthenticationAttributes(HttpServletRequest request, Authentication authentication) {
         HttpSession session = request.getSession(false);
         if (session == null) {
             return;
+        }
+
+        session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+        // get email
+        String email = authentication.getName();
+        // query user
+        User user = this.userService.getUserByEmail(email);
+        if (user != null) {
+            session.setAttribute("fullName", user.getFullName());
+            session.setAttribute("avatar", user.getAvatar());
         }
     }
 
@@ -52,7 +71,7 @@ public class CustomSucessHandler implements AuthenticationSuccessHandler {
             return;
         }
         redirectStrategy.sendRedirect(request, response, targetUrl);
-        clearAuthenticationAttributes(request);
+        // clearAuthenticationAttributes(request);
     }
 
 }

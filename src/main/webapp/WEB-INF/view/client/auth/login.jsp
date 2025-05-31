@@ -83,15 +83,17 @@
 
                           <div>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                          </div>
+                            <div>
+                              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            </div>
 
-                          <div class="col-12">
-                            <button class="btn btn-primary w-100" type="submit">Login</button>
-                          </div>
+                            <div class="col-12">
+                              <button class="btn btn-primary w-100" type="submit">Login</button>
+                            </div>
 
-                          <div class="col-12">
-                            <p class="small mb-0">Don't have an account? <a href="register.jsp">Create one</a></p>
-                          </div>
+                            <div class="col-12">
+                              <p class="small mb-0">Don't have an account? <a href="register.jsp">Create one</a></p>
+                            </div>
 
                         </form>
 
