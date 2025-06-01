@@ -24,14 +24,14 @@
                 <!-- Header giữ nguyên -->
                 <header id="header" class="header d-flex align-items-center sticky-top">
                     <div class="container d-flex justify-content-between align-items-center">
-                        <a href="index.html" class="logo">
+                        <a href="/" class="logo">
                             <h1 class="sitename">GoBread</h1><span>.</span>
                         </a>
                         <nav id="navmenu" class="navmenu">
                             <ul>
-                                <li><a href="/user">Trang chủ</a></li>
-                                <li><a href="index.html#menu">Menu</a></li>
-                                <li><a href="index.html#order-online">Đặt hàng</a></li>
+                                <li><a href="/">Trang chủ</a></li>
+                                <li><a href="/#menu">Menu</a></li>
+                                <li><a href="/#order-online">Đặt hàng</a></li>
                             </ul>
                             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                         </nav>

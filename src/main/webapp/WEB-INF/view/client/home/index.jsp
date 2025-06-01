@@ -16,6 +16,7 @@
                 <link href="/assets/img/apple-touch-icon.jpg" rel="apple-touch-icon">
 
                 <!-- Fonts -->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
                 <link href="https://fonts.googleapis.com" rel="preconnect">
                 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
                 <link
@@ -102,15 +103,7 @@
                                         <hr class="dropdown-divider">
                                     </li>
 
-                                    <li>
-                                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                                            <i class="bi bi-question-circle"></i>
-                                            <span>Trợ giúp</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
+
 
                                     <li>
                                         <form action="/logout" method="post">
@@ -362,7 +355,7 @@
                                                         class="menu-img img-fluid" alt="${product.name}">
                                                 </a>
                                                 <h4>${product.name}</h4>
-                                                <p class="ingredients">${product.description}</p>
+                                                <!-- <p class="ingredients">${product.description}</p> -->
                                                 <p class="price">${product.price} VNĐ</p>
 
                                                 <form action="/add-product-to-cart/${product.productID}" method="post">
