@@ -64,7 +64,7 @@ public class ProductService {
                 // Nếu không có giỏ hàng, tạo mới
                 Cart otherCart = new Cart();
                 otherCart.setUser(user);
-                otherCart.setSum(1);
+                otherCart.setSum(0);
                 cart = this.cartRepository.save(otherCart);
             }
 
@@ -73,15 +73,24 @@ public class ProductService {
             if (productOptional.isPresent()) {
                 Product product = productOptional.get();
 
-                // Tạo CartDetail mới
-                CartDetail cartDetail = new CartDetail();
-                cartDetail.setCart(cart);
-                cartDetail.setProduct(product);
-                cartDetail.setQuantity(1); // Giả sử số lượng là 1
-                cartDetail.setPrice(product.getPrice()); // Lấy giá từ sản phẩm
+                // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+                CartDetail oldDetail = this.cartDetailRepository.findByCartAndProduct(cart, product);
+                if (oldDetail == null) {
+                    // Tạo CartDetail mới
+                    CartDetail cartDetail = new CartDetail();
+                    cartDetail.setCart(cart);
+                    cartDetail.setProduct(product);
+                    cartDetail.setQuantity(1); // Giả sử số lượng là 1
+                    cartDetail.setPrice(product.getPrice()); // Lấy giá từ sản phẩm
+                    // Lưu CartDetail
+                    this.cartDetailRepository.save(cartDetail);
+                    cart.setSum(cart.getSum() + 1); // Cập nhật tổng số lượng trong giỏ hàng
+                    this.cartRepository.save(cart); // Lưu giỏ hàng
 
-                // Lưu CartDetail
-                this.cartDetailRepository.save(cartDetail);
+                } else {
+                    oldDetail.setQuantity(oldDetail.getQuantity() + 1); // Tăng số lượng nếu đã có
+                    this.cartDetailRepository.save(oldDetail);
+                }
 
                 // Cập nhật tổng số lượng trong giỏ hàng
                 cart.setSum(cart.getSum());

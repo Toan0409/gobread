@@ -61,7 +61,7 @@
                                 <c:if test="${not empty pageContext.request.userPrincipal}">
 
                                     </li>
-                                    <a href="<c:url value='/user/cart' />">Giỏ hàng</a>
+                                    <a href="/cart">Giỏ hàng</a>
                                     </li>
                                 </c:if>
                             </ul>

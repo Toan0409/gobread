@@ -580,6 +580,19 @@ h6 {
   .mobile-nav-active .navmenu>ul {
     display: block;
   }
+
+  .nav-profile img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #f3f3f3;
+    transition: border-color 0.3s;
+  }
+
+  .nav-item {
+    list-style: none;
+  }
 }
 
 /*--------------------------------------------------------------

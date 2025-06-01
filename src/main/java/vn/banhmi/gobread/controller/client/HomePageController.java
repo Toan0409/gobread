@@ -39,11 +39,6 @@ public class HomePageController {
         return "client/home/index";
     }
 
-    @RequestMapping("/user/cart")
-    public String getCartPage(Model model) {
-        return "client/cart/cart";
-    }
-
     @RequestMapping("/user/cancel_order")
     public String getUserCancelOrder(Model model) {
         return "client/order/cancel_order";
