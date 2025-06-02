@@ -21,11 +21,11 @@
 
             <body>
 
-                <!-- Header giữ nguyên -->
+                <!-- Header -->
                 <header id="header" class="header d-flex align-items-center sticky-top">
                     <div class="container d-flex justify-content-between align-items-center">
                         <a href="/" class="logo">
-                            <h1 class="sitename">GoBread</h1><span>.</span>
+                            <h1 class="sitename">GoBread</h1>
                         </a>
                         <nav id="navmenu" class="navmenu">
                             <ul>
@@ -56,25 +56,93 @@
                                         </tr>
                                     </thead>
                                     <tbody id="cart-body">
-                                        <!-- JavaScript sẽ thêm hàng động -->
+                                        <c:forEach var="cartDetail" items="${cartDetails}" varStatus="loop">
+                                            <tr data-price="${cartDetail.product.price}"
+                                                data-quantity="${cartDetail.quantity}">
+                                                <td>${loop.index + 1}</td>
+                                                <td>${cartDetail.product.name}</td>
+                                                <td>
+                                                    <img src="/images/product/${cartDetail.product.imageUrl}" alt=""
+                                                        class="img-fluid rounded-circle"
+                                                        style="width: 80px; height: 80px;">
+                                                </td>
+                                                <td>${cartDetail.product.price}₫</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-center align-items-center"
+                                                        style="height: 100%;">
+                                                        <button class="btn btn-sm btn-outline-secondary me-2"
+                                                            onclick="updateQuantity(this, -1)">-</button>
+                                                        <span class="quantity px-2">${cartDetail.quantity}</span>
+                                                        <button class="btn btn-sm btn-outline-secondary ms-2"
+                                                            onclick="updateQuantity(this, 1)">+</button>
+                                                    </div>
+                                                </td>
+
+                                                <td class="subtotal">
+                                                    ${cartDetail.product.price * cartDetail.quantity}₫
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-danger"
+                                                        onclick="removeRow(this)">Xóa</button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
+
                             <div class="text-end mt-4">
-                                <h4>Tổng cộng: <span id="total-price" class="text-danger fw-bold">0₫</span></h4>
+                                <h4>Tổng cộng: <span id="total-price" class="text-danger fw-bold">${totalPrice}đ</span>
+                                </h4>
                                 <button class="btn btn-success" onclick="placeOrder()">🧾 Đặt hàng</button>
                             </div>
                         </div>
                     </section>
                 </main>
 
-
-
                 <!-- JS -->
                 <script src="/assets_client/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
                 <script src="/assets_client/js/main.js"></script>
-                <script src="/assets_client/js/validateCart.js"></script>
-                <script src="/assets_client/js/validateCart.js"></script>
+                <script>
+                    function formatCurrency(num) {
+                        return num.toLocaleString('vi-VN') + '₫';
+                    }
+
+                    function updateTotal() {
+                        let total = 0;
+                        document.querySelectorAll('#cart-body tr').forEach(row => {
+                            const price = parseInt(row.dataset.price);
+                            const quantity = parseInt(row.dataset.quantity);
+                            const subtotal = price * quantity;
+
+                            row.querySelector('.subtotal').textContent = formatCurrency(subtotal);
+                            row.querySelector('.quantity').textContent = quantity;
+                            total += subtotal;
+                        });
+                        document.getElementById('total-price').textContent = formatCurrency(total);
+                    }
+
+                    function updateQuantity(button, delta) {
+                        const row = button.closest('tr');
+                        let quantity = parseInt(row.dataset.quantity) || 1;
+                        quantity = Math.max(1, quantity + delta); // Không cho nhỏ hơn 1
+                        row.dataset.quantity = quantity;
+                        updateTotal();
+                    }
+
+                    function removeRow(button) {
+                        button.closest('tr').remove();
+                        updateTotal();
+                    }
+
+                    function placeOrder() {
+                        alert("Tính năng đặt hàng đang phát triển!");
+                        // TODO: Gửi dữ liệu lên server để xử lý đơn hàng
+                    }
+
+                    document.addEventListener("DOMContentLoaded", updateTotal);
+                </script>
+
             </body>
 
             </html>
