@@ -78,7 +78,7 @@ public class HomePageController {
 
         userService.handleSaveUser(user);
 
-        return "redirect:/user/login";
+        return "redirect:/login";
     }
 
     @RequestMapping("/login")

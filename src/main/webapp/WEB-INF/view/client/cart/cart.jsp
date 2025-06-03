@@ -100,13 +100,17 @@
                                 </table>
                             </div>
 
+
+
                             <div class="text-end mt-4">
+
                                 <h4>Tổng cộng: <span id="total-price" class="text-danger fw-bold">${totalPrice}đ</span>
                                 </h4>
                                 <button class="btn btn-success" onclick="placeOrder()">🧾 Đặt hàng</button>
                             </div>
                         </div>
                     </section>
+
                 </main>
 
                 <!-- JS -->

@@ -35,7 +35,7 @@
                         <p class="text-center small">Nhập thông tin để đăng ký</p>
                       </div>
 
-                      <form:form action="/user/signup" method="post" modelAttribute="registerDTO"
+                      <form:form action="/signup" method="post" modelAttribute="registerDTO"
                         cssClass="row g-3 needs-validation">
 
                         <!-- Họ tên -->

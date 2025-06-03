@@ -30,7 +30,7 @@ public class ItemController {
         HttpSession session = request.getSession();
         long productId = id;
         String email = (String) session.getAttribute("email");
-        this.productService.handleAddProductToCart(email, productId); // Assuming cartId is 0 for now
+        this.productService.handleAddProductToCart(email, productId);
         return "redirect:/";
     }
 
@@ -62,4 +62,5 @@ public class ItemController {
         this.productService.handleDeleteCartProduct(cartDetailID, session);
         return "redirect:/cart";
     }
+
 }
