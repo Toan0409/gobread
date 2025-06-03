@@ -3,6 +3,8 @@ package vn.banhmi.gobread.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import vn.banhmi.gobread.domain.Cart;
 import vn.banhmi.gobread.domain.CartDetail;
 import vn.banhmi.gobread.domain.Product;
@@ -54,55 +56,84 @@ public class ProductService {
         return this.productRepository.findAll();
     }
 
+    @Transactional
     public void handleAddProductToCart(String email, long productId) {
-        // Kiểm tra xem sản phẩm có tồn tại không
+        // 1. Lấy user từ email
         User user = this.userService.getUserByEmail(email);
-        if (user != null) {
-            Cart cart = this.cartRepository.findByUser(user);
-
-            if (cart == null) {
-                // Nếu không có giỏ hàng, tạo mới
-                Cart otherCart = new Cart();
-                otherCart.setUser(user);
-                otherCart.setSum(0);
-                cart = this.cartRepository.save(otherCart);
-            }
-
-            // Tìm sản phẩm theo ID
-            Optional<Product> productOptional = this.productRepository.findById(productId);
-            if (productOptional.isPresent()) {
-                Product product = productOptional.get();
-
-                // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
-                CartDetail oldDetail = this.cartDetailRepository.findByCartAndProduct(cart, product);
-                if (oldDetail == null) {
-                    // Tạo CartDetail mới
-                    CartDetail cartDetail = new CartDetail();
-                    cartDetail.setCart(cart);
-                    cartDetail.setProduct(product);
-                    cartDetail.setQuantity(1); // Giả sử số lượng là 1
-                    cartDetail.setPrice(product.getPrice()); // Lấy giá từ sản phẩm
-                    // Lưu CartDetail
-                    this.cartDetailRepository.save(cartDetail);
-                    cart.setSum(cart.getSum() + 1); // Cập nhật tổng số lượng trong giỏ hàng
-                    this.cartRepository.save(cart); // Lưu giỏ hàng
-
-                } else {
-                    oldDetail.setQuantity(oldDetail.getQuantity() + 1); // Tăng số lượng nếu đã có
-                    this.cartDetailRepository.save(oldDetail);
-                }
-
-                // Cập nhật tổng số lượng trong giỏ hàng
-                cart.setSum(cart.getSum());
-                this.cartRepository.save(cart);
-            } else {
-                throw new RuntimeException("Product not found with ID: " + productId);
-            }
-
+        if (user == null) {
+            throw new RuntimeException("User not found with email: " + email);
         }
+
+        // 2. Tìm Cart hiện tại của user (nếu chưa có, tạo mới và lưu ngay)
+        Cart cart = this.cartRepository.findByUser(user);
+        if (cart == null) {
+            cart = new Cart();
+            cart.setUser(user);
+            cart.setSum(0);
+            cart = this.cartRepository.save(cart);
+        }
+
+        // 3. Lấy Product theo ID
+        Optional<Product> productOptional = this.productRepository.findById(productId);
+        if (!productOptional.isPresent()) {
+            throw new RuntimeException("Product not found with ID: " + productId);
+        }
+        Product product = productOptional.get();
+
+        // 4. Kiểm tra xem sản phẩm đã có trong cart chưa
+        CartDetail cartDetail = this.cartDetailRepository.findByCartAndProduct(cart, product);
+        if (cartDetail == null) {
+            // Nếu chưa có, tạo mới cartDetail
+            cartDetail = new CartDetail();
+            cartDetail.setCart(cart);
+            cartDetail.setProduct(product);
+            cartDetail.setQuantity(1);
+            cartDetail.setPrice(product.getPrice());
+        } else {
+            // Nếu đã có, tăng số lượng
+            cartDetail.setQuantity(cartDetail.getQuantity() + 1);
+        }
+
+        // 5. Lưu lại cartDetail (mới hoặc đã chỉnh sửa)
+        this.cartDetailRepository.save(cartDetail);
+
+        // 6. Cập nhật tổng số lượng trong giỏ hàng và lưu lại cart
+        cart.setSum(cart.getSum() + 1);
+        this.cartRepository.save(cart);
     }
 
     public Cart fetchbyUser(User user) {
         return this.cartRepository.findByUser(user);
     }
+
+    @Transactional
+    public void handleDeleteCartProduct(long cartDetailID, HttpSession session) {
+        Optional<CartDetail> cartDetailOptional = this.cartDetailRepository.findById(cartDetailID);
+
+        if (cartDetailOptional.isPresent()) {
+            CartDetail cartDetail = cartDetailOptional.get();
+            Cart currentCart = cartDetail.getCart();
+
+            currentCart.getCartDetails().remove(cartDetail);
+            cartDetail.setCart(null);
+
+            long quantityToRemove = cartDetail.getQuantity();
+
+            this.cartDetailRepository.delete(cartDetail);
+
+            this.cartDetailRepository.flush();
+
+            int updatedSum = (int) (currentCart.getSum() - quantityToRemove);
+
+            if (updatedSum > 0) {
+                currentCart.setSum(updatedSum);
+                session.setAttribute("sum", updatedSum);
+                this.cartRepository.save(currentCart);
+            } else {
+                this.cartRepository.delete(currentCart);
+                session.setAttribute("sum", 0);
+            }
+        }
+    }
+
 }

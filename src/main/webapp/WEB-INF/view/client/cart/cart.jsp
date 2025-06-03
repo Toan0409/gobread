@@ -9,6 +9,9 @@
                 <meta content="width=device-width, initial-scale=1.0" name="viewport">
                 <title>Giỏ hàng | GoBread</title>
 
+
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+                    rel="stylesheet" />
                 <!-- Favicons & CSS -->
                 <link href="/assets_client/img/favicon.jpg" rel="icon">
                 <link href="/assets_client/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -82,8 +85,14 @@
                                                     ${cartDetail.product.price * cartDetail.quantity}₫
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-danger"
-                                                        onclick="removeRow(this)">Xóa</button>
+                                                    <form action="/delete-cart-product/${cartDetail.id}" method="post">
+                                                        <input type="hidden" name="${_csrf.parameterName}"
+                                                            value="${_csrf.token}" />
+                                                        <button class="btn btn-sm btn-danger" title="Xoá">
+                                                            <i class="fa fa-trash">
+                                                            </i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -130,10 +139,7 @@
                         updateTotal();
                     }
 
-                    function removeRow(button) {
-                        button.closest('tr').remove();
-                        updateTotal();
-                    }
+
 
                     function placeOrder() {
                         alert("Tính năng đặt hàng đang phát triển!");
