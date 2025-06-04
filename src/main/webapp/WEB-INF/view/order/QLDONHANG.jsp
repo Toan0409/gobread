@@ -454,37 +454,34 @@
           <body>
             <div class="container">
               <h2>Quản Lý Đơn Hàng</h2>
-              <a href="/admin/order/add" class="btn btn-add">Thêm Đơn Hàng</a>
+
               <table>
                 <tr>
                   <th>Mã Đơn</th>
                   <th>Khách Hàng</th>
-                  <th>Sản Phẩm</th>
-                  <th>Số Lượng</th>
+
                   <th>Tổng Tiền</th>
                   <th class="address-column">Trạng Thái</th>
                   <th>Hành Động</th>
                 </tr>
 
-                <c:forEach var="user" items="${users1}">
+                <c:forEach var="order" items="${orders}">
                   <tr>
 
-                    <td>${user.id}</td>
-                    <td>${user.fullName}</td>
-                    <td>${user.email}</td>
-                    <td>${user.id}</td>
-                    <td>${user.id}</td>
-                    <td class="address-column">${user.address}</td>
+                    <td>${order.orderId}</td>
+                    <td>${order.receiverName}</td>
+                    <td>${order.totalPrice}</td>
+                    <td class="address-column">${order.status}</td>
                     <td>
-                      <a href="/admin/user/${user.id}" class="btn btn-sm btn-primary" title="Xem chi tiết">
+                      <a href="/admin/order/${order.orderId}" class="btn btn-sm btn-primary" title="Xem chi tiết">
                         <i class="fa fa-eye">
                         </i>
                       </a>
-                      <a href="/admin/user/update/${user.id}" class="btn btn-sm btn-secondary" title="Chỉnh sửa">
+                      <a href="/admin/order/update/${order.orderId}" class="btn btn-sm btn-secondary" title="Chỉnh sửa">
                         <i class="fa fa-pen">
                         </i>
                       </a>
-                      <a href="/admin/user/delete/${user.id}" class="btn btn-sm btn-danger" title="Xoá">
+                      <a href="/admin/order/delete/${order.orderId}" class="btn btn-sm btn-danger" title="Xoá">
                         <i class="fa fa-trash">
                         </i>
                       </a>

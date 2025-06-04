@@ -106,6 +106,11 @@ public class ItemController {
         currentUser.setId(id);
 
         this.productService.handlePlaceOrder(currentUser, session, receiverName, receiverAddress, receiverPhone);
-        return "redirect:/";
+        return "redirect:/order-success";
+    }
+
+    @GetMapping("/order-success")
+    public String getOrderSuccessPage() {
+        return "client/cart/thanks";
     }
 }
