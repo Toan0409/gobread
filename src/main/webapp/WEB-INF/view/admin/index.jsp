@@ -450,37 +450,21 @@
             <div class="row">
 
               <!-- Left side columns -->
-              <div class="col-lg-8">
+              <div>
                 <div class="row">
 
                   <!-- Sales Card -->
                   <div class="col-xxl-4 col-md-6">
                     <div class="card info-card sales-card">
-
-                      <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                          <li class="dropdown-header text-start">
-                            <h6>Lọc</h6>
-                          </li>
-
-                          <li><a class="dropdown-item" href="#">Hôm nay</a></li>
-                          <li><a class="dropdown-item" href="#">Trong tháng</a></li>
-                          <li><a class="dropdown-item" href="#">Trong năm</a></li>
-                        </ul>
-                      </div>
-
                       <div class="card-body">
-                        <h5 class="card-title">Doanh số <span>| Hôm nay</span></h5>
+                        <h5 class="card-title"><a href="/admin/order">Đơn hàng</a></h5>
 
                         <div class="d-flex align-items-center">
                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                             <i class="bi bi-cart"></i>
                           </div>
                           <div class="ps-3">
-                            <h6>145</h6>
-                            <span class="text-success small pt-1 fw-bold">12%</span> <span
-                              class="text-muted small pt-2 ps-1">tăng</span>
+                            <h6>${countOrders}</h6>
 
                           </div>
                         </div>
@@ -492,31 +476,16 @@
                   <!-- Revenue Card -->
                   <div class="col-xxl-4 col-md-6">
                     <div class="card info-card revenue-card">
-
-                      <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                          <li class="dropdown-header text-start">
-                            <h6>Lọc</h6>
-                          </li>
-
-                          <li><a class="dropdown-item" href="#">Hôm nay</a></li>
-                          <li><a class="dropdown-item" href="#">Trong tháng</a></li>
-                          <li><a class="dropdown-item" href="#">Trong năm</a></li>
-                        </ul>
-                      </div>
-
                       <div class="card-body">
-                        <h5 class="card-title">Doanh thu <span>| Trong tháng</span></h5>
+                        <h5 class="card-title"><a href="/admin/product">Sản phẩm</a></h5>
 
                         <div class="d-flex align-items-center">
                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                             <i class="bi bi-currency-dollar"></i>
                           </div>
                           <div class="ps-3">
-                            <h6>$3,264</h6>
-                            <span class="text-success small pt-1 fw-bold">8%</span> <span
-                              class="text-muted small pt-2 ps-1">tăng</span>
+                            <h6>${countRevenues}</h6>
+
 
                           </div>
                         </div>
@@ -527,33 +496,17 @@
 
                   <!-- Customers Card -->
                   <div class="col-xxl-4 col-xl-12">
-
                     <div class="card info-card customers-card">
-
-                      <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                          <li class="dropdown-header text-start">
-                            <h6>Lọc</h6>
-                          </li>
-
-                          <li><a class="dropdown-item" href="#">Hôm nay</a></li>
-                          <li><a class="dropdown-item" href="#">Trong tháng</a></li>
-                          <li><a class="dropdown-item" href="#">Trong năm</a></li>
-                        </ul>
-                      </div>
-
                       <div class="card-body">
-                        <h5 class="card-title">Khách hàng <span>| năm</span></h5>
+                        <h5 class="card-title"><a href="/admin/user">Khách hàng</a></h5>
 
                         <div class="d-flex align-items-center">
                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                             <i class="bi bi-people"></i>
                           </div>
                           <div class="ps-3">
-                            <h6>1244</h6>
-                            <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                              class="text-muted small pt-2 ps-1">giảm</span>
+                            <h6>${countUsers}</h6>
+
 
                           </div>
                         </div>
@@ -800,299 +753,13 @@
                 </div>
               </div><!-- End Left side columns -->
 
-              <!-- Right side columns -->
-              <div class="col-lg-4">
 
-                <!-- Recent Activity -->
-                <div class="card">
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Lọc</h6>
-                      </li>
 
-                      <li><a class="dropdown-item" href="#">Hôm nay</a></li>
-                      <li><a class="dropdown-item" href="#">Trong tháng</a></li>
-                      <li><a class="dropdown-item" href="#">Trong năm</a></li>
-                    </ul>
-                  </div>
 
-                  <div class="card-body">
-                    <h5 class="card-title">Hoạt động gần đây <span>| Hôm nay</span></h5>
 
-                    <div class="activity">
 
-                      <div class="activity-item d-flex">
-                        <div class="activite-label">32 min</div>
-                        <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                        <div class="activity-content">
-                          Hoàn thành báo cáo doanh số tháng 3
-                        </div>
-                      </div><!-- End activity item-->
 
-                      <div class="activity-item d-flex">
-                        <div class="activite-label">56 min</div>
-                        <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                        <div class="activity-content">
-                          Tham gia cuộc họp nhóm về kế hoạch quý 2
-                        </div>
-                      </div><!-- End activity item-->
-
-                      <div class="activity-item d-flex">
-                        <div class="activite-label">2 hrs</div>
-                        <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                        <div class="activity-content">
-                          Cập nhật tài liệu hướng dẫn nội bộ
-                        </div>
-                      </div><!-- End activity item-->
-
-                      <div class="activity-item d-flex">
-                        <div class="activite-label">1 day</div>
-                        <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                        <div class="activity-content">
-                          Kiểm tra và xử lý yêu cầu hỗ trợ kỹ thuật
-                        </div>
-                      </div><!-- End activity item-->
-
-                      <div class="activity-item d-flex">
-                        <div class="activite-label">2 days</div>
-                        <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                        <div class="activity-content">
-                          Cập nhật doanh số bán hàng
-                        </div>
-                      </div><!-- End activity item-->
-
-                      <div class="activity-item d-flex">
-                        <div class="activite-label">4 weeks</div>
-                        <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                        <div class="activity-content">
-                          Cập nhật giá bán sản phẩm
-                        </div>
-                      </div><!-- End activity item-->
-
-                    </div>
-
-                  </div>
-                </div><!-- End Recent Activity -->
-
-                <!-- Budget Report -->
-                <!-- <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
-            <div class="card-body pb-0">
-              <h5 class="card-title">Budget Report <span>| This Month</span></h5>
-
-              <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
-
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
-                    legend: {
-                      data: ['Allocated Budget', 'Actual Spending']
-                    },
-                    radar: {
-                      // shape: 'circle',
-                      indicator: [{
-                          name: 'Sales',
-                          max: 6500
-                        },
-                        {
-                          name: 'Administration',
-                          max: 16000
-                        },
-                        {
-                          name: 'Information Technology',
-                          max: 30000
-                        },
-                        {
-                          name: 'Customer Support',
-                          max: 38000
-                        },
-                        {
-                          name: 'Development',
-                          max: 52000
-                        },
-                        {
-                          name: 'Marketing',
-                          max: 25000
-                        }
-                      ]
-                    },
-                    series: [{
-                      name: 'Budget vs spending',
-                      type: 'radar',
-                      data: [{
-                          value: [4200, 3000, 20000, 35000, 50000, 18000],
-                          name: 'Allocated Budget'
-                        },
-                        {
-                          value: [5000, 14000, 28000, 26000, 42000, 21000],
-                          name: 'Actual Spending'
-                        }
-                      ]
-                    }]
-                  });
-                });
-              </script>
-
-            </div>
-          </div>End Budget Report -->
-
-                <!-- Website Traffic -->
-                <!-- <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
-
-            <div class="card-body pb-0">
-              <h5 class="card-title">Website Traffic <span>| Today</span></h5>
-
-              <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
-
-              <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  echarts.init(document.querySelector("#trafficChart")).setOption({
-                    tooltip: {
-                      trigger: 'item'
-                    },
-                    legend: {
-                      top: '5%',
-                      left: 'center'
-                    },
-                    series: [{
-                      name: 'Access From',
-                      type: 'pie',
-                      radius: ['40%', '70%'],
-                      avoidLabelOverlap: false,
-                      label: {
-                        show: false,
-                        position: 'center'
-                      },
-                      emphasis: {
-                        label: {
-                          show: true,
-                          fontSize: '18',
-                          fontWeight: 'bold'
-                        }
-                      },
-                      labelLine: {
-                        show: false
-                      },
-                      data: [{
-                          value: 1048,
-                          name: 'Search Engine'
-                        },
-                        {
-                          value: 735,
-                          name: 'Direct'
-                        },
-                        {
-                          value: 580,
-                          name: 'Email'
-                        },
-                        {
-                          value: 484,
-                          name: 'Union Ads'
-                        },
-                        {
-                          value: 300,
-                          name: 'Video Ads'
-                        }
-                      ]
-                    }]
-                  });
-                });
-              </script>
-
-            </div>
-          </div>End Website Traffic -->
-
-                <!-- News & Updates Traffic -->
-                <div class="card">
-                  <div class="filter">
-                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                      <li class="dropdown-header text-start">
-                        <h6>Lọc</h6>
-                      </li>
-
-                      <li><a class="dropdown-item" href="#">Hôm nay</a></li>
-                      <li><a class="dropdown-item" href="#">Trong tháng</a></li>
-                      <li><a class="dropdown-item" href="#">Trong năm</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="card-body pb-0">
-                    <h5 class="card-title">Tin tức &amp; Cập nhật <span>| Hôm nay</span></h5>
-
-                    <div class="news">
-                      <div class="post-item clearfix">
-                        <img src="/assets/img/news-1.jpg" alt="">
-                        <h4><a href="#">Giảm giá đặc biệt cho khách hàng thành viên!</a></h4>
-                        <p>Từ ngày 25/03, GoBread triển khai chương trình ưu đãi giảm 15% cho khách hàng thành viên khi
-                          mua từ
-                          3 sản phẩm trở lên. Đừng bỏ lỡ cơ hội này!</p>
-                      </div>
-
-                      <div class="post-item clearfix">
-                        <img src="/assets/img/news-2.jpg" alt="">
-                        <h4><a href="#">Ra mắt sản phẩm mới: Bánh Mì Healthy</a></h4>
-                        <p>GoBread chính thức giới thiệu dòng bánh mì healthy mới, ít calo, giàu chất xơ và không chứa
-                          đường.
-                          Phù hợp cho chế độ ăn lành mạnh!</p>
-                      </div>
-
-                      <div class="post-item clearfix">
-                        <img src="/assets/img/news-3.jpg" alt="">
-                        <h4><a href="#">Cập nhật hệ thống bán hàng trực tuyến</a></h4>
-                        <p>Chúng tôi đã nâng cấp hệ thống đặt hàng online, giúp bạn mua sắm nhanh chóng, dễ dàng hơn.
-                          Trải
-                          nghiệm ngay trên website hoặc ứng dụng!</p>
-                      </div>
-
-                      <div class="post-item clearfix">
-                        <img src="/assets/img/news-4.jpg" alt="">
-                        <h4><a href="#">Báo cáo doanh thu quý 1 & Kế hoạch sắp tới</a></h4>
-                        <p> GoBread đã đạt mức tăng trưởng 8% doanh thu trong tháng này. Sắp tới, chúng tôi sẽ mở thêm 2
-                          chi
-                          nhánh mới để phục vụ khách hàng tốt hơn!</p>
-                      </div>
-
-                      <div class="post-item clearfix">
-                        <img src="/assets/img/news-5.jpg" alt="">
-                        <h4><a href="#">Workshop: Học làm bánh cùng chuyên gia</a></h4>
-                        <p>Đăng ký ngay khóa học làm bánh với chuyên gia hàng đầu. Chỉ với 199K, bạn sẽ có trải nghiệm
-                          thú vị
-                          và mang về những chiếc bánh thơm ngon!</p>
-                      </div>
-
-                    </div><!-- End sidebar recent posts-->
-
-                  </div>
-                </div><!-- End News & Updates -->
-
-              </div><!-- End Right side columns -->
+            </div><!-- End Right side columns -->
 
             </div>
           </section>

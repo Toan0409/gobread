@@ -7,9 +7,12 @@ import org.springframework.data.domain.PageRequest;
 
 import org.springframework.stereotype.Service;
 
+import vn.banhmi.gobread.domain.Order;
 import vn.banhmi.gobread.domain.Role;
 import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.domain.dto.RegisterDTO;
+import vn.banhmi.gobread.repository.OrderRepository;
+import vn.banhmi.gobread.repository.ProductRepository;
 import vn.banhmi.gobread.repository.RoleRepository;
 import vn.banhmi.gobread.repository.UserRepository;
 
@@ -17,10 +20,15 @@ import vn.banhmi.gobread.repository.UserRepository;
 public class UserService {
 
     private final RoleRepository roleRepository;
-    @Autowired
-    private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
+    private final OrderRepository orderRepository;
+
+    public UserService(UserRepository userRepository, RoleRepository roleRepository,
+            ProductRepository productRepository, OrderRepository orderRepository) {
+        this.productRepository = productRepository;
+        this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
@@ -74,5 +82,26 @@ public class UserService {
 
     public boolean isEmailExists(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    public long countUsers() {
+        return this.userRepository.count();
+    }
+
+    public long countOrders() {
+
+        return this.orderRepository.count();
+    }
+
+    public long countProducts() {
+
+        return this.productRepository.count();
+    }
+
+    public double calculateTotalRevenue() {
+        List<Order> orders = orderRepository.findAll();
+        return orders.stream()
+                .mapToDouble(Order::getTotalPrice)
+                .sum();
     }
 }

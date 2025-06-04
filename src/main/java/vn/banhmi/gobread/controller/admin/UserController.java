@@ -36,12 +36,6 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @RequestMapping("/admin")
-    public String getHomePage(Model model) {
-
-        return "admin/index";
-    }
-
     // @RequestMapping("/login")
     // public String getLoginPage(Model model) {
 
