@@ -97,10 +97,15 @@ public class ItemController {
 
     @PostMapping("/place-order")
     public String placeOrder(HttpServletRequest request,
-            @RequestParam("receiveName") String receiveName,
-            @RequestParam("receivePhone") String receivePhone,
-            @RequestParam("receiveAddress") String receiveAddress) {
-        HttpSession session = request.getSession(false);
+            @RequestParam("receiverName") String receiverName,
+            @RequestParam("receiverPhone") String receiverPhone,
+            @RequestParam("receiverAddress") String receiverAddress) {
+        HttpSession session = request.getSession();
+        User currentUser = new User();
+        long id = (long) session.getAttribute("id");
+        currentUser.setId(id);
+
+        this.productService.handlePlaceOrder(currentUser, session, receiverName, receiverAddress, receiverPhone);
         return "redirect:/";
     }
 }

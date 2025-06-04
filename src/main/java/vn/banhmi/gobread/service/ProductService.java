@@ -7,11 +7,14 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import vn.banhmi.gobread.domain.Cart;
 import vn.banhmi.gobread.domain.CartDetail;
+import vn.banhmi.gobread.domain.Order;
 import vn.banhmi.gobread.domain.OrderDetail;
 import vn.banhmi.gobread.domain.Product;
 import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.repository.CartDetailRepository;
 import vn.banhmi.gobread.repository.CartRepository;
+import vn.banhmi.gobread.repository.OrderDetailRepository;
+import vn.banhmi.gobread.repository.OrderRepository;
 import vn.banhmi.gobread.repository.ProductRepository;
 
 import java.util.List;
@@ -25,12 +28,18 @@ public class ProductService {
     private final CartRepository cartRepository;
     private final CartDetailRepository cartDetailRepository;
     private final UserService userService;
+    private final OrderRepository orderRepository;
+    private final OrderDetailRepository orderDetailRepository;
 
     // Constructor injection nếu cần
     public ProductService(ProductRepository productRepository,
             CartDetailRepository cartDetailRepository,
             CartRepository cartRepository,
-            UserService userService) {
+            UserService userService,
+            OrderRepository orderRepository,
+            OrderDetailRepository orderDetailRepository) {
+        this.orderRepository = orderRepository;
+        this.orderDetailRepository = orderDetailRepository;
         this.userService = userService;
         this.productRepository = productRepository;
         this.cartDetailRepository = cartDetailRepository;
@@ -149,17 +158,17 @@ public class ProductService {
         }
     }
 
+    @Transactional
     public void handlePlaceOrder(
             User user, HttpSession session,
             String receiverName, String receiverAddress, String receiverPhone) {
 
-        // step 1: get cart by user
         Cart cart = this.cartRepository.findByUser(user);
+
         if (cart != null) {
             List<CartDetail> cartDetails = cart.getCartDetails();
-            if (cartDetails != null) {
+            if (cartDetails != null && !cartDetails.isEmpty()) {
 
-                // create order
                 Order order = new Order();
                 order.setUser(user);
                 order.setReceiverName(receiverName);
@@ -169,36 +178,42 @@ public class ProductService {
 
                 double sum = 0;
                 for (CartDetail cd : cartDetails) {
-                    sum += cd.getPrice();
+                    sum += cd.getPrice() * cd.getQuantity();
                 }
                 order.setTotalPrice(sum);
-                order = this.orderRepository.save(order);
 
-                // create orderDetail
+                // Lưu order trước
+                order = this.orderRepository.saveAndFlush(order);
 
                 for (CartDetail cd : cartDetails) {
                     OrderDetail orderDetail = new OrderDetail();
                     orderDetail.setOrder(order);
-                    orderDetail.setProduct(cd.getProduct());
+
+                    Product product = cd.getProduct();
+                    product = this.productRepository.findById(product.getProductID())
+                            .orElseThrow(() -> new RuntimeException("Product not found"));
+
+                    orderDetail.setProduct(product);
                     orderDetail.setPrice(cd.getPrice());
                     orderDetail.setQuantity(cd.getQuantity());
 
                     this.orderDetailRepository.save(orderDetail);
                 }
 
-                // step 2: delete cart_detail and cart
                 for (CartDetail cd : cartDetails) {
-                    this.cartDetailRepository.deleteById(cd.getId());
+                    this.cartDetailRepository.delete(cd);
+
                 }
 
-                this.cartRepository.deleteById(cart.getId());
+                cart.setSum(0);
+                this.cartRepository.save(cart);
 
-                // step 3: update session
                 session.setAttribute("sum", 0);
+            } else {
+                throw new RuntimeException("Cart is empty, cannot place order.");
+
             }
-
         }
-
     }
 
 }

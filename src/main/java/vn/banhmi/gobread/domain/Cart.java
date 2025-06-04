@@ -19,7 +19,7 @@ import jakarta.validation.constraints.Min;
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Min(value = 0, message = "Total price must be greater than or equal to 0")
     private int sum;
@@ -28,10 +28,10 @@ public class Cart {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<CartDetail> cartDetails;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

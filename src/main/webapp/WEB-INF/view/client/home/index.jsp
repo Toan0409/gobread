@@ -711,66 +711,6 @@
 
                     </section><!-- /Chefs Section -->
 
-                    <!-- Đặt đơn hàng online Section -->
-                    <section id="order-online" class="order-section">
-
-                        <!-- Section Title -->
-                        <div class="container section-title" data-aos="fade-up">
-                            <h2>Đặt đơn hàng online</h2>
-                            <p><span>Đặt ngay</span> <span class="description-title">để nhận ưu đãi hấp dẫn!</span></p>
-                        </div><!-- End Section Title -->
-
-                        <div class="container">
-                            <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
-
-                                <!-- Hình ảnh minh họa đơn hàng -->
-                                <div class="col-lg-4 order-img"
-                                    style="background-image: url(assets/img/order-online.jpg); border-radius: 15px;">
-                                </div>
-
-                                <!-- Form đặt hàng -->
-                                <div class="col-lg-8 d-flex align-items-center">
-                                    <form action="forms/order-online.php" method="post" role="form" class="order-form">
-                                        <div class="row gy-4">
-                                            <div class="col-lg-6 col-md-6">
-                                                <input type="text" name="name" class="form-control" id="name"
-                                                    placeholder="Họ và tên" required="">
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <input type="text" name="phone" class="form-control" id="phone"
-                                                    placeholder="Số điện thoại" required="">
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <input type="text" name="address" class="form-control" id="address"
-                                                    placeholder="Địa chỉ giao hàng" required="">
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <input type="date" name="date" class="form-control" id="date"
-                                                    required="">
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <input type="time" class="form-control" name="time" id="time"
-                                                    required="">
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <textarea class="form-control" name="order-details" rows="5"
-                                                    placeholder="Chi tiết đơn hàng (Vui lòng liệt kê các món bạn muốn đặt)"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <!-- Nút đặt hàng -->
-                                        <div class="text-center mt-3">
-                                            <div class="error-message"></div>
-                                            <button type="submit" class="order-button">Đặt hàng ngay</button>
-                                        </div>
-                                    </form>
-                                </div><!-- End Order Form -->
-
-                            </div>
-                        </div>
-
-                    </section><!-- /Order Online Section -->
-
 
                     <!-- Gallery Section -->
                     <section id="gallery" class="gallery section light-background">
