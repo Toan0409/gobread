@@ -77,7 +77,8 @@ public class ConfigSecurity {
                                                                 DispatcherType.INCLUDE)
                                                 .permitAll()
                                                 .requestMatchers("/", "/login", "/signup", "/client/**", "assets/**",
-                                                                "assets_client/**", "/resources/**", "/static/**")
+                                                                "assets_client/**", "/resources/**", "/static/**",
+                                                                "client/js/**")
                                                 .permitAll()
                                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                                 .anyRequest().authenticated())
