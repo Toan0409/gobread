@@ -35,7 +35,10 @@ public class HomePageController {
     @GetMapping("/")
     public String getHomeUserPage(Model model) {
         List<Product> products = productService.getAllProducts();
+        long userCount = userService.countAllUsers();
+        model.addAttribute("userCount", userCount);
         model.addAttribute("products", products);
+
         return "client/home/index";
     }
 

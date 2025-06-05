@@ -104,4 +104,9 @@ public class UserService {
                 .mapToDouble(Order::getTotalPrice)
                 .sum();
     }
+
+    public long countAllUsers() {
+        return userRepository.count();
+    }
+
 }

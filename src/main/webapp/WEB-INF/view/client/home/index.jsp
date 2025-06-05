@@ -281,33 +281,11 @@
 
                                 <div class="col-lg-3 col-md-6">
                                     <div class="stats-item text-center w-100 h-100">
-                                        <span data-purecounter-start="0" data-purecounter-end="232"
-                                            data-purecounter-duration="1" class="purecounter"></span>
+                                        <span data-purecounter-start="0" data-purecounter-end="${userCount}"
+                                            data-purecounter-duration="1" class="purecounter">
+                                        </span>
+
                                         <p>Khách hàng</p>
-                                    </div>
-                                </div><!-- End Stats Item -->
-
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="stats-item text-center w-100 h-100">
-                                        <span data-purecounter-start="0" data-purecounter-end="521"
-                                            data-purecounter-duration="1" class="purecounter"></span>
-                                        <p>Dự án</p>
-                                    </div>
-                                </div><!-- End Stats Item -->
-
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="stats-item text-center w-100 h-100">
-                                        <span data-purecounter-start="0" data-purecounter-end="1453"
-                                            data-purecounter-duration="1" class="purecounter"></span>
-                                        <p>Thời gian phục vụ</p>
-                                    </div>
-                                </div><!-- End Stats Item -->
-
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="stats-item text-center w-100 h-100">
-                                        <span data-purecounter-start="0" data-purecounter-end="3"
-                                            data-purecounter-duration="1" class="purecounter"></span>
-                                        <p>Nhân viên</p>
                                     </div>
                                 </div><!-- End Stats Item -->
 
