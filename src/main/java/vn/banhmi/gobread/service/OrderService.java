@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import vn.banhmi.gobread.domain.Order;
+import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.domain.OrderDetail;
 import vn.banhmi.gobread.repository.OrderDetailRepository;
 import vn.banhmi.gobread.repository.OrderRepository;
@@ -64,6 +65,10 @@ public class OrderService {
             currentOrder.setStatus(order.getStatus());
             this.orderRepository.save(currentOrder);
         }
+    }
+
+    public List<Order> fetchOrdersByUser(User user) {
+        return orderRepository.findByUser(user);
     }
 
 }

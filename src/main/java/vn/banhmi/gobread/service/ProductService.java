@@ -216,4 +216,9 @@ public class ProductService {
         }
     }
 
+    public long countAllProducts() {
+    return productRepository.count(); 
+}
+
+
 }
