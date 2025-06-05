@@ -118,8 +118,9 @@
                                     </table>
                                 </div>
                                 <c:if test="${not empty cartDetails}">
-                                    <form:form action="/place-order" method="post" modelAttribute="cart">
+                                    <form:form action="/start-vnpay-payment" method="post" modelAttribute="cart">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                        <input type="hidden" name="totalPrice" value="${totalPrice}" />
                                         <div class="mt-5 row g-4 justify-content-start">
                                             <div class="col-12 col-md-6">
                                                 <div class="p-4 ">
@@ -163,7 +164,7 @@
                                                         <div class="mt-3 d-flex justify-content-between">
                                                             <h5 class="mb-0 me-4">Hình thức</h5>
                                                             <div class="">
-                                                                <p class="mb-0">Thanh toán khi nhận hàng (COD)</p>
+                                                                <p class="mb-0">Thanh toán khi bằng VNPay</p>
                                                             </div>
                                                         </div>
                                                     </div>
