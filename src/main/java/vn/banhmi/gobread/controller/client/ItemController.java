@@ -153,29 +153,27 @@ public class ItemController {
     public String vnpayReturn(HttpServletRequest request) {
         Map<String, String> vnpParams = vnpayService.getVnpayResponseParams(request);
 
-        boolean isValid = vnpayService.validateSignature(vnpParams);
         String responseCode = vnpParams.get("vnp_ResponseCode");
+        System.out.println(">>>>>>>>>>Mã phản hồi từ VNPAY: " + responseCode);
 
-        // Nếu mã phản hồi không phải "00" → giao dịch thất bại hoặc bị huỷ
-        if (!isValid || !"00".equals(responseCode)) {
-            System.out.println(">>>>>>>Giao dịch VNPAY thất bại hoặc bị huỷ. Mã phản hồi: " + responseCode);
-            return "redirect:/checkout-failed"; // Điều hướng tới trang lỗi
+        if (responseCode.equals("00")) {
+            HttpSession session = request.getSession();
+            long userId = (long) session.getAttribute("id");
+
+            User user = new User();
+            user.setId(userId);
+
+            String receiverName = (String) session.getAttribute("receiverName");
+            String receiverPhone = (String) session.getAttribute("receiverPhone");
+            String receiverAddress = (String) session.getAttribute("receiverAddress");
+
+            this.productService.handlePlaceOrder(user, session, receiverName, receiverAddress, receiverPhone);
+
+            return "redirect:/order-success";
         }
 
-        // Nếu giao dịch thành công thì tiếp tục đặt hàng
-        HttpSession session = request.getSession();
-        long userId = (long) session.getAttribute("id");
+        return "redirect:/checkout-failed";
 
-        User user = new User();
-        user.setId(userId);
-
-        String receiverName = (String) session.getAttribute("receiverName");
-        String receiverPhone = (String) session.getAttribute("receiverPhone");
-        String receiverAddress = (String) session.getAttribute("receiverAddress");
-
-        this.productService.handlePlaceOrder(user, session, receiverName, receiverAddress, receiverPhone);
-
-        return "redirect:/order-success";
     }
 
     @GetMapping("/checkout-failed")
