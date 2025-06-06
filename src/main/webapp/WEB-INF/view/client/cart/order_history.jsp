@@ -10,61 +10,70 @@
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <title>Lịch Sử Đơn Hàng Bánh Mì</title>
-                    <!-- Tailwind CSS CDN -->
-                    <script src="https://cdn.tailwindcss.com"></script>
+                    <!-- Bootstrap 5 CSS CDN -->
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+                        rel="stylesheet">
                     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
                         rel="stylesheet">
                     <style>
                         body {
                             font-family: 'Inter', sans-serif;
-                            background-color: #f3f4f6;
-                            /* Light background color */
-                            color: #374151;
-                            /* Default text color */
+                            background-color: #f8f9fa;
+                            color: #343a40;
                         }
                     </style>
                 </head>
 
-                <body class="antialiased">
-                    <div class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
-                        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-4xl">
-                            <h1 class="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-8">Lịch Sử Đơn Hàng
-                                Bánh Mì Của Bạn</h1>
+                <body>
+                    <div class="container py-5">
+                        <div class="card shadow-lg">
+                            <div class="card-body">
+                                <h1 class="card-title text-center mb-4">Lịch Sử Đơn Hàng Bánh Mì Của Bạn</h1>
 
+                                <c:forEach var="order" items="${orders}">
+                                    <div class="border rounded p-3 mb-4 bg-light">
+                                        <div class="row mb-2">
+                                            <div class="col-md-6">
+                                                <strong>Mã Đơn:</strong> ${order.orderId}
+                                            </div>
+                                            <div class="col-md-3">
+                                                <strong>Tổng:</strong>
+                                                <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
+                                            </div>
+                                            <div class="col-md-3">
+                                                <strong>Trạng Thái:</strong> ${order.status}
+                                            </div>
+                                        </div>
 
-                            <div
-                                class="border border-gray-200 rounded-lg p-5 mb-6 bg-gray-50 hover:shadow-md transition-shadow duration-300">
-                                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
-                                    <c:forEach var="order" items="${orders}">
-                                        <tr>
-                                            <td colspan="2">Order ID = ${order.orderId}</td>
-                                            <td colspan="1">
-                                                <fmt:formatNumber type="number" value="${order.totalPrice}" /> dong
-                                            </td>
-                                            <td colspan="2"></td>
-                                            <td colspan="1">
-                                                ${order.status}
-                                            </td>
-                                        </tr>
-                                        <c:forEach var="orderDetail" items="${order.orderDetails}">
-                                            <tr>
-                                                <td colspan="2">${orderDetail.product.name}</td>
-                                                <td colspan="1">
-                                                    <fmt:formatNumber type="number" value="${orderDetail.price}" /> dong
-                                                </td>
-                                                <td colspan="2">x${orderDetail.quantity}</td>
-                                                <td colspan="1"></td>
-                                            </tr>
-                                        </c:forEach>
-                                    </c:forEach>
-                                </div>
-
-                                <hr class="border-t border-gray-200 my-4">
+                                        <table class="table table-sm table-bordered table-hover bg-white">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Sản phẩm</th>
+                                                    <th>Giá</th>
+                                                    <th>Số lượng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach var="orderDetail" items="${order.orderDetails}">
+                                                    <tr>
+                                                        <td>${orderDetail.product.name}</td>
+                                                        <td>
+                                                            <fmt:formatNumber type="number"
+                                                                value="${orderDetail.price}" /> đ
+                                                        </td>
+                                                        <td>x${orderDetail.quantity}</td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </c:forEach>
                             </div>
-
-
                         </div>
                     </div>
+
+                    <!-- Bootstrap 5 JS CDN (for interactive components if needed) -->
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
                 </body>
 
                 </html>
