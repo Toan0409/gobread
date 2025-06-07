@@ -343,12 +343,7 @@
 
 
 
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="/contact">
-                <i class="bi bi-envelope"></i>
-                <span>Liên hệ</span>
-              </a>
-            </li><!-- End Contact Page Nav -->
+
 
             <li class="nav-item">
               <a class="nav-link collapsed" href="/admin/user/create">
