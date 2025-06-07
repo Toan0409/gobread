@@ -9,4 +9,6 @@ import vn.banhmi.gobread.domain.dto.BestSellingProductDTO;
 @Service
 public interface OrderDetailService {
     List<BestSellingProductDTO> getTopBestSellingProducts(int topN);
+
+    List<vn.banhmi.gobread.domain.dto.ProductRevenueDTO> getRevenueByProduct();
 }

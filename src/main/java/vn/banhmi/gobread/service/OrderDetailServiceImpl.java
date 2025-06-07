@@ -22,4 +22,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         Pageable pageable = PageRequest.of(0, topN);
         return orderDetailRepository.findBestSellingProducts(pageable);
     }
+
+    @Override
+    public List<vn.banhmi.gobread.domain.dto.ProductRevenueDTO> getRevenueByProduct() {
+        return orderDetailRepository.getRevenueByProduct();
+    }
 }

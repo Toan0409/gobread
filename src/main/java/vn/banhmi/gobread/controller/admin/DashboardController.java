@@ -41,7 +41,11 @@ public class DashboardController {
 
         List<BestSellingProductDTO> bestSellers = orderDetailService.getTopBestSellingProducts(10); // Top 10
         model.addAttribute("bestSellers", bestSellers);
-        System.out.println(">>>>>>>>>>>>>>>>>Best Selling Products: " + bestSellers);
+
+        List<vn.banhmi.gobread.domain.dto.ProductRevenueDTO> productRevenues = orderDetailService.getRevenueByProduct();
+        model.addAttribute("productRevenues", productRevenues);
+        System.out.println(">>>>>>>>>>>>>>>>>Product Revenues: " + productRevenues);
+
         List<Order> orders = this.orderService.getAllOrders();
         model.addAttribute("orders", orders);
         model.addAttribute("countUsers", this.userService.countUsers());

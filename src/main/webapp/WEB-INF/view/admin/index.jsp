@@ -313,98 +313,7 @@
 
                 </ul>
               </li><!-- End Components Nav -->
-              <!--
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="forms-elements.html">
-              <i class="bi bi-circle"></i><span>Form Elements</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-layouts.html">
-              <i class="bi bi-circle"></i><span>Form Layouts</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-editors.html">
-              <i class="bi bi-circle"></i><span>Form Editors</span>
-            </a>
-          </li>
-          <li>
-            <a href="forms-validation.html">
-              <i class="bi bi-circle"></i><span>Form Validation</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Forms Nav -->
-              <!--
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>General Tables</span>
-            </a>
-          </li>
-          <li>
-            <a href="tables-data.html">
-              <i class="bi bi-circle"></i><span>Data Tables</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Tables Nav -->
 
-              <!-- <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-bar-chart"></i><span>Biểu đồ</span><i class="bi bi-chevron-down ms-auto"></i>
-              </a>
-              <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                  <a href="BIEUDO.html">
-                    <i class="bi bi-circle"></i><span>Biều đồ doanh thu</span>
-                  </a>
-                </li>
-
-              </ul>
-            </li>End Charts Nav -->
-              <!---
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="icons-bootstrap.html">
-              <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-remix.html">
-              <i class="bi bi-circle"></i><span>Remix Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="icons-boxicons.html">
-              <i class="bi bi-circle"></i><span>Boxicons</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Icons Nav -->
-
-              <li class="nav-heading">Pages</li>
-
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="/admin/profile">
-                  <i class="bi bi-person"></i>
-                  <span>Thông tin</span>
-                </a>
-              </li><!-- End Profile Page Nav -->
 
 
 
@@ -520,159 +429,163 @@
                     <!-- Reports -->
                     <div class="col-12">
                       <div class="card">
-
-
-
                         <div class="card-body">
-                          <h5 class="card-title">Báo cáo <span>/Hôm nay</span></h5>
+                          <h5 class="card-title">Báo cáo</h5>
 
-                          <!-- Line Chart -->
-                          <div id="reportsChart"></div>
+                          <!-- ApexCharts CDN -->
+                          <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-                          <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                              new ApexCharts(document.querySelector("#reportsChart"), {
-                                series: [{
-                                  name: 'Sales',
-                                  data: [31, 40, 28, 51, 42, 82, 56],
-                                }, {
-                                  name: 'Revenue',
-                                  data: [11, 32, 45, 32, 34, 52, 41]
-                                }, {
-                                  name: 'Customers',
-                                  data: [15, 11, 32, 18, 9, 24, 11]
-                                }],
-                                chart: {
-                                  height: 350,
-                                  type: 'area',
-                                  toolbar: {
-                                    show: false
-                                  },
-                                },
-                                markers: {
-                                  size: 4
-                                },
-                                colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                fill: {
-                                  type: "gradient",
-                                  gradient: {
-                                    shadeIntensity: 1,
-                                    opacityFrom: 0.3,
-                                    opacityTo: 0.4,
-                                    stops: [0, 90, 100]
-                                  }
-                                },
-                                dataLabels: {
-                                  enabled: false
-                                },
-                                stroke: {
-                                  curve: 'smooth',
-                                  width: 2
-                                },
-                                xaxis: {
-                                  type: 'datetime',
-                                  categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                                },
-                                tooltip: {
-                                  x: {
-                                    format: 'dd/MM/yy HH:mm'
-                                  },
+                          <div class="container mt-5">
+                            <h3 class="text-center">Doanh thu theo sản phẩm</h3>
+                            <div id="productRevenueChart"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <c:if test="${not empty productRevenues}">
+                      <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                          var productNames = [
+                            <c:forEach var="item" items="${productRevenues}" varStatus="loop">
+                              "${item.productName}"<c:if test="${!loop.last}">,</c:if>
+                            </c:forEach>
+                          ];
+
+                          var productRevenues = [
+                            <c:forEach var="item" items="${productRevenues}" varStatus="loop">
+                              ${item.totalRevenue}<c:if test="${!loop.last}">,</c:if>
+                            </c:forEach>
+                          ];
+
+                          var options = {
+                            chart: {
+                              type: 'bar',
+                              height: 400
+                            },
+                            series: [{
+                              name: 'Doanh thu',
+                              data: productRevenues
+                            }],
+                            xaxis: {
+                              categories: productNames
+                            },
+                            dataLabels: {
+                              formatter: function (val) {
+                                return val.toLocaleString() + " đ";
+                              }
+                            },
+                            tooltip: {
+                              y: {
+                                formatter: function (val) {
+                                  return val.toLocaleString() + " đ";
                                 }
-                              }).render();
-                            });
-                          </script>
-                          <!-- End Line Chart -->
+                              }
+                            }
+                          };
 
-                        </div>
+                          var chart = new ApexCharts(document.querySelector("#productRevenueChart"), options);
+                          chart.render();
+                        });
+                      </script>
+                    </c:if>
 
-                      </div>
-                    </div><!-- End Reports -->
+                    <c:if test="${empty productRevenues}">
+                      <p class="text-center text-muted mt-4">Không có dữ liệu doanh thu để hiển thị.</p>
+                    </c:if>
 
-                    <!-- Recent Sales -->
-                    <div class="col-12">
-                      <div class="card recent-sales overflow-auto">
-
-
-                        <div class="card-body">
-                          <h5 class="card-title">Đơn hàng gần đây </h5>
-
-                          <table class="table table-borderless datatable">
-                            <thead>
-                              <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Khách hàng</th>
-                                <th scope="col">Số lượng</th>
-                                <th scope="col">Giá</th>
-                                <th scope="col">Trạng thái</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <c:forEach var="order" items="${orders}">
-                                <%-- Tính tổng số lượng sản phẩm trong đơn hàng này --%>
-                                  <c:set var="totalQuantity" value="0" />
-                                  <c:forEach var="item" items="${order.orderDetails}">
-                                    <c:set var="totalQuantity" value="${totalQuantity + item.quantity}" />
-                                  </c:forEach>
-
-                                  <tr>
-                                    <th scope="row"><a href="#">${order.orderId}</a></th>
-                                    <td>${order.receiverName}</td>
-                                    <td>${totalQuantity}</td>
-                                    <td>
-                                      <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
-                                    </td>
-                                    <td><span class="badge bg-success">${order.status}</span></td>
-                                  </tr>
-                              </c:forEach>
-                            </tbody>
-                          </table>
-
-                        </div>
-
-                      </div>
-                    </div><!-- End Recent Sales -->
-
-                    <!-- Top Selling -->
-                    <div class="col-12">
-                      <div class="card top-selling overflow-auto">
+                  </div> <!-- End Card Body -->
+                </div> <!-- End Card -->
+              </div> <!-- End Column -->
 
 
 
-                        <div class="card-body pb-0">
-                          <h5 class="card-title">Sản phẩm bán chạy </h5>
 
-                          <table class="table table-borderless">
-                            <thead>
-                              <tr>
-
-                                <th scope="col">Sản phẩm</th>
-
-                                <th scope="col">Đã bán</th>
-
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <c:forEach var="item" items="${bestSellers}">
-                                <tr>
-
-                                  <td><a href="#" class="text-primary fw-bold">${item.productName}</a></td>
-
-                                  <td class="fw-bold">${item.totalSold}</td>
-
-                                </tr>
-                              </c:forEach>
+              <!-- Recent Sales -->
+              <div class="col-12">
+                <div class="card recent-sales overflow-auto">
 
 
-                            </tbody>
-                          </table>
+                  <div class="card-body">
+                    <h5 class="card-title">Đơn hàng gần đây </h5>
 
-                        </div>
+                    <table class="table table-borderless datatable">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Khách hàng</th>
+                          <th scope="col">Số lượng</th>
+                          <th scope="col">Giá</th>
+                          <th scope="col">Trạng thái</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <c:forEach var="order" items="${orders}">
+                          <%-- Tính tổng số lượng sản phẩm trong đơn hàng này --%>
+                            <c:set var="totalQuantity" value="0" />
+                            <c:forEach var="item" items="${order.orderDetails}">
+                              <c:set var="totalQuantity" value="${totalQuantity + item.quantity}" />
+                            </c:forEach>
 
-                      </div>
-                    </div><!-- End Top Selling -->
+                            <tr>
+                              <th scope="row"><a href="#">${order.orderId}</a></th>
+                              <td>${order.receiverName}</td>
+                              <td>${totalQuantity}</td>
+                              <td>
+                                <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
+                              </td>
+                              <td><span class="badge bg-success">${order.status}</span></td>
+                            </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
 
                   </div>
-                </div><!-- End Left side columns -->
+
+                </div>
+              </div><!-- End Recent Sales -->
+
+              <!-- Top Selling -->
+              <div class="col-12">
+                <div class="card top-selling overflow-auto">
+
+
+
+                  <div class="card-body pb-0">
+                    <h5 class="card-title">Sản phẩm bán chạy </h5>
+
+                    <table class="table table-borderless">
+                      <thead>
+                        <tr>
+
+                          <th scope="col">Sản phẩm</th>
+
+                          <th scope="col">Đã bán</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <c:forEach var="item" items="${bestSellers}">
+                          <tr>
+
+                            <td><a href="#" class="text-primary fw-bold">${item.productName}</a></td>
+
+                            <td class="fw-bold">${item.totalSold}</td>
+
+                          </tr>
+                        </c:forEach>
+
+
+                      </tbody>
+                    </table>
+
+                  </div>
+
+                </div>
+              </div><!-- End Top Selling -->
+
+              </div>
+              </div><!-- End Left side columns -->
 
 
 
@@ -705,6 +618,7 @@
               class="bi bi-arrow-up-short"></i></a>
 
           <!-- Vendor JS Files -->
+          <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
           <script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
           <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
           <script src="/assets/vendor/chart.js/chart.umd.js"></script>
@@ -713,6 +627,7 @@
           <script src="/assets/vendor/simple-datatables/simple-datatables.js"></script>
           <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
           <script src="/assets/vendor/php-email-form/validate.js"></script>
+
 
           <!-- Template Main JS File -->
           <script src="/assets/js/main.js"></script>
