@@ -3,7 +3,8 @@ package vn.banhmi.gobread.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.hibernate.query.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,10 @@ public class OrderService {
             OrderDetailRepository orderDetailRepository) {
         this.orderRepository = orderRepository;
         this.orderDetailRepository = orderDetailRepository;
+    }
+
+    public org.springframework.data.domain.Page<Order> getPaginationOrders(Pageable pageable) {
+        return orderRepository.findAll(pageable);
     }
 
     public List<Order> getAllOrders() {

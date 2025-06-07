@@ -1,6 +1,8 @@
 package vn.banhmi.gobread.service;
 
+import org.hibernate.query.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpSession;
@@ -46,8 +48,12 @@ public class ProductService {
         this.cartRepository = cartRepository;
     }
 
+    public org.springframework.data.domain.Page<Product> getAllPaginationProducts(Pageable pageable) {
+        return productRepository.findAll(pageable);
+    }
+
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+        return this.productRepository.findAll();
     }
 
     public Product createProduct(Product product) {
@@ -217,8 +223,7 @@ public class ProductService {
     }
 
     public long countAllProducts() {
-    return productRepository.count(); 
-}
-
+        return productRepository.count();
+    }
 
 }

@@ -3,6 +3,9 @@ package vn.banhmi.gobread.controller.admin;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,9 +39,29 @@ public class ProductController {
     }
 
     @RequestMapping("/admin/product")
-    public String getProductPage(Model model) {
-        List<Product> products = this.productService.getAllProducts();
-        model.addAttribute("products", products);
+    public String getProductPage(Model model,
+            @RequestParam("page") Optional<String> pageOptional) {
+
+        int page = 1; // Mặc định là trang 1
+        try {
+            if (pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
+            }
+            if (page < 1) {
+                page = 1; // Đảm bảo trang không nhỏ hơn 1
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        Pageable pageable = PageRequest.of(page - 1, 5);
+        Page<Product> products = this.productService.getAllPaginationProducts(pageable);
+        List<Product> productList = products.getContent();
+        model.addAttribute("products", productList);
+
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", products.getTotalPages());
+
         return "product/QLSANPHAMTK";
     }
 

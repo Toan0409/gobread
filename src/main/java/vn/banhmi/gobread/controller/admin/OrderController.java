@@ -3,6 +3,9 @@ package vn.banhmi.gobread.controller.admin;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import vn.banhmi.gobread.domain.Order;
 
@@ -24,8 +28,26 @@ public class OrderController {
     }
 
     @RequestMapping("/admin/order")
-    public String getOrderPage(Model model) {
-        List<Order> orders = this.orderService.getAllOrders();
+    public String getOrderPage(Model model,
+            @RequestParam("page") Optional<String> pageOptional) {
+        int page = 1; // Mặc định là trang 1
+        try {
+            if (pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
+            }
+            if (page < 1) {
+                page = 1; // Đảm bảo trang không nhỏ hơn 1
+            }
+        } catch (Exception e) {
+            // Xử lý lỗi nếu cần
+        }
+        Pageable pageable = PageRequest.of(page - 1, 5);
+        Page<Order> ordersPage = this.orderService.getPaginationOrders(pageable);
+        List<Order> orders = ordersPage.getContent();
+
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", ordersPage.getTotalPages());
+
         model.addAttribute("orders", orders);
         return "order/QLDONHANG";
     }
