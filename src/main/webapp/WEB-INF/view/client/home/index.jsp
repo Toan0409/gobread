@@ -92,6 +92,15 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center" href="/order-history">
+                                            <i class="bi bi-bag-fill"></i>
+                                            <span>Lịch sử mua hàng</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
 
                                     <li>
                                         <a class="dropdown-item d-flex align-items-center" href="/admin">
