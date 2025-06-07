@@ -10,7 +10,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lịch Sử Đơn Hàng Bánh Mì</title>
-    <!-- Bootstrap 5 CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,7 +32,9 @@
                 <div class="card mb-4 border-0 shadow-sm">
                     <div class="card-body">
                         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
-                            <h5 class="card-title mb-2 mb-md-0">Mã Đơn Hàng: <span class="text-primary fw-bold">${order.orderId}</span></h5>
+                            <h5 class="card-title mb-2 mb-md-0">
+                                Mã Đơn Hàng: <span class="text-primary fw-bold">${order.orderId}</span>
+                            </h5>
                             <span class="badge bg-success">${order.status}</span>
                         </div>
                         <hr>
@@ -52,7 +53,9 @@
                             </c:forEach>
                         </div>
                         <div class="d-flex justify-content-end mt-4">
-                            <h5 class="text-end text-dark fw-bold">Tổng Cộng: <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ</h5>
+                            <h5 class="text-end text-dark fw-bold">
+                                Tổng Cộng: <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
+                            </h5>
                         </div>
                     </div>
                 </div>
@@ -61,7 +64,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
