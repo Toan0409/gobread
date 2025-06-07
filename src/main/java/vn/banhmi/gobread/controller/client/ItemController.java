@@ -153,24 +153,32 @@ public class ItemController {
     public String vnpayReturn(HttpServletRequest request) {
         Map<String, String> vnpParams = vnpayService.getVnpayResponseParams(request);
 
-        boolean isValid = vnpayService.validateSignature(vnpParams);
+        String responseCode = vnpParams.get("vnp_ResponseCode");
+        System.out.println(">>>>>>>>>>Mã phản hồi từ VNPAY: " + responseCode);
 
-        // Giao dịch thành công
-        HttpSession session = request.getSession();
-        long userId = (long) session.getAttribute("id");
+        if (responseCode.equals("00")) {
+            HttpSession session = request.getSession();
+            long userId = (long) session.getAttribute("id");
 
-        User user = new User();
-        user.setId(userId);
+            User user = new User();
+            user.setId(userId);
 
-        // Dữ liệu người nhận lấy từ session hoặc database hoặc truyền thêm tham số
-        String receiverName = (String) session.getAttribute("receiverName");
-        String receiverPhone = (String) session.getAttribute("receiverPhone");
-        String receiverAddress = (String) session.getAttribute("receiverAddress");
+            String receiverName = (String) session.getAttribute("receiverName");
+            String receiverPhone = (String) session.getAttribute("receiverPhone");
+            String receiverAddress = (String) session.getAttribute("receiverAddress");
 
-        this.productService.handlePlaceOrder(user, session, receiverName, receiverAddress, receiverPhone);
+            this.productService.handlePlaceOrder(user, session, receiverName, receiverAddress, receiverPhone);
 
-        return "redirect:/order-success";
+            return "redirect:/order-success";
+        }
 
+        return "redirect:/checkout-failed";
+
+    }
+
+    @GetMapping("/checkout-failed")
+    public String getCheckoutFailedPage() {
+        return "client/cart/checkout-failed";
     }
 
     @GetMapping("/order-success")

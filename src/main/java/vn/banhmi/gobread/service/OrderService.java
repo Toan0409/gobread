@@ -3,10 +3,13 @@ package vn.banhmi.gobread.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import vn.banhmi.gobread.domain.Order;
 import vn.banhmi.gobread.domain.User;
+import vn.banhmi.gobread.domain.dto.BestSellingProductDTO;
 import vn.banhmi.gobread.domain.OrderDetail;
 import vn.banhmi.gobread.repository.OrderDetailRepository;
 import vn.banhmi.gobread.repository.OrderRepository;
@@ -69,6 +72,11 @@ public class OrderService {
 
     public List<Order> fetchOrdersByUser(User user) {
         return orderRepository.findByUser(user);
+    }
+
+    public List<BestSellingProductDTO> getTopBestSellingProducts(int topN) {
+        PageRequest pageable = PageRequest.of(0, topN);
+        return orderDetailRepository.findBestSellingProducts(pageable);
     }
 
 }
