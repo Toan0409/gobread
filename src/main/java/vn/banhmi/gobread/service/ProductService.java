@@ -204,6 +204,17 @@ public class ProductService {
                     orderDetail.setQuantity(cd.getQuantity());
 
                     this.orderDetailRepository.save(orderDetail);
+                    // Giảm số lượng tồn kho sản phẩm
+                    long quantityOrdered = cd.getQuantity();
+                    long currentStock = product.getQuantity();
+
+                    if (currentStock < quantityOrdered) {
+                        throw new RuntimeException("Không đủ số lượng sản phẩm trong kho: " + product.getName());
+                    }
+
+                    product.setQuantity(currentStock - quantityOrdered);
+                    this.productRepository.save(product); // Cập nhật lại DB
+
                 }
 
                 for (CartDetail cd : cartDetails) {

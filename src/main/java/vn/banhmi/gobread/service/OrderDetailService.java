@@ -11,4 +11,6 @@ public interface OrderDetailService {
     List<BestSellingProductDTO> getTopBestSellingProducts(int topN);
 
     List<vn.banhmi.gobread.domain.dto.ProductRevenueDTO> getRevenueByProduct();
+
+    void processOrder(vn.banhmi.gobread.domain.Order order);
 }
