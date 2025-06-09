@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.banhmi.gobread.domain.Order;
 import vn.banhmi.gobread.domain.Product;
-import vn.banhmi.gobread.domain.User; // ✅ Sửa import User đúng chỗ
+import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.domain.dto.RegisterDTO;
 import vn.banhmi.gobread.service.ProductService;
 import vn.banhmi.gobread.service.UserService;
@@ -50,11 +50,6 @@ public class HomePageController {
         model.addAttribute("userCount", userCount);
         model.addAttribute("products", products);
         return "client/home/index";
-    }
-
-    @RequestMapping("/user/cancel_order")
-    public String getUserCancelOrder(Model model) {
-        return "client/order/cancel_order";
     }
 
     @RequestMapping("/user/review")

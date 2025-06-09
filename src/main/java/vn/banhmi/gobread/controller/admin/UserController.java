@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
+import vn.banhmi.gobread.domain.Role;
 import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.repository.RoleRepository;
 import vn.banhmi.gobread.service.UserService;
@@ -114,28 +114,38 @@ public class UserController {
         return "admin/user/pages-register";
     }
 
-    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
+    @PostMapping("/admin/user/create")
     public String createUserPage(Model model,
             @ModelAttribute("newUser") @Valid User user,
-            BindingResult bindingResult,
-            @RequestParam("roleId") Long roleId) {
+            BindingResult bindingResult) {
+
+        // Log lỗi nếu có
         List<FieldError> errors = bindingResult.getFieldErrors();
         for (FieldError error : errors) {
             System.out.println(error.getObjectName() + " - " + error.getDefaultMessage());
         }
 
-        Optional<vn.banhmi.gobread.domain.Role> role = roleRepository.findById(roleId);
+        // Lấy roleId từ user
+        Long roleId = user.getRole() != null ? user.getRole().getId() : null;
 
+        if (roleId == null) {
+            model.addAttribute("error", "Vui lòng chọn vai trò!");
+            model.addAttribute("roles", roleRepository.findAll());
+            return "admin/user/pages-register";
+        }
+
+        Optional<Role> role = roleRepository.findById(roleId);
         if (role.isEmpty()) {
             model.addAttribute("error", "Vai trò không hợp lệ!");
             model.addAttribute("roles", roleRepository.findAll());
             return "admin/user/pages-register";
         }
 
-        // Gán role và mã hóa mật khẩu
+        // Gán lại role chính xác
         user.setRole(role.get());
-        String hashedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hashedPassword);
+
+        // Mã hóa mật khẩu
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userService.handleSaveUser(user);
         return "redirect:/admin/user";

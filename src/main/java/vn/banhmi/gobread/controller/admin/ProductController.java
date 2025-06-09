@@ -38,7 +38,7 @@ public class ProductController {
         this.uploadService = uploadService;
     }
 
-    @RequestMapping("/admin/product")
+    @GetMapping("/admin/product")
     public String getProductPage(Model model,
             @RequestParam("page") Optional<String> pageOptional) {
 
@@ -94,7 +94,7 @@ public class ProductController {
             // Lưu product vào database
             productService.createProduct(product);
 
-            return "redirect:/product"; // Chuyển hướng nếu thành công
+            return "redirect:/admin/product"; // Chuyển hướng nếu thành công
         } catch (Exception e) {
             e.printStackTrace();
             return "product/addProduct"; // Quay lại trang thêm sản phẩm nếu có lỗi
@@ -145,7 +145,7 @@ public class ProductController {
             // Lưu lại vào DB
             productService.createProduct(p);
 
-            return "redirect:/product"; // Thành công, về trang danh sách
+            return "redirect:/admin/product"; // Thành công, về trang danh sách
         }
 
         // Nếu không tìm thấy sản phẩm
@@ -164,7 +164,7 @@ public class ProductController {
     @PostMapping("/admin/product/delete")
     public String postDeleteProduct(@ModelAttribute("newProduct") Product product) {
         this.productService.deleteProductById(product.getProductID());
-        return "redirect:/product"; // Chuyển hướng về trang danh sách sản phẩm
+        return "redirect:/admin/product"; // Chuyển hướng về trang danh sách sản phẩm
     }
 
 }

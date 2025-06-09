@@ -70,76 +70,70 @@
                           <p class="text-center small">Nhập thông tin của bạn để tạo tài khoản</p>
                         </div>
 
-                        <form method="post" class="row g-3 needs-validation" ModelAttribute="newUser" novalidate>
+                        <form:form modelAttribute="newUser" method="post" class="row g-3 needs-validation"
+                          action="${pageContext.request.contextPath}/admin/user/create">
                           <div class="col-12">
-                            <label for="yourName" class="form-label">Họ và tên</label>
-                            <input type="text" name="fullName" class="form-control" id="fullName" required>
+                            <label for="fullName" class="form-label">Họ và tên</label>
+                            <form:input path="fullName" cssClass="form-control" id="fullName" required="required" />
                             <div class="invalid-feedback">Please, enter your name!</div>
                           </div>
 
                           <div class="col-12">
-                            <label for="yourEmail" class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" id="yourEmail" required>
+                            <label for="email" class="form-label">Email</label>
+                            <form:input path="email" cssClass="form-control" id="email" required="required" />
                             <div class="invalid-feedback">Vui lòng nhập địa chỉ email!</div>
                           </div>
 
                           <div class="col-12">
-                            <label for="yourUsername" class="form-label">Tên đăng nhập</label>
-                            <div class="input-group has-validation">
-                              <span class="input-group-text" id="inputGroupPrepend">@</span>
-                              <input type="text" name="username" class="form-control" id="yourUsername" required>
-                              <div class="invalid-feedback">Không được để trống</div>
-                            </div>
-                          </div>
-
-                          <div class="col-12">
-                            <label for="yourPassword" class="form-label">Mật khẩu</label>
-                            <input type="password" name="password" class="form-control" id="yourPassword" required>
+                            <label for="username" class="form-label">Tên đăng nhập</label>
+                            <form:input path="username" cssClass="form-control" id="username" required="required" />
                             <div class="invalid-feedback">Không được để trống</div>
                           </div>
 
                           <div class="col-12">
-                            <label for="yourEmail" class="form-label">Số điện thoại</label>
-                            <input type="phoneNumber" name="phoneNumber" class="form-control" id="phoneNumber" required>
+                            <label for="password" class="form-label">Mật khẩu</label>
+                            <form:password path="password" cssClass="form-control" id="password" required="required" />
                             <div class="invalid-feedback">Không được để trống</div>
                           </div>
 
                           <div class="col-12">
-                            <label for="yourEmail" class="form-label">Địa chỉ</label>
-                            <input type="address" name="address" class="form-control" id="address" required>
+                            <label for="phoneNumber" class="form-label">Số điện thoại</label>
+                            <form:input path="phoneNumber" cssClass="form-control" id="phoneNumber"
+                              required="required" />
                             <div class="invalid-feedback">Không được để trống</div>
                           </div>
 
                           <div class="col-12">
-                            <label for="role" class="form-label">Vai trò</label>
-                            <select name="roleId" class="form-select" id="roleId" required>
-                              <option value="">-- Chọn vai trò --</option>
-                              <c:forEach items="${roles}" var="r">
-                                <option value="${r.id}">${r.name}</option>
-                              </c:forEach>
-                            </select>
+                            <label for="address" class="form-label">Địa chỉ</label>
+                            <form:input path="address" cssClass="form-control" id="address" required="required" />
+                            <div class="invalid-feedback">Không được để trống</div>
+                          </div>
+
+                          <div class="col-12">
+                            <label for="roleId" class="form-label">Vai trò</label>
+                            <form:select path="role.id" cssClass="form-select" id="roleId" required="required">
+                              <form:option value="" label="-- Chọn vai trò --" />
+                              <form:options items="${roles}" itemValue="id" itemLabel="name" />
+                            </form:select>
                             <div class="invalid-feedback">Vui lòng chọn vai trò!</div>
                           </div>
 
 
-
                           <div class="col-12">
                             <div class="form-check">
-                              <input class="form-check-input" name="terms" type="checkbox" value="true" id="acceptTerms"
-                                required>
+                              <form:checkbox path="terms" cssClass="form-check-input" id="acceptTerms" />
                               <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms
                                   and
                                   conditions</a></label>
                               <div class="invalid-feedback">You must agree before submitting.</div>
                             </div>
                           </div>
+
                           <div class="col-12">
                             <button class="btn btn-primary w-100" type="submit">Create Account</button>
                           </div>
-                          <div class="col-12">
-                            <p class="small mb-0">Already have an account? <a href="pages-login.html">Log in</a></p>
-                          </div>
-                        </form>
+                        </form:form>
+
 
                       </div>
                     </div>
@@ -180,13 +174,13 @@
           document.addEventListener("DOMContentLoaded", function () {
             const form = document.querySelector("form");
             form.addEventListener("submit", function (e) {
-              e.preventDefault(); // Ngăn chặn submit mặc định để kiểm tra
+              // Ngăn chặn submit mặc định để kiểm tra
 
               let isValid = true;
               const fullName = document.getElementById("fullName");
-              const email = document.getElementById("yourEmail");
-              const username = document.getElementById("yourUsername");
-              const password = document.getElementById("yourPassword");
+              const email = document.getElementById("email");
+              const username = document.getElementById("username");
+              const password = document.getElementById("password");
               const phone = document.getElementById("phoneNumber");
               const address = document.getElementById("address");
               const terms = document.getElementById("acceptTerms");
@@ -240,6 +234,7 @@
               }
             });
           });
+
         </script>
 
 
