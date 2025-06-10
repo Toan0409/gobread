@@ -53,7 +53,7 @@
                                 <li><a href="#hero" class="active">Trang chủ<br></a></li>
                                 <li><a href="#about">Thông tin về chúng tôi</a></li>
                                 <li><a href="#menu">Danh sách </a></li>
-                                <li><a href="#chefs">Đầu bếp</a></li>
+
                                 <c:if test="${ empty pageContext.request.userPrincipal}">
                                     <li><a href="/signup">Đăng kí</a></li>
                                     <li> <a href="/login">Đăng nhập</a></li>
@@ -625,103 +625,21 @@
                     <!-- Chefs Section -->
                     <section id="chefs" class="chefs section">
 
-                        <!-- Section Title -->
-                        <div class="container section-title" data-aos="fade-up">
-                            <h2>Nhân viên</h2>
-                            <p><span>Nhân viên</span> <span class="description-title">Của Chúng Tôi<br></span></p>
-                        </div><!-- End Section Title -->
-
-                        <div class="container">
-
-                            <div class="row gy-4">
-
-                                <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up"
-                                    data-aos-delay="100">
-                                    <div class="team-member">
-                                        <div class="member-img">
-                                            <img src="assets/img/chefs/chefs-1.jpg" class="img-fluid" alt="">
-                                            <div class="social">
-                                                <a href=""><i class="bi bi-twitter-x"></i></a>
-                                                <a href=""><i class="bi bi-facebook"></i></a>
-                                                <a href=""><i class="bi bi-instagram"></i></a>
-                                                <a href=""><i class="bi bi-linkedin"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="member-info">
-                                            <h4>Mr.Khôi Nguyên</h4>
-                                            <span>Phục Vụ</span>
-                                            <p>Nhanh tay, khả năng nắm bắt tâm lí khách hàng. Đảm bảo món ăn được đến
-                                                tay khách hàng
-                                                nhanh nhất có thể.</p>
-                                        </div>
-                                    </div>
-                                </div><!-- End Chef Team Member -->
-
-                                <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up"
-                                    data-aos-delay="200">
-                                    <div class="team-member">
-                                        <div class="member-img">
-                                            <img src="assets/img/chefs/chefs-2.jpg" class="img-fluid" alt="">
-                                            <div class="social">
-                                                <a href=""><i class="bi bi-twitter-x"></i></a>
-                                                <a href=""><i class="bi bi-facebook"></i></a>
-                                                <a href=""><i class="bi bi-instagram"></i></a>
-                                                <a href=""><i class="bi bi-linkedin"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="member-info">
-                                            <h4>Mr. Tùng Dương</h4>
-                                            <span>Siêu Đầu Bếp</span>
-                                            <p>Đây là đầu bếp 5 sao của chúng tôi với 10 năm kinh nghiệm làm bánh mì.
-                                                Đảm bảo hương
-                                                vị món ăn là tuyệt nhất khi đến tay khách hàng
-                                            <p>
-                                        </div>
-                                    </div>
-                                </div><!-- End Chef Team Member -->
-
-                                <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-up"
-                                    data-aos-delay="300">
-                                    <div class="team-member">
-                                        <div class="member-img">
-                                            <img src="assets/img/chefs/chefs-3.jpg" class="img-fluid" alt="">
-                                            <div class="social">
-                                                <a href=""><i class="bi bi-twitter-x"></i></a>
-                                                <a href=""><i class="bi bi-facebook"></i></a>
-                                                <a href=""><i class="bi bi-instagram"></i></a>
-                                                <a href=""><i class="bi bi-linkedin"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="member-info">
-                                            <h4>Mr. Quốc Toàn</h4>
-                                            <span>Nhân viên vệ sinh</span>
-                                            <p>Nhân viên kỳ cựu với kinh nghiệm vệ sinh lâu năm. Đảm bảo nhà hàng chúng
-                                                tôi luôn
-                                                sạch sẽ và gọn gàng</p>
-                                        </div>
-                                    </div>
-                                </div><!-- End Chef Team Member -->
-
-                            </div>
-
-                        </div>
-
-                    </section><!-- /Chefs Section -->
 
 
-                    <!-- Gallery Section -->
-                    <section id="gallery" class="gallery section light-background">
+                        <!-- Gallery Section -->
+                        <section id="gallery" class="gallery section light-background">
 
-                        <!-- Section Title -->
-                        <div class="container section-title" data-aos="fade-up">
-                            <h2>Gallery</h2>
-                            <p><span>Check</span> <span class="description-title">Our Gallery</span></p>
-                        </div><!-- End Section Title -->
+                            <!-- Section Title -->
+                            <div class="container section-title" data-aos="fade-up">
+                                <h2>Gallery</h2>
+                                <p><span>Check</span> <span class="description-title">Our Gallery</span></p>
+                            </div><!-- End Section Title -->
 
-                        <div class="container" data-aos="fade-up" data-aos-delay="100">
+                            <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-                            <div class="swiper init-swiper">
-                                <script type="application/json" class="swiper-config">
+                                <div class="swiper init-swiper">
+                                    <script type="application/json" class="swiper-config">
             {
               "loop": true,
               "speed": 600,
@@ -751,58 +669,58 @@
               }
             }
           </script>
-                                <div class="swiper-wrapper align-items-center">
-                                    <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                                            href="assets/img/gallery/gallery-1.jpg"><img
-                                                src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a>
+                                    <div class="swiper-wrapper align-items-center">
+                                        <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                                                href="assets/img/gallery/gallery-1.jpg"><img
+                                                    src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a>
+                                        </div>
+                                        <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                                                href="assets/img/gallery/gallery-2.jpg"><img
+                                                    src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a>
+                                        </div>
+                                        <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                                                href="assets/img/gallery/gallery-3.jpg"><img
+                                                    src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a>
+                                        </div>
+                                        <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                                                href="assets/img/gallery/gallery-4.jpg"><img
+                                                    src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a>
+                                        </div>
+                                        <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                                                href="assets/img/gallery/gallery-5.jpg"><img
+                                                    src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a>
+                                        </div>
+                                        <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                                                href="assets/img/gallery/gallery-6.jpg"><img
+                                                    src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a>
+                                        </div>
+                                        <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                                                href="assets/img/gallery/gallery-7.jpg"><img
+                                                    src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a>
+                                        </div>
+                                        <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
+                                                href="assets/img/gallery/gallery-8.jpg"><img
+                                                    src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a>
+                                        </div>
                                     </div>
-                                    <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                                            href="assets/img/gallery/gallery-2.jpg"><img
-                                                src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a>
-                                    </div>
-                                    <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                                            href="assets/img/gallery/gallery-3.jpg"><img
-                                                src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a>
-                                    </div>
-                                    <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                                            href="assets/img/gallery/gallery-4.jpg"><img
-                                                src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a>
-                                    </div>
-                                    <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                                            href="assets/img/gallery/gallery-5.jpg"><img
-                                                src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a>
-                                    </div>
-                                    <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                                            href="assets/img/gallery/gallery-6.jpg"><img
-                                                src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a>
-                                    </div>
-                                    <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                                            href="assets/img/gallery/gallery-7.jpg"><img
-                                                src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a>
-                                    </div>
-                                    <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery"
-                                            href="assets/img/gallery/gallery-8.jpg"><img
-                                                src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a>
-                                    </div>
+                                    <div class="swiper-pagination"></div>
                                 </div>
-                                <div class="swiper-pagination"></div>
+
                             </div>
 
-                        </div>
+                        </section><!-- /Gallery Section -->
 
-                    </section><!-- /Gallery Section -->
+                        <!-- Contact Section -->
+                        <section id="contact" class="contact section">
 
-                    <!-- Contact Section -->
-                    <section id="contact" class="contact section">
-
-                        <!-- Section Title -->
-                        <!-- <div class="container section-title" data-aos="fade-up">
+                            <!-- Section Title -->
+                            <!-- <div class="container section-title" data-aos="fade-up">
                             <h2>Liên Hệ</h2>
                             <p><span>Bạn Cần Giúp Đỡ</span> <span class="description-title">Hãy Liên Lạc Chúng
                                     Tôi</span></p>
                         </div>End Section Title -->
 
-                        <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
+                            <!-- <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                             <div class="mb-5">
                                 <iframe
@@ -811,92 +729,55 @@
                                 </iframe>
                             </div><!-- End Google Maps -->
 
-                        <div class="row gy-4">
-
-                            <div class="col-md-6">
-                                <div class="info-item d-flex align-items-center" data-aos="fade-up"
-                                    data-aos-delay="200">
-                                    <i class="icon bi bi-geo-alt flex-shrink-0"></i>
-                                    <div>
-                                        <h3>Địa Chỉ</h3>
-                                        <p>100, Nguyên Xá, Bắc Từ Liêm, Hà Nội</p>
-                                    </div>
-                                </div>
-                            </div><!-- End Info Item -->
-
-                            <div class="col-md-6">
-                                <div class="info-item d-flex align-items-center" data-aos="fade-up"
-                                    data-aos-delay="300">
-                                    <i class="icon bi bi-telephone flex-shrink-0"></i>
-                                    <div>
-                                        <h3>Liên hệ với chúng tôi</h3>
-                                        <p>+0342437211</p>
-                                    </div>
-                                </div>
-                            </div><!-- End Info Item -->
-
-                            <div class="col-md-6">
-                                <div class="info-item d-flex align-items-center" data-aos="fade-up"
-                                    data-aos-delay="400">
-                                    <i class="icon bi bi-envelope flex-shrink-0"></i>
-                                    <div>
-                                        <h3>Email: </h3>
-                                        <p>Duongtungvu2004@gmail.com</p>
-                                    </div>
-                                </div>
-                            </div><!-- End Info Item -->
-
-                            <div class="col-md-6">
-                                <div class="info-item d-flex align-items-center" data-aos="fade-up"
-                                    data-aos-delay="500">
-                                    <i class="icon bi bi-clock flex-shrink-0"></i>
-                                    <div>
-                                        <h3>Giờ mở cửa:<br></h3>
-                                        <p><strong>Thứ Hai - Chủ nhật:</strong> 11AM - 23PM </p>
-                                    </div>
-                                </div>
-                            </div><!-- End Info Item -->
-
-                        </div>
-
-                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-                            data-aos-delay="600">
                             <div class="row gy-4">
 
                                 <div class="col-md-6">
-                                    <input type="text" name="name" class="form-control" placeholder="Tên của bạn"
-                                        required="">
-                                </div>
+                                    <div class="info-item d-flex align-items-center" data-aos="fade-up"
+                                        data-aos-delay="200">
+                                        <i class="icon bi bi-geo-alt flex-shrink-0"></i>
+                                        <div>
+                                            <h3>Địa Chỉ</h3>
+                                            <p>100, Nguyên Xá, Bắc Từ Liêm, Hà Nội</p>
+                                        </div>
+                                    </div>
+                                </div><!-- End Info Item -->
 
-                                <div class="col-md-6 ">
-                                    <input type="email" class="form-control" name="email" placeholder="Email của bạn"
-                                        required="">
-                                </div>
+                                <div class="col-md-6">
+                                    <div class="info-item d-flex align-items-center" data-aos="fade-up"
+                                        data-aos-delay="300">
+                                        <i class="icon bi bi-telephone flex-shrink-0"></i>
+                                        <div>
+                                            <h3>Liên hệ với chúng tôi</h3>
+                                            <p>+0342437211</p>
+                                        </div>
+                                    </div>
+                                </div><!-- End Info Item -->
 
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control" name="subject" placeholder="Subject"
-                                        required="">
-                                </div>
+                                <div class="col-md-6">
+                                    <div class="info-item d-flex align-items-center" data-aos="fade-up"
+                                        data-aos-delay="400">
+                                        <i class="icon bi bi-envelope flex-shrink-0"></i>
+                                        <div>
+                                            <h3>Email: </h3>
+                                            <p>Duongtungvu2004@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </div><!-- End Info Item -->
 
-                                <div class="col-md-12">
-                                    <textarea class="form-control" name="message" rows="6" placeholder="Tin nhắn"
-                                        required=""></textarea>
-                                </div>
-
-                                <div class="col-md-12 text-center">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="Gửi">Tin nhắn của bạn đã được gửi!</div>
-
-                                    <button type="submit">Gửi</button>
-                                </div>
+                                <div class="col-md-6">
+                                    <div class="info-item d-flex align-items-center" data-aos="fade-up"
+                                        data-aos-delay="500">
+                                        <i class="icon bi bi-clock flex-shrink-0"></i>
+                                        <div>
+                                            <h3>Giờ mở cửa:<br></h3>
+                                            <p><strong>Thứ Hai - Chủ nhật:</strong> 11AM - 23PM </p>
+                                        </div>
+                                    </div>
+                                </div><!-- End Info Item -->
 
                             </div>
-                        </form><!-- End Contact Form -->
 
-                        </div> -->
 
-                    </section><!-- /Contact Section -->
 
                 </main>
 
