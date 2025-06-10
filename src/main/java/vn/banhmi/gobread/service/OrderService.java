@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.hibernate.query.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,10 @@ public class OrderService {
     }
 
     public org.springframework.data.domain.Page<Order> getPaginationOrders(Pageable pageable) {
-        return orderRepository.findAll(pageable);
+        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                Sort.by(Sort.Direction.DESC, "orderId"));
+
+        return orderRepository.findAll(sortedPageable);
     }
 
     public List<Order> getAllOrders() {

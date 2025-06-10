@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.banhmi.gobread.domain.Order;
@@ -56,7 +56,8 @@ public class UserService {
     }
 
     public org.springframework.data.domain.Page<User> getPaginatedUsers(int page, int size) {
-        return userRepository.findAll(PageRequest.of(page, size));
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return userRepository.findAll(PageRequest.of(page, size, sort));
     }
 
     public User getUserByEmail(String email) {

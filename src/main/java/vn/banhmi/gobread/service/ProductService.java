@@ -2,7 +2,10 @@ package vn.banhmi.gobread.service;
 
 import org.hibernate.query.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpSession;
@@ -49,7 +52,9 @@ public class ProductService {
     }
 
     public org.springframework.data.domain.Page<Product> getAllPaginationProducts(Pageable pageable) {
-        return productRepository.findAll(pageable);
+        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                Sort.by(Sort.Direction.DESC, "productID"));
+        return productRepository.findAll(sortedPageable);
     }
 
     public List<Product> getAllProducts() {
