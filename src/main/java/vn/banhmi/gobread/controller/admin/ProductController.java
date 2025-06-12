@@ -97,7 +97,7 @@ public class ProductController {
             return "redirect:/admin/product"; // Chuyển hướng nếu thành công
         } catch (Exception e) {
             e.printStackTrace();
-            return "product/addProduct"; // Quay lại trang thêm sản phẩm nếu có lỗi
+            return "product/addProduct"; 
         }
     }
 

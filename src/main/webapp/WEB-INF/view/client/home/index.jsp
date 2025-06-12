@@ -346,13 +346,19 @@
                                     <div class="row gy-5">
                                         <c:forEach var="product" items="${products}">
                                             <div class="col-lg-4 menu-item justify-content-center">
-                                                <a href="/resources/images/product/${product.imageUrl}"
-                                                    class="glightbox">
+                                                <!-- Link đến trang chi tiết -->
+                                                <a href="/user/product/${product.productID}">
                                                     <img src="/resources/images/product/${product.imageUrl}"
                                                         class="menu-img img-fluid" alt="${product.name}">
                                                 </a>
+
+                                                <!-- Nút xem ảnh lớn (lightbox) -->
+                                                <a href="/resources/images/product/${product.imageUrl}"
+                                                    class="glightbox preview-link" title="${product.name}">
+                                                    <i class="bi bi-zoom-in"></i>
+                                                </a>
+
                                                 <h4>${product.name}</h4>
-                                                <!-- <p class="ingredients">${product.description}</p> -->
                                                 <p class="price">${product.price} VNĐ</p>
 
                                                 <form action="/add-product-to-cart/${product.productID}" method="post">
@@ -362,17 +368,15 @@
                                                         <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
                                                     </button>
                                                 </form>
-
                                             </div>
                                         </c:forEach>
                                     </div>
-                                </div><!-- End Starter Menu Content -->
 
 
+
+                                </div>
 
                             </div>
-
-                        </div>
 
                     </section><!-- /Menu Section -->
 

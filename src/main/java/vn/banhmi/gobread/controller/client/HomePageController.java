@@ -1,6 +1,7 @@
 package vn.banhmi.gobread.controller.client;
 
 import java.util.List;
+import java.util.Optional;
 
 import jakarta.validation.Valid;
 
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -109,5 +111,12 @@ public class HomePageController {
         List<Order> orders = this.orderService.fetchOrdersByUser(currentUser);
         model.addAttribute("orders", orders);
         return "client/cart/order_history";
+    }
+
+    @RequestMapping("/user/product/{productID}")
+    public String getProductdetailForUser(@PathVariable long productID, Model model) {
+        Optional<Product> product = this.productService.getProductById(productID);
+        model.addAttribute("product", product.get());
+        return "product/detailProduct";
     }
 }

@@ -14,16 +14,17 @@ import vn.banhmi.gobread.domain.dto.ProductRevenueDTO;
 
 @Repository
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, Long> {
+
+        @Query("SELECT new vn.banhmi.gobread.domain.dto.ProductRevenueDTO(od.product.name, SUM(od.quantity * od.price)) "
+                        +
+                        "FROM OrderDetail od GROUP BY od.product.name")
+        List<ProductRevenueDTO> getRevenueByProduct();
+
         @Query("SELECT new vn.banhmi.gobread.domain.dto.BestSellingProductDTO(od.product.name, SUM(od.quantity)) " +
                         "FROM OrderDetail od " +
                         "WHERE od.order.status IN ('PENDING', 'COMPLETED', 'SHIPPING') " +
                         "GROUP BY od.product.name " +
                         "ORDER BY SUM(od.quantity) DESC")
         List<BestSellingProductDTO> findBestSellingProducts(Pageable pageable);
-
-        @Query("SELECT new vn.banhmi.gobread.domain.dto.ProductRevenueDTO(od.product.name, SUM(od.quantity * od.price)) "
-                        +
-                        "FROM OrderDetail od GROUP BY od.product.name")
-        List<ProductRevenueDTO> getRevenueByProduct();
 
 }
