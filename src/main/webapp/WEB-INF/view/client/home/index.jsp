@@ -61,8 +61,9 @@
                                 <c:if test="${not empty pageContext.request.userPrincipal}">
 
                                     </li>
-                                    <a href="/cart">Giỏ hàng</a>
+                                    <a href="/cart">Giỏ hàng </a>
                                     </li>
+                                    <li><a href="/chatbot" class="active">Hỏi đáp<br></a></li>
                                 </c:if>
                             </ul>
                             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
