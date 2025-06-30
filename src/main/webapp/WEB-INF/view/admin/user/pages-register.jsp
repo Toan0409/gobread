@@ -34,6 +34,20 @@
         <!-- Template Main CSS File -->
         <link href="/assets/css/style.css" rel="stylesheet">
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script>
+          $(document).ready(() => {
+            const avatarFile = $("#imageFile");
+
+            avatarFile.change(function (e) {
+              const imgURL = URL.createObjectURL(e.target.files[0]);
+              $("#avatarPreview").attr("src", imgURL);
+              $("#avatarPreview").css({ display: "block" });
+            });
+          });
+        </script>
+
         <!-- =======================================================
   * Template Name: NiceAdmin
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -117,6 +131,19 @@
                             </form:select>
                             <div class="invalid-feedback">Vui lòng chọn vai trò!</div>
                           </div>
+
+
+                          <div class="mb-3">
+                            <label for="imageFile" class="form-label">Avatar:</label>
+                            <input class="form-control" type="file" id="imageFile" name="image"
+                              accept=".jpg, .jpeg, .png">
+                          </div>
+
+                          <div style="margin-top: 10px;">
+                            <img id="avatarPreview" src="#" alt="Ảnh xem trước"
+                              style="max-height: 200px; display: none;" />
+                          </div>
+
 
 
                           <div class="col-12">

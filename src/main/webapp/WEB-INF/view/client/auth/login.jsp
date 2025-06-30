@@ -92,7 +92,7 @@
                             </div>
 
                             <div class="col-12">
-                              <p class="small mb-0">Don't have an account? <a href="register.jsp">Create one</a></p>
+                              <p class="small mb-0">Bạn chưa có tài khoản? <a href="/signup">Đăng ký</a></p>
                             </div>
 
                         </form>
@@ -100,9 +100,7 @@
                       </div>
                     </div>
 
-                    <div class="credits">
-                      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                    </div>
+
 
                   </div>
                 </div>

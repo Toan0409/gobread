@@ -16,12 +16,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import vn.banhmi.gobread.domain.Order;
 import vn.banhmi.gobread.domain.Product;
 import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.domain.dto.RegisterDTO;
 import vn.banhmi.gobread.service.ProductService;
+import vn.banhmi.gobread.service.UploadService;
 import vn.banhmi.gobread.service.UserService;
 import vn.banhmi.gobread.service.OrderService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,13 +37,15 @@ public class HomePageController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final OrderService orderService;
+    private final UploadService uploadService;
 
     public HomePageController(ProductService productService, UserService userService, PasswordEncoder passwordEncoder,
-            OrderService orderService) {
+            OrderService orderService, UploadService uploadService) {
         this.productService = productService;
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.orderService = orderService;
+        this.uploadService = uploadService;
     }
 
     @GetMapping("/")
@@ -69,7 +74,7 @@ public class HomePageController {
     public String postUserSignUp(
             @ModelAttribute("registerDTO") @Valid RegisterDTO registerDTO,
             BindingResult bindingResult,
-            Model model) {
+            Model model, @RequestParam("image") MultipartFile imageFile) {
 
         if (bindingResult.hasErrors()) {
             List<FieldError> errors = bindingResult.getFieldErrors();
@@ -85,7 +90,16 @@ public class HomePageController {
         User user = userService.registerDTOtoUser(registerDTO);
         user.setRole(userService.getRoleByName("USER"));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // try {
+        // // Gọi service để lưu ảnh và nhận tên file trả về
+        // String filename = uploadService.handleSaveUploadFile(imageFile, "user");
+        // if (filename == null) {
+        // return "error"; // Trả về trang lỗi nếu lưu thất bại
+        // }
 
+        // // Gán tên file ảnh cho product
+        // user.setAvatar(filename);
+        // }
         userService.handleSaveUser(user);
 
         return "redirect:/login";
@@ -119,4 +133,5 @@ public class HomePageController {
         model.addAttribute("product", product.get());
         return "product/detailProduct";
     }
+
 }

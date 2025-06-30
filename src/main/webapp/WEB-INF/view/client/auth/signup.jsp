@@ -11,6 +11,20 @@
         <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="/assets/css/style.css" rel="stylesheet">
         <link href="/assets/img/breadlogo.png" rel="icon">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+        <script>
+          $(document).ready(() => {
+            const avatarFile = $("#imageFile");
+
+            avatarFile.change(function (e) {
+              const imgURL = URL.createObjectURL(e.target.files[0]);
+              $("#avatarPreview").attr("src", imgURL);
+              $("#avatarPreview").css({ display: "block" });
+            });
+          });
+        </script>
       </head>
 
       <body>
@@ -93,6 +107,17 @@
                           <form:input path="address"
                             cssClass="form-control ${status.errorFields['address'] ? 'is-invalid' : ''}" />
                           <form:errors path="address" cssClass="invalid-feedback" />
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="imageFile" class="form-label">Avatar:</label>
+                          <input class="form-control" type="file" id="imageFile" name="image"
+                            accept=".jpg, .jpeg, .png">
+                        </div>
+
+                        <div style="margin-top: 10px;">
+                          <img id="avatarPreview" src="#" alt="Ảnh xem trước"
+                            style="max-height: 200px; display: none;" />
                         </div>
 
                         <!-- Đồng ý điều khoản -->
