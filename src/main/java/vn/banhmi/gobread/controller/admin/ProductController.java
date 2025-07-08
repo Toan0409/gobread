@@ -62,13 +62,13 @@ public class ProductController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", products.getTotalPages());
 
-        return "product/QLSANPHAMTK";
+        return "admin/product/QLSANPHAMTK";
     }
 
     @GetMapping("/admin/product/add")
     public String getAddProductPage(Model model) {
         model.addAttribute("newProduct", new Product());
-        return "product/addProduct";
+        return "admin/product/addProduct";
     }
 
     @PostMapping("/admin/product/add")
@@ -79,7 +79,7 @@ public class ProductController {
 
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getFieldErrors());
-            return "product/addProduct";
+            return "admin/product/addProduct";
         }
         try {
             // Gọi service để lưu ảnh và nhận tên file trả về
@@ -97,7 +97,7 @@ public class ProductController {
             return "redirect:/admin/product"; // Chuyển hướng nếu thành công
         } catch (Exception e) {
             e.printStackTrace();
-            return "product/addProduct"; 
+            return "admin/product/addProduct";
         }
     }
 
@@ -105,14 +105,14 @@ public class ProductController {
     public String getProductDetailPage(@PathVariable long productID, Model model) {
         Optional<Product> product = this.productService.getProductById(productID);
         model.addAttribute("product", product.get());
-        return "product/detailProduct";
+        return "admin/product/detailProduct";
     }
 
     @GetMapping("/admin/product/update/{productID}")
     public String getUpdateProductPage(@PathVariable long productID, Model model) {
         Optional<Product> product = this.productService.getProductById(productID);
         model.addAttribute("product", product.get());
-        return "product/updateProduct";
+        return "admin/product/updateProduct";
     }
 
     @PostMapping("/admin/product/update")
@@ -121,7 +121,7 @@ public class ProductController {
             @RequestParam("image") MultipartFile imageFile) {
 
         if (bindingResult.hasErrors()) {
-            return "product/updateProduct"; // Quay lại form nếu có lỗi
+            return "admin/product/updateProduct"; // Quay lại form nếu có lỗi
         }
 
         // Lấy sản phẩm hiện tại từ DB
@@ -158,7 +158,7 @@ public class ProductController {
         Product product = new Product();
         product.setProductID(productID);
         model.addAttribute("newProduct", product);
-        return "product/deleteProduct";
+        return "admin/product/deleteProduct";
     }
 
     @PostMapping("/admin/product/delete")

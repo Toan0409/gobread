@@ -49,7 +49,7 @@ public class OrderController {
         model.addAttribute("totalPages", ordersPage.getTotalPages());
 
         model.addAttribute("orders", orders);
-        return "order/QLDONHANG";
+        return "admin/order/QLDONHANG";
     }
 
     @GetMapping("/admin/order/{orderId}")
@@ -58,14 +58,14 @@ public class OrderController {
         model.addAttribute("order", order);
         model.addAttribute("orderID", orderId);
         model.addAttribute("orderDetails", order.getOrderDetails());
-        return "order/detailOrder";
+        return "admin/order/detailOrder";
     }
 
     @RequestMapping("/admin/order/update/{orderId}")
     public String getUpdateOrderStatusPage(Model model, @PathVariable long orderId) {
         Optional<Order> currentOrder = this.orderService.getOrderById(orderId);
         model.addAttribute("newOrder", currentOrder.get());
-        return "order/updateOrder";
+        return "admin/order/updateOrder";
     }
 
     @PostMapping("/admin/order/update")
@@ -78,7 +78,7 @@ public class OrderController {
     public String getDeleteOrderPage(Model model, @PathVariable long orderId) {
         model.addAttribute("id", orderId);
         model.addAttribute("newOrder", new Order());
-        return "order/deleteOrder";
+        return "admin/order/deleteOrder";
     }
 
     @PostMapping("/admin/order/delete")

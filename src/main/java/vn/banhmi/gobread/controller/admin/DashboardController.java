@@ -51,6 +51,6 @@ public class DashboardController {
         model.addAttribute("countUsers", this.userService.countUsers());
         model.addAttribute("countRevenues", this.userService.calculateTotalRevenue());
         model.addAttribute("countOrders", this.userService.countOrders());
-        return "admin/index";
+        return "admin/dashboard/index";
     }
 }

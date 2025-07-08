@@ -41,7 +41,7 @@
                                 <ul>
                                     <li><a href="/">Trang chủ</a></li>
                                     <li><a href="/#menu">Menu</a></li>
-                                    <li><a href="/#order-online">Đặt hàng</a></li>
+
                                 </ul>
                                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                             </nav>
