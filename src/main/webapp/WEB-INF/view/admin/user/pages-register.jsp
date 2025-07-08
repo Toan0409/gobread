@@ -58,7 +58,11 @@
       </head>
 
       <body>
-
+        <!-- ======= Header ======= -->
+        <jsp:include page="/WEB-INF/view/admin/layout/header.jsp" />
+        <!-- End Header -->
+        <!-- ======= Sidebar ======= -->
+        <jsp:include page="/WEB-INF/view/admin/layout/sidebar.jsp" />
         <main>
           <div class="container">
 
@@ -66,14 +70,9 @@
               class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
               <div class="container">
                 <div class="row justify-content-center">
-                  <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                  <div class="col-lg-8 col-md-10 d-flex flex-column align-items-center justify-content-center">
 
-                    <div class="d-flex justify-content-center py-4">
-                      <a href="/" class="logo d-flex align-items-center w-auto">
-                        <img src="/assets/img/breadlogo.png" alt="">
-                        <span class="d-none d-lg-block">GoBread</span>
-                      </a>
-                    </div><!-- End Logo -->
+
 
                     <div class="card mb-3">
 
@@ -86,44 +85,44 @@
 
                         <form:form modelAttribute="newUser" method="post" class="row g-3 needs-validation"
                           action="${pageContext.request.contextPath}/admin/user/create">
-                          <div class="col-12">
+                          <div class="col-md-6">
                             <label for="fullName" class="form-label">Họ và tên</label>
                             <form:input path="fullName" cssClass="form-control" id="fullName" required="required" />
                             <div class="invalid-feedback">Please, enter your name!</div>
                           </div>
 
-                          <div class="col-12">
+                          <div class="col-md-6">
                             <label for="email" class="form-label">Email</label>
                             <form:input path="email" cssClass="form-control" id="email" required="required" />
                             <div class="invalid-feedback">Vui lòng nhập địa chỉ email!</div>
                           </div>
 
-                          <div class="col-12">
+                          <div class="col-md-6">
                             <label for="username" class="form-label">Tên đăng nhập</label>
                             <form:input path="username" cssClass="form-control" id="username" required="required" />
                             <div class="invalid-feedback">Không được để trống</div>
                           </div>
 
-                          <div class="col-12">
+                          <div class="col-md-6">
                             <label for="password" class="form-label">Mật khẩu</label>
                             <form:password path="password" cssClass="form-control" id="password" required="required" />
                             <div class="invalid-feedback">Không được để trống</div>
                           </div>
 
-                          <div class="col-12">
+                          <div class="col-md-6">
                             <label for="phoneNumber" class="form-label">Số điện thoại</label>
                             <form:input path="phoneNumber" cssClass="form-control" id="phoneNumber"
                               required="required" />
                             <div class="invalid-feedback">Không được để trống</div>
                           </div>
 
-                          <div class="col-12">
+                          <div class="col-md-6">
                             <label for="address" class="form-label">Địa chỉ</label>
                             <form:input path="address" cssClass="form-control" id="address" required="required" />
                             <div class="invalid-feedback">Không được để trống</div>
                           </div>
 
-                          <div class="col-12">
+                          <div class="col-md-6">
                             <label for="roleId" class="form-label">Vai trò</label>
                             <form:select path="role.id" cssClass="form-select" id="roleId" required="required">
                               <form:option value="" label="-- Chọn vai trò --" />
@@ -133,7 +132,7 @@
                           </div>
 
 
-                          <div class="mb-3">
+                          <div class="col-md-6">
                             <label for="imageFile" class="form-label">Avatar:</label>
                             <input class="form-control" type="file" id="imageFile" name="image"
                               accept=".jpg, .jpeg, .png">
