@@ -84,7 +84,7 @@
                         </div>
 
                         <form:form modelAttribute="newUser" method="post" class="row g-3 needs-validation"
-                          action="${pageContext.request.contextPath}/admin/user/create">
+                          action="${pageContext.request.contextPath}/admin/user/create" enctype="multipart/form-data">
                           <div class="col-md-6">
                             <label for="fullName" class="form-label">Họ và tên</label>
                             <form:input path="fullName" cssClass="form-control" id="fullName" required="required" />

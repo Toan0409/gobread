@@ -85,7 +85,7 @@ public class ProductController {
             // Gọi service để lưu ảnh và nhận tên file trả về
             String filename = uploadService.handleSaveUploadFile(imageFile, "product");
             if (filename == null) {
-                return "error"; // Trả về trang lỗi nếu lưu thất bại
+                return "error";
             }
 
             // Gán tên file ảnh cho product

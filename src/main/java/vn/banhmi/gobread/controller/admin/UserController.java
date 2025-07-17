@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.Valid;
 import vn.banhmi.gobread.domain.Role;
 import vn.banhmi.gobread.domain.User;
 import vn.banhmi.gobread.repository.RoleRepository;
+import vn.banhmi.gobread.service.UploadService;
 import vn.banhmi.gobread.service.UserService;
 
 @Controller
@@ -28,9 +30,12 @@ public class UserController {
     private final UserService userService;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UploadService uploadService;
 
     public UserController(UserService userService, RoleRepository roleRepository,
+            UploadService uploadService,
             PasswordEncoder passwordEncoder) {
+        this.uploadService = uploadService;
         this.userService = userService;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
@@ -117,7 +122,8 @@ public class UserController {
     @PostMapping("/admin/user/create")
     public String createUserPage(Model model,
             @ModelAttribute("newUser") @Valid User user,
-            BindingResult bindingResult) {
+            BindingResult bindingResult,
+            @RequestParam("image") MultipartFile imageFile) {
 
         // Log lỗi nếu có
         List<FieldError> errors = bindingResult.getFieldErrors();
@@ -141,8 +147,14 @@ public class UserController {
             return "admin/user/pages-register";
         }
 
-        // Gán lại role chính xác
         user.setRole(role.get());
+
+        String avatarUrl = uploadService.handleSaveUploadFile(imageFile, "user");
+        if (avatarUrl == null) {
+            return "error";
+        }
+
+        user.setAvatar(avatarUrl);
 
         // Mã hóa mật khẩu
         user.setPassword(passwordEncoder.encode(user.getPassword()));
