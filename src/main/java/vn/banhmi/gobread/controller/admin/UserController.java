@@ -84,8 +84,13 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update") // post
-    public String postUpdateUser(Model model, @ModelAttribute("newUser") User user) {
+    public String postUpdateUser(Model model, @ModelAttribute("newUser") User user,
+            @RequestParam("image") MultipartFile imageFile) {
         User currentUser = this.userService.getUserById(user.getId());
+        if (!imageFile.isEmpty()) {
+            String avatarUrl = uploadService.handleSaveUploadFile(imageFile, "avatar");
+            currentUser.setAvatar(avatarUrl);
+        }
         if (currentUser != null) {
             currentUser.setFullName(user.getFullName());
             currentUser.setUsername(user.getUsername());
@@ -149,7 +154,7 @@ public class UserController {
 
         user.setRole(role.get());
 
-        String avatarUrl = uploadService.handleSaveUploadFile(imageFile, "user");
+        String avatarUrl = uploadService.handleSaveUploadFile(imageFile, "avatar");
         if (avatarUrl == null) {
             return "error";
         }

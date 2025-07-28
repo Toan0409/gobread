@@ -33,9 +33,29 @@
 
                 <!-- Template Main CSS File -->
                 <link href="/assets/css/style.css" rel="stylesheet">
+
+                <!-- jQuery CDN -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+                <script>
+                    $(document).ready(() => {
+                        const avatarFile = $("#imageFile");
+
+                        avatarFile.change(function (e) {
+                            const imgURL = URL.createObjectURL(e.target.files[0]);
+                            $("#avatarPreview").attr("src", imgURL);
+                            $("#avatarPreview").css({ display: "block" });
+                        });
+                    });
+                </script>
             </head>
 
             <body>
+
+                <!-- Include header and sidebar -->
+                <jsp:include page="/WEB-INF/view/admin/layout/header.jsp" />
+                <jsp:include page="/WEB-INF/view/admin/layout/sidebar.jsp" />
+
                 <main>
                     <div class="container">
                         <section
@@ -43,7 +63,7 @@
                             <div class="container">
                                 <div class="row justify-content-center">
                                     <div
-                                        class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+                                        class="col-lg-8 col-md-10 d-flex flex-column align-items-center justify-content-center">
 
                                         <div class="d-flex justify-content-center py-4">
                                             <a href="/" class="logo d-flex align-items-center w-auto">
@@ -55,36 +75,41 @@
                                         <div class="card mb-3">
                                             <div class="card-body">
                                                 <div class="pt-4 pb-2">
-                                                    <h5 class="card-title text-center pb-0 fs-4">Cập nhật tài khoản</h5>
-                                                    <p class="text-center small">Nhập thông tin của bạn để cập nhật tài
+                                                    <h5 class="card-title text-center pb-0 fs-4">Cập nhật tài khoản
+                                                    </h5>
+                                                    <p class="text-center small">Nhập thông tin của bạn để cập nhật
+                                                        tài
                                                         khoản</p>
                                                 </div>
 
                                                 <form:form method="post" modelAttribute="newUser"
-                                                    action="/admin/user/update" class="row g-3 needs-validation">
+                                                    action="/admin/user/update" class="row g-3 needs-validation"
+                                                    enctype="multipart/form-data">
 
-                                                    <div class="col-12">
+                                                    <div class="col-md-6">
                                                         <label for="id" class="form-label">ID</label>
                                                         <form:input type="text" path="id" class="form-control"
                                                             readonly="true" />
                                                     </div>
 
-                                                    <div class="col-12">
+                                                    <div class="col-md-6">
                                                         <label for="fullName" class="form-label">Họ và tên</label>
                                                         <form:input type="text" path="fullName" class="form-control"
                                                             id="fullName" required="true" />
                                                         <div class="invalid-feedback">Vui lòng nhập họ và tên!</div>
                                                     </div>
 
-                                                    <div class="col-12">
+                                                    <div class="col-md-6">
                                                         <label for="email" class="form-label">Email</label>
                                                         <form:input type="email" path="email" class="form-control"
                                                             id="email" required="true" readonly="true" />
-                                                        <div class="invalid-feedback">Vui lòng nhập địa chỉ email!</div>
+                                                        <div class="invalid-feedback">Vui lòng nhập địa chỉ email!
+                                                        </div>
                                                     </div>
 
-                                                    <div class="col-12">
-                                                        <label for="username" class="form-label">Tên đăng nhập</label>
+                                                    <div class="col-md-6">
+                                                        <label for="username" class="form-label">Tên đăng
+                                                            nhập</label>
                                                         <div class="input-group has-validation">
                                                             <span class="input-group-text"
                                                                 id="inputGroupPrepend">@</span>
@@ -94,7 +119,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-12">
+                                                    <div class="col-md-6">
                                                         <label for="phoneNumber" class="form-label">Số điện
                                                             thoại</label>
                                                         <form:input type="text" path="phoneNumber" class="form-control"
@@ -102,12 +127,30 @@
                                                         <div class="invalid-feedback">Không được để trống</div>
                                                     </div>
 
-                                                    <div class="col-12">
+                                                    <div class="col-md-6">
                                                         <label for="address" class="form-label">Địa chỉ</label>
                                                         <form:input type="text" path="address" class="form-control"
                                                             id="address" required="true" />
                                                         <div class="invalid-feedback">Không được để trống</div>
                                                     </div>
+
+                                                    <div class="col-12">
+                                                        <label for="imageFile" class="form-label">Avatar:</label>
+                                                        <input class="form-control" type="file" id="imageFile"
+                                                            name="image" accept=".jpg, .jpeg, .png">
+                                                    </div>
+
+                                                    <div style="margin-top: 10px;">
+                                                        <img id="avatarPreview" src="#" alt="Ảnh xem trước"
+                                                            style="max-height: 200px; display: none;" />
+                                                    </div>
+
+                                                    <div class="card" style="width: auto;">
+                                                        <img src="${pageContext.request.contextPath}/resources/images/avatar/${newUser.avatar}"
+                                                            alt="Avatar" style="width: 300px;" />
+                                                    </div>
+
+
 
                                                     <div class="col-12">
                                                         <div class="form-check">
@@ -117,13 +160,15 @@
                                                                 Tôi đồng ý với các <a href="#">điều khoản và điều
                                                                     kiện</a>
                                                             </label>
-                                                            <div class="invalid-feedback">Bạn phải đồng ý trước khi cập
+                                                            <div class="invalid-feedback">Bạn phải đồng ý trước khi
+                                                                cập
                                                                 nhật</div>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-12">
-                                                        <button class="btn btn-primary w-100" type="submit">Cập nhật tài
+                                                        <button class="btn btn-primary w-100" type="submit">Cập nhật
+                                                            tài
                                                             khoản</button>
                                                     </div>
                                                 </form:form>
