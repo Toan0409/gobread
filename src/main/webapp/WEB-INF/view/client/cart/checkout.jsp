@@ -161,12 +161,29 @@
                                                                 <p class="mb-0">0 đ</p>
                                                             </div>
                                                         </div>
-                                                        <div class="mt-3 d-flex justify-content-between">
-                                                            <h5 class="mb-0 me-4">Hình thức</h5>
-                                                            <div class="">
-                                                                <p class="mb-0">Thanh toán khi bằng VNPay</p>
+                                                        <div class="mt-3">
+                                                            <h5 class="mb-2">Hình thức</h5>
+                                                            <div class="d-flex flex-column gap-2">
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="paymentMethod" id="paymentVNPay"
+                                                                        value="vnpay" checked>
+                                                                    <label class="form-check-label" for="paymentVNPay">
+                                                                        Thanh toán bằng VNPay
+                                                                    </label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="paymentMethod" id="paymentCOD"
+                                                                        value="cod">
+                                                                    <label class="form-check-label" for="paymentCOD">
+                                                                        Thanh toán khi nhận hàng
+                                                                    </label>
+                                                                </div>
+
                                                             </div>
                                                         </div>
+
                                                     </div>
                                                     <div
                                                         class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">

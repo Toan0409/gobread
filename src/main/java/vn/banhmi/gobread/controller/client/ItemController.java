@@ -105,15 +105,24 @@ public class ItemController {
             @RequestParam("receiverName") String receiverName,
             @RequestParam("receiverPhone") String receiverPhone,
             @RequestParam("receiverAddress") String receiverAddress,
-            @RequestParam("totalPrice") double totalPrice) {
+            @RequestParam("totalPrice") double totalPrice,
+            @RequestParam("paymentMethod") String paymentMethod) {
         HttpSession session = request.getSession();
         session.setAttribute("receiverName", receiverName);
         session.setAttribute("receiverPhone", receiverPhone);
         session.setAttribute("receiverAddress", receiverAddress);
-
-        return "redirect:/payment/vnpay-checkout?totalPrice=" + totalPrice;
+        session.setAttribute("paymentMethod", paymentMethod);
+        switch (paymentMethod) {
+            case "vnpay":
+                return "redirect:/payment/vnpay-checkout?totalPrice=" + totalPrice;
+            case "cod":
+                return "redirect:/payment/cod-checkout";
+            default:
+                return "redirect:/checkout-failed";
+        }
     }
 
+    // Thanh toán bằng VNPay
     @GetMapping("/payment/vnpay-checkout")
     public String vnpayCheckout(HttpServletRequest request, @RequestParam("totalPrice") double totalPrice) {
         HttpSession session = request.getSession();
@@ -134,21 +143,6 @@ public class ItemController {
         return "redirect:" + paymentUrl;
     }
 
-    // @PostMapping("/place-order")
-    // public String placeOrder(HttpServletRequest request,
-    // @RequestParam("receiverName") String receiverName,
-    // @RequestParam("receiverPhone") String receiverPhone,
-    // @RequestParam("receiverAddress") String receiverAddress) {
-    // HttpSession session = request.getSession();
-    // User currentUser = new User();
-    // long id = (long) session.getAttribute("id");
-    // currentUser.setId(id);
-
-    // this.productService.handlePlaceOrder(currentUser, session, receiverName,
-    // receiverAddress, receiverPhone);
-    // return "redirect:/order-success";
-    // }
-
     @GetMapping("/vnpay-return")
     public String vnpayReturn(HttpServletRequest request) {
         Map<String, String> vnpParams = vnpayService.getVnpayResponseParams(request);
@@ -166,14 +160,31 @@ public class ItemController {
             String receiverName = (String) session.getAttribute("receiverName");
             String receiverPhone = (String) session.getAttribute("receiverPhone");
             String receiverAddress = (String) session.getAttribute("receiverAddress");
-
-            this.productService.handlePlaceOrder(user, session, receiverName, receiverAddress, receiverPhone);
+            String paymentMethod = (String) session.getAttribute("paymentMethod");
+            this.productService.handlePlaceOrder(user, session, receiverName, receiverAddress, receiverPhone,
+                    paymentMethod);
 
             return "redirect:/order-success";
         }
 
         return "redirect:/checkout-failed";
 
+    }
+
+    // Thanh toán khi nhận hàng
+    @GetMapping("/payment/cod-checkout")
+    public String codCheckout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User currentUser = new User();
+        long id = (long) session.getAttribute("id");
+        currentUser.setId(id);
+        String receiverName = (String) session.getAttribute("receiverName");
+        String receiverPhone = (String) session.getAttribute("receiverPhone");
+        String receiverAddress = (String) session.getAttribute("receiverAddress");
+        String paymentMethod = (String) session.getAttribute("paymentMethod");
+        this.productService.handlePlaceOrder(currentUser, session, receiverName, receiverAddress, receiverPhone,
+                paymentMethod);
+        return "redirect:/order-success";
     }
 
     @GetMapping("/checkout-failed")

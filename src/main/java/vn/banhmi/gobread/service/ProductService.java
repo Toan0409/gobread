@@ -172,7 +172,7 @@ public class ProductService {
     @Transactional
     public void handlePlaceOrder(
             User user, HttpSession session,
-            String receiverName, String receiverAddress, String receiverPhone) {
+            String receiverName, String receiverAddress, String receiverPhone, String paymentMethod) {
 
         Cart cart = this.cartRepository.findByUser(user);
 
@@ -185,7 +185,16 @@ public class ProductService {
                 order.setReceiverName(receiverName);
                 order.setReceiverAddress(receiverAddress);
                 order.setReceiverPhone(receiverPhone);
-                order.setStatus("PENDING");
+                switch (paymentMethod) {
+                    case "COD":
+                        order.setStatus("PENDING");
+                        break;
+                    case "vnpay":
+                        order.setStatus("SHIPPING");
+                        break;
+                    default:
+                        break;
+                }
 
                 double sum = 0;
                 for (CartDetail cd : cartDetails) {
