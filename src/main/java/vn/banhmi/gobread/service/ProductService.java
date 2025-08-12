@@ -251,4 +251,8 @@ public class ProductService {
         return productRepository.count();
     }
 
+    public org.springframework.data.domain.Page<Product> searchProductsByName(String keyword, Pageable pageable) {
+        return productRepository.findProduct(keyword, pageable);
+    }
+
 }

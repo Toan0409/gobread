@@ -80,7 +80,7 @@ public class OrderService {
     }
 
     public List<Order> fetchOrdersByUser(User user) {
-        return orderRepository.findByUser(user);
+        return orderRepository.findByUserOrderByOrderIdDesc(user);
     }
 
     public List<BestSellingProductDTO> getTopBestSellingProducts(int topN) {

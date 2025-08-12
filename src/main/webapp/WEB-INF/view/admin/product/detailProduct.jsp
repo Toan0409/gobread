@@ -38,7 +38,7 @@
         <body>
 
             <jsp:include page="/WEB-INF/view/admin/layout/header.jsp" />
-            <jsp:include page="/WEB-INF/view/admin/layout/sidebar.jsp" />
+
 
             <div class="container mt-5">
                 <div class="row">

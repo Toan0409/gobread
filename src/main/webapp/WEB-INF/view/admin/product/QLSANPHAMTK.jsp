@@ -84,8 +84,16 @@
 
           <body>
             <div class="container">
-              <h2>Quản Lý Sản Phẩm & Tồn Kho</h2>
-              <a href="/admin/product/add" class="btn btn-add">Thêm Sản Phẩm</a>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="mb-0">Quản Lý Sản Phẩm & Tồn Kho</h2>
+                <a href="/admin/product/add" class="btn btn-primary">Thêm Sản Phẩm</a>
+              </div>
+
+              <form class="form-inline mb-3">
+                <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Tìm kiếm sản phẩm..."
+                  aria-label="Search" value="${param.keyword}">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+              </form>
               <table>
                 <thead>
                   <tr>

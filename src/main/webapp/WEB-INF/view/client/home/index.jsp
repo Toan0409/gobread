@@ -50,9 +50,9 @@
 
                         <nav id="navmenu" class="navmenu">
                             <ul>
-                                <li><a href="#hero" class="active">Trang chủ<br></a></li>
-                                <li><a href="#about">Thông tin về chúng tôi</a></li>
-                                <li><a href="#menu">Danh sách </a></li>
+                                <li><a href="#about" class="active">Trang chủ<br></a></li>
+
+                                <li><a href="#menu">Thực đơn</a></li>
 
                                 <c:if test="${ empty pageContext.request.userPrincipal}">
                                     <li><a href="/signup">Đăng kí</a></li>
@@ -133,23 +133,6 @@
 
                 <main class="main">
 
-                    <!-- Hero Section -->
-                    <section id="hero" class="hero section light-background">
-
-                        <div class="container">
-                            <div class="row gy-4 justify-content-center justify-content-lg-between">
-                                <div class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                                    <h1 data-aos="fade-up">Bùng nổ vị giác<br>Thức ăn tuyệt ngon</h1>
-                                    <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
-                                    </div>
-                                </div>
-                                <div class="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-                                    <img src="/assets_client/img/hero-img.jpg" class="img-fluid animated" alt="">
-                                </div>
-                            </div>
-                        </div>
-
-                    </section><!-- /Hero Section -->
 
                     <!-- About Section -->
                     <section id="about" class="about section">
@@ -358,7 +341,9 @@
                                                     <i class="bi bi-zoom-in"></i>
                                                 </a>
 
-                                                <h4>${product.name}</h4>
+                                                <a href="/user/product/${product.productID}">
+                                                    <h4>${product.name}</h4>
+                                                </a>
                                                 <p class="price">${product.price} VNĐ</p>
 
                                                 <form action="/add-product-to-cart/${product.productID}" method="post">

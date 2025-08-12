@@ -39,28 +39,29 @@ public class ProductController {
     }
 
     @GetMapping("/admin/product")
-    public String getProductPage(Model model,
-            @RequestParam("page") Optional<String> pageOptional) {
+    public String getProductPage(
+            Model model,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "keyword", required = false) String keyword) {
 
-        int page = 1; // Mặc định là trang 1
-        try {
-            if (pageOptional.isPresent()) {
-                page = Integer.parseInt(pageOptional.get());
-            }
-            if (page < 1) {
-                page = 1; // Đảm bảo trang không nhỏ hơn 1
-            }
+        if (page < 1)
+            page = 1;
 
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
         Pageable pageable = PageRequest.of(page - 1, 5);
-        Page<Product> products = this.productService.getAllPaginationProducts(pageable);
-        List<Product> productList = products.getContent();
-        model.addAttribute("products", productList);
+        Page<Product> productPage;
 
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            // Tìm kiếm có phân trang
+            productPage = productService.searchProductsByName(keyword.trim(), pageable);
+            model.addAttribute("keyword", keyword);
+        } else {
+            // Lấy toàn bộ sản phẩm có phân trang
+            productPage = productService.getAllPaginationProducts(pageable);
+        }
+
+        model.addAttribute("products", productPage.getContent());
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("totalPages", productPage.getTotalPages());
 
         return "admin/product/QLSANPHAMTK";
     }

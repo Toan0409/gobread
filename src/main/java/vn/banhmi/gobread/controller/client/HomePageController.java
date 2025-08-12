@@ -131,7 +131,7 @@ public class HomePageController {
     public String getProductdetailForUser(@PathVariable long productID, Model model) {
         Optional<Product> product = this.productService.getProductById(productID);
         model.addAttribute("product", product.get());
-        return "product/detailProduct";
+        return "client/product/detailProduct";
     }
 
 }
