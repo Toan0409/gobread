@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.method.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,12 +63,25 @@ public class UserController {
 
     @GetMapping("/admin/user")
     public String getUserPage(Model model,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        Page<User> userPage = userService.getPaginatedUsers(page, size);
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "keyword", required = false) String keyword) {
+
+        if (page < 1)
+            page = 1;
+        Pageable pageable = PageRequest.of(page - 1, 5);
+        Page<User> userPage;
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            userPage = userService.searchUsersByName(keyword.trim(), pageable);
+            model.addAttribute("keyword", keyword);
+        } else {
+            userPage = userService.getPaginatedUsers(pageable);
+        }
+
         model.addAttribute("users1", userPage.getContent());
-        model.addAttribute("currentPage", page);
+        model.addAttribute("currentPage", page); // Spring page start = 0
         model.addAttribute("totalPages", userPage.getTotalPages());
+
         return "admin/user/QLKHACHHANG";
     }
 

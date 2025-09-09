@@ -51,10 +51,16 @@ public class ProductService {
         this.cartRepository = cartRepository;
     }
 
+    // Lấy toàn bộ sản phẩm
     public org.springframework.data.domain.Page<Product> getAllPaginationProducts(Pageable pageable) {
         Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
                 Sort.by(Sort.Direction.DESC, "productID"));
         return productRepository.findAll(sortedPageable);
+    }
+
+    // Tìm kiếm sản phẩm theo tên có phân trang
+    public org.springframework.data.domain.Page<Product> searchProductsByName(String keyword, Pageable pageable) {
+        return productRepository.findProduct(keyword, pageable);
     }
 
     public List<Product> getAllProducts() {
@@ -249,10 +255,6 @@ public class ProductService {
 
     public long countAllProducts() {
         return productRepository.count();
-    }
-
-    public org.springframework.data.domain.Page<Product> searchProductsByName(String keyword, Pageable pageable) {
-        return productRepository.findProduct(keyword, pageable);
     }
 
 }

@@ -85,14 +85,23 @@
           <body>
             <div class="container">
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <h2 class="mb-0">Quản Lý Sản Phẩm & Tồn Kho</h2>
-                <a href="/admin/product/add" class="btn btn-primary">Thêm Sản Phẩm</a>
+                <h5 class="card-title">Quản Lý Sản Phẩm & Tồn Kho</h5>
+                <a href="/admin/product/add" class="btn btn-primary">
+                  <i class="fa fa-plus"></i> Thêm Sản Phẩm
+                </a>
               </div>
 
-              <form class="form-inline mb-3">
-                <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Tìm kiếm sản phẩm..."
-                  aria-label="Search" value="${param.keyword}">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+              <!-- Search form -->
+              <form class="row g-2 mb-3" method="get" action="/admin/product">
+                <div class="col-md-4">
+                  <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm..."
+                    value="${param.keyword}">
+                </div>
+                <div class="col-md-auto">
+                  <button type="submit" class="btn btn-outline-success">
+                    <i class="fa fa-search"></i> Tìm kiếm
+                  </button>
+                </div>
               </form>
               <table>
                 <thead>

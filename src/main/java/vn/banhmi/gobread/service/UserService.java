@@ -3,7 +3,9 @@ package vn.banhmi.gobread.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -55,9 +57,16 @@ public class UserService {
         this.userRepository.deleteById(id);
     }
 
-    public org.springframework.data.domain.Page<User> getPaginatedUsers(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "id");
-        return userRepository.findAll(PageRequest.of(page, size, sort));
+    // Lấy toàn bộ danh sách người dùng có phân trang
+    public Page<User> getPaginatedUsers(Pageable pageable) {
+        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                Sort.by(Sort.Direction.DESC, "id"));
+        return userRepository.findAll(sortedPageable);
+    }
+
+    // Tìm kiếm người dùng theo tên có phân trang
+    public Page<User> searchUsersByName(String keyword, org.springframework.data.domain.Pageable pageable) {
+        return userRepository.findByFullNameContainingIgnoreCase(keyword, pageable);
     }
 
     public User getUserByEmail(String email) {

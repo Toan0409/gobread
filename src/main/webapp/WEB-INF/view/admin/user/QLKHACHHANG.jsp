@@ -108,7 +108,25 @@
           <body>
             <div class="container">
               <h2>Quản Lý Khách Hàng</h2>
-              <a href="/admin/user/create" class="btn btn-add">Thêm Khách Hàng</a>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="card-title">Quản Lý khách hàng</h5>
+                <a href="/admin/user/create" class="btn btn-primary">
+                  <i class="fa fa-plus"></i> Thêm khách hàng
+                </a>
+              </div>
+
+              <!-- Search form -->
+              <form class="row g-2 mb-3" method="get" action="/admin/user">
+                <div class="col-md-4">
+                  <input type="text" name="keyword" class="form-control" placeholder="Tìm kiếm khách hàng..."
+                    value="${param.keyword}">
+                </div>
+                <div class="col-md-auto">
+                  <button type="submit" class="btn btn-outline-success">
+                    <i class="fa fa-search"></i> Tìm kiếm
+                  </button>
+                </div>
+              </form>
               <table>
                 <tr>
                   <th>ID</th>
@@ -147,11 +165,24 @@
               </table>
               <nav>
                 <ul class="pagination justify-content-center">
-                  <c:forEach var="i" begin="0" end="${totalPages - 1}">
-                    <li class="page-item ${i == currentPage ? 'active' : ''}">
-                      <a class="page-link" href="?page=${i}&size=10">${i + 1}</a>
-                    </li>
+                  <li class="page-item">
+                    <a class="${currentPage eq 1 ? 'disabled page-link' : 'page-link'}"
+                      href="/admin/user?page=${currentPage - 1}" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <c:forEach begin="0" end="${totalPages-1}" varStatus="page">
+                    <li class="page-item"><a class="${(page.index+1) eq currentPage ? 'active page-link' : 'page-link'}"
+                        href="/admin/user?page=${page.index + 1}">${page.index
+                        + 1}</a></li>
                   </c:forEach>
+                  <li class="page-item">
+
+                    <a class="${currentPage eq totalPages ? 'disabled page-link' : 'page-link'}"
+                      href="/admin/user?page=${currentPage + 1}" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
                 </ul>
               </nav>
             </div>
